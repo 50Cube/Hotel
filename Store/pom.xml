@@ -5,7 +5,7 @@
     <artifactId>Store</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Store-1.0-SNAPSHOT</name>
+    <name>Hotel-1.0-SNAPSHOT</name>
     
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
