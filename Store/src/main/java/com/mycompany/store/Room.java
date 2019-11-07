@@ -30,6 +30,11 @@ public class Room {
         return this.area;
     }
     
+    public void setArea(double area)
+    {
+        this.area = area;
+    }
+    
     public int getBeds()
     {
         return this.beds;
@@ -52,7 +57,7 @@ public class Room {
     
     public String toString()
     {
-        return "Pokoj nr " + this.number + " ma " + this.area + " m2 i jest przeznaczony dla " + this.beds + " osob.";
+        return "The room nr " + this.number + " has " + this.area + " m2 and is designed for " + this.beds + " people.";
     }
     
 }

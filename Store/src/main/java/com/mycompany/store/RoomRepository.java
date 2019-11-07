@@ -51,4 +51,19 @@ public class RoomRepository {
         rooms.put(room.getNumber(), room);
     }
     
+    public void updateRoom(int number, double newArea, int newBeds, boolean rent)
+    {
+        for(Room room : rooms.values())
+            if(room.getNumber() == number)
+            {
+                room.setArea(newArea);
+                room.setBeds(newBeds);
+                room.setIsRent(rent);
+            }
+    }
+    
+    public void deleteRoom(int number)
+    {
+        // TO DO
+    }
 }

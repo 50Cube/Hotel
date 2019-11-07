@@ -2,7 +2,6 @@ package com.mycompany.store;
 
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -28,9 +27,16 @@ public class RentRepository {
         return rents.get(id);
     }
     
-    public void addRent(Rent rent)
+    public void addRent(Rent rent) throws Exception
     {
-        rents.put(rent.getId(), rent);
+        if (rent.getClient().getIsActive())
+            if (rent.getRoom().getIsRent())
+            {
+                rents.put(rent.getId(), rent);
+                rent.getRoom().setIsRent(true);
+            }
+            else throw new Exception("The room is already rent"); 
+        else throw new Exception("User is not active");
     }
     
     public Map<Integer, Rent> getRentsBetween(Calendar startDate, Calendar stopDate)
@@ -67,5 +73,14 @@ public class RentRepository {
         }
         
         return tmp;
+    }
+    
+    public void deleteRent(int id) throws Exception
+    {
+        for (Rent rent : rents.values())
+            if (rent.getId() == id)
+                if (rent.getRentStop().before(Calendar.getInstance()))
+                    rents.remove(rent.getId());
+                else throw new Exception("Rent is not finished");
     }
 }
