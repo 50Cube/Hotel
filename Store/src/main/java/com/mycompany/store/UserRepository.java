@@ -2,7 +2,6 @@ package com.mycompany.store;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 
@@ -10,20 +9,20 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public class UserRepository {
 
-    private Map<UUID, Client> users;
+    private Map<String, User> users;
     
     public UserRepository() {
         users = new HashMap<>();
     }
     
-    public Map<UUID, Client> getUsers()
+    public Map<String, User> getUsers()
     {
         return users;
     }
     
-    public Client getUser(UUID id)
+    public User getUser(String login)
     {
-        return this.users.get(id);
+        return this.users.get(login);
     }
     
     public int getUsersAmount()
@@ -31,32 +30,42 @@ public class UserRepository {
         return users.size();
     }
     
-    public void addUser(Client client)
+    public void addUser(User user) throws Exception
     {
-        users.put(client.getId(), client);
+        boolean tmp = false;
+        for(User u : users.values())
+            if(u.getLogin().equals(user.getLogin()))
+            {
+                tmp = true;
+                break;
+            }
+        
+        if(tmp)
+            throw new Exception("User already exists");
+        else users.put(user.getLogin(), user);
     }
     
-    public void updateUser(UUID id, String newName, String newSurname)
+    public void updateUser(String id, String newName, String newSurname)
     {
         for(User user : users.values())
-            if (user.getId().equals(id))
+            if (user.getLogin().equals(id))
             {
                 user.setName(newName);
                 user.setSurname(newSurname);
             }
     }
     
-    public void activateUser(UUID id)
+    public void activateUser(String login)
     {
         for(User user : users.values())
-            if (user.getId().equals(id) && !user.getIsActive())
+            if (user.getLogin().equals(login) && !user.getIsActive())
                 user.setIsActive(true);
     }
     
-    public void deactivateUser(UUID id)
+    public void deactivateUser(String login)
     {
         for(User user : users.values())
-            if (user.getId().equals(id) && user.getIsActive())
+            if (user.getLogin().equals(login) && user.getIsActive())
                 user.setIsActive(false);
     }
 }

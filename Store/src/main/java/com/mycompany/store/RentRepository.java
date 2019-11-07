@@ -57,7 +57,7 @@ public class RentRepository {
         Map<UUID, Rent> tmp = new HashMap<>();
         
         for (Rent rent : rents.values()) {
-            if(rent.getClient().getId() == client.getId())
+            if(rent.getClient().getLogin().equals(client.getLogin()))
                 tmp.put(rent.getId(), rent);
         }
         

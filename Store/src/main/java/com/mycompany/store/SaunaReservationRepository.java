@@ -58,7 +58,7 @@ public class SaunaReservationRepository {
         Map<UUID, SaunaReservation> tmp = new HashMap<>();
         
         for (SaunaReservation sr : reservations.values()) {
-            if(sr.getClient().getId() == client.getId())
+            if(sr.getClient().getLogin().equals(client.getLogin()))
                 tmp.put(sr.getId(), sr);
         }
         
@@ -68,7 +68,7 @@ public class SaunaReservationRepository {
     public void deleteReservation(UUID id) throws Exception
     {
         for (SaunaReservation sr : reservations.values())
-            if (sr.getClient().getId().equals(id))
+            if (sr.getId().equals(id))
                 if (sr.getReservationStop().before(Calendar.getInstance()))
                     reservations.remove(sr.getId());
                 else throw new Exception("Reservation is not finished");

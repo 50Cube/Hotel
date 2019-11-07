@@ -1,18 +1,15 @@
 package com.mycompany.store;
 
-import java.util.UUID;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 
 @Named(value = "user")
 @Dependent
 public class User {
-
-    private UUID id = UUID.randomUUID();
-    private String name;
-    private String surname;
     private String login;
     private String password;
+    private String name;
+    private String surname;
     private boolean isActive;
     
     public User(String name, String surname, String login, String password, boolean active) {
@@ -23,10 +20,6 @@ public class User {
         this.isActive = active;
     }
     
-    public UUID getId()
-    {
-        return this.id;
-    }
     
     public String getName()
     {
