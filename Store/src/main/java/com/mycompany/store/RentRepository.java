@@ -3,6 +3,7 @@ package com.mycompany.store;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 
@@ -11,18 +12,18 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public class RentRepository {
 
-    private Map<Integer, Rent> rents;
+    private Map<UUID, Rent> rents;
     
     public RentRepository() {
         rents = new HashMap<>();
     }
     
-    public Map<Integer, Rent> getRents()
+    public Map<UUID, Rent> getRents()
     {
         return this.rents;
     }
     
-    public Rent getRent(int id)
+    public Rent getRent(UUID id)
     {
         return rents.get(id);
     }
@@ -39,9 +40,9 @@ public class RentRepository {
         else throw new Exception("User is not active");
     }
     
-    public Map<Integer, Rent> getRentsBetween(Calendar startDate, Calendar stopDate)
+    public Map<UUID, Rent> getRentsBetween(Calendar startDate, Calendar stopDate)
     {
-        Map<Integer, Rent> tmp = new HashMap<>();
+        Map<UUID, Rent> tmp = new HashMap<>();
         
         for (Rent rent : rents.values()) {
             if(rent.getRentStart().after(startDate) && rent.getRentStop().before(stopDate))
@@ -51,9 +52,9 @@ public class RentRepository {
         return tmp;
     }
     
-    public Map<Integer, Rent> getRentsForClient(Client client)
+    public Map<UUID, Rent> getRentsForClient(Client client)
     {
-        Map<Integer, Rent> tmp = new HashMap<>();
+        Map<UUID, Rent> tmp = new HashMap<>();
         
         for (Rent rent : rents.values()) {
             if(rent.getClient().getId() == client.getId())
@@ -63,9 +64,9 @@ public class RentRepository {
         return tmp;
     }
     
-    public Map<Integer, Rent> getRentsForRoom(Room room)
+    public Map<UUID, Rent> getRentsForRoom(Room room)
     {
-        Map<Integer, Rent> tmp = new HashMap<>();
+        Map<UUID, Rent> tmp = new HashMap<>();
         
         for (Rent rent : rents.values()) {
             if(rent.getRoom().getNumber() == room.getNumber())
@@ -75,10 +76,10 @@ public class RentRepository {
         return tmp;
     }
     
-    public void deleteRent(int id) throws Exception
+    public void deleteRent(UUID id) throws Exception
     {
         for (Rent rent : rents.values())
-            if (rent.getId() == id)
+            if (rent.getId().equals(id))
                 if (rent.getRentStop().before(Calendar.getInstance()))
                     rents.remove(rent.getId());
                 else throw new Exception("Rent is not finished");

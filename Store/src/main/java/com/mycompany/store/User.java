@@ -1,5 +1,6 @@
 package com.mycompany.store;
 
+import java.util.UUID;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 
@@ -7,15 +8,14 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public class User {
 
-    private int id;
+    private UUID id = UUID.randomUUID();
     private String name;
     private String surname;
     private String login;
     private String password;
     private boolean isActive;
     
-    public User(int id, String name, String surname, String login, String password, boolean active) {
-        this.id = id;
+    public User(String name, String surname, String login, String password, boolean active) {
         this.name = name;
         this.surname = surname;
         this.login = login;
@@ -23,7 +23,7 @@ public class User {
         this.isActive = active;
     }
     
-    public int getId()
+    public UUID getId()
     {
         return this.id;
     }

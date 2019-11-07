@@ -3,27 +3,27 @@ package com.mycompany.store;
 import java.util.Calendar;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import java.util.UUID;
 
 
 @Named(value = "rent")
 @Dependent
 public class Rent {
 
-    private int id;
+    private UUID id = UUID.randomUUID();
     private Room room;
     private Client client;
     private Calendar rentStart;
     private Calendar rentStop;
     
-    public Rent(int id, Room room, Client client, Calendar start, Calendar stop) {
-        this.id = id;
+    public Rent(Room room, Client client, Calendar start, Calendar stop) {
         this.room = room;
         this.client = client;
         this.rentStart = start;
         this.rentStop = stop;
     }
     
-    public int getId()
+    public UUID getId()
     {
         return this.id;
     }

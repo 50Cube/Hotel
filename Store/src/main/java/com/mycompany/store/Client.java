@@ -7,7 +7,7 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public class Client extends User
 {
-    public Client(int id, String name, String surname, String login, String password, boolean active) {
-        super(id, name, surname, login, password, active);
+    public Client(String name, String surname, String login, String password, boolean active) {
+        super(name, surname, login, password, active);
     }  
 }

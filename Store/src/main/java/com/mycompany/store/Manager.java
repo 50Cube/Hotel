@@ -8,8 +8,8 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public class Manager extends User
 {
-    public Manager(int id, String name, String surname, String login, String password, boolean active) {
-        super(id, name, surname, login, password, active);
+    public Manager(String name, String surname, String login, String password, boolean active) {
+        super(name, surname, login, password, active);
     }
     
 }

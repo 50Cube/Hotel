@@ -1,6 +1,7 @@
 package com.mycompany.store;
 
 import java.util.Calendar;
+import java.util.UUID;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 
@@ -9,21 +10,20 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public class SaunaReservation {
 
-    private int id;
+    private UUID id = UUID.randomUUID();
     private Sauna sauna;
     private Client client;
     private Calendar reservationStart;
     private Calendar reservationStop;
     
-    public SaunaReservation(int id, Sauna sauna, Client client, Calendar from, Calendar to) {
-        this.id = id;
+    public SaunaReservation(Sauna sauna, Client client, Calendar from, Calendar to) {
         this.sauna = sauna;
         this.client = client;
         this.reservationStart = from;
         this.reservationStop = to;
     }
     
-    public int getId()
+    public UUID getId()
     {
         return this.id;
     }

@@ -3,6 +3,7 @@ package com.mycompany.store;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 
@@ -11,18 +12,18 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public class SaunaReservationRepository {
 
-    private Map<Integer, SaunaReservation> reservations;
+    private Map<UUID, SaunaReservation> reservations;
     
     public SaunaReservationRepository() {
         reservations = new HashMap<>();
     }
     
-    public Map<Integer, SaunaReservation> getReservations()
+    public Map<UUID, SaunaReservation> getReservations()
     {
         return reservations;
     }
     
-    public SaunaReservation getReservatin(int id)
+    public SaunaReservation getReservatin(UUID id)
     {
         return reservations.get(id);
     }
@@ -40,9 +41,9 @@ public class SaunaReservationRepository {
     }
     
     
-    public Map<Integer, SaunaReservation> getReservationsBetween(Calendar startDate, Calendar stopDate)
+    public Map<UUID, SaunaReservation> getReservationsBetween(Calendar startDate, Calendar stopDate)
     {
-        Map<Integer, SaunaReservation> tmp = new HashMap<>();
+        Map<UUID, SaunaReservation> tmp = new HashMap<>();
         
         for (SaunaReservation sr : reservations.values()) {
             if(sr.getreservationStart().after(startDate) && sr.getReservationStop().before(stopDate))
@@ -52,9 +53,9 @@ public class SaunaReservationRepository {
         return tmp;
     }
     
-    public Map<Integer, SaunaReservation> getReservationsForClient(Client client)
+    public Map<UUID, SaunaReservation> getReservationsForClient(Client client)
     {
-        Map<Integer, SaunaReservation> tmp = new HashMap<>();
+        Map<UUID, SaunaReservation> tmp = new HashMap<>();
         
         for (SaunaReservation sr : reservations.values()) {
             if(sr.getClient().getId() == client.getId())
@@ -64,10 +65,10 @@ public class SaunaReservationRepository {
         return tmp;
     }
     
-    public void deleteReservation(int id) throws Exception
+    public void deleteReservation(UUID id) throws Exception
     {
         for (SaunaReservation sr : reservations.values())
-            if (sr.getClient().getId() == id)
+            if (sr.getClient().getId().equals(id))
                 if (sr.getReservationStop().before(Calendar.getInstance()))
                     reservations.remove(sr.getId());
                 else throw new Exception("Reservation is not finished");
