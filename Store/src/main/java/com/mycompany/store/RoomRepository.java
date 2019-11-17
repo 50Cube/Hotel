@@ -2,6 +2,7 @@ package com.mycompany.store;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 
@@ -70,5 +71,16 @@ public class RoomRepository {
                     rooms.remove(room.getNumber());
                 else throw new Exception("The room is currently rent");}
             else throw new Exception("Room with that number does not exist");
+    }
+    
+    
+    @PostConstruct
+    private void initDataRoom()
+    {
+        addRoom(new Room(1,50,2));
+        addRoom(new Room(2,30,1));
+        addRoom(new Room(3,62,3));
+        addRoom(new Room(4,78,5));
+        addRoom(new Room(5,75,4));
     }
 }

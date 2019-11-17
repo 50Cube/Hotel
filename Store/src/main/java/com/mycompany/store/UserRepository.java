@@ -2,6 +2,7 @@ package com.mycompany.store;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 
@@ -67,5 +68,22 @@ public class UserRepository {
         for(User user : users.values())
             if (user.getLogin().equals(login) && user.getIsActive())
                 user.setIsActive(false);
+    }
+    
+    
+    @PostConstruct
+    private void initDataUser()
+    {
+        Admin admin = new Admin("Norbert", "Gierczak", "dis", "", true);
+        Manager manager = new Manager("Marcin", "Krasucki", "jd", "", true);
+        Client client1 = new Client("Gabriel", "Nowak", "gabor", "", true);
+        Client client2 = new Client("Jakub", "Bogdan", "herb", "", false);
+        Client client3 = new Client("Szymon", "Rutkowski", "4", "", true);
+        
+        users.put(admin.getLogin(), admin);
+        users.put(manager.getLogin(), manager);
+        users.put(client1.getLogin(), client1);
+        users.put(client2.getLogin(), client2);
+        users.put(client3.getLogin(), client3);
     }
 }

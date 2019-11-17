@@ -1,11 +1,5 @@
 package com.mycompany.store;
 
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-
-
-@Named(value = "room")
-@Dependent
 public class Room {
     
     private int number;

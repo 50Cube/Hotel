@@ -1,10 +1,5 @@
 package com.mycompany.store;
 
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-
-@Named(value = "user")
-@Dependent
 public class User {
     private String login;
     private String password;

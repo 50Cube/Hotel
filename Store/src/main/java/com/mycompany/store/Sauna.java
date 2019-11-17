@@ -1,19 +1,20 @@
 package com.mycompany.store;
 
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-
-
-@Named(value = "sauna")
-@Dependent
 public class Sauna {
 
+    private int number;
     private double pricePerHour;
     private boolean isReserved;
     
-    public Sauna(double price) {
+    public Sauna(int number, double price) {
+        this.number = number;
         this.pricePerHour = price;
         this.isReserved = false;
+    }
+    
+    public int getNumber()
+    {
+        return this.number;
     }
     
     public double getPricePerHour()

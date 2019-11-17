@@ -15,7 +15,7 @@ public class Main {
         Room room1 = new Room(1, 50, 2);
         Room room2 = new Room(2, 60, 3);
 
-        Sauna sauna = new Sauna(20);
+        Sauna sauna = new Sauna(1, 20);
 
         RoomRepository roomRepository = new RoomRepository();
         UserRepository userRepository = new UserRepository();
