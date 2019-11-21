@@ -1,6 +1,6 @@
 package com.mycompany.store;
 
-import java.util.List;
+import java.util.Map;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -16,7 +16,7 @@ public class SaunaService {
     public SaunaService() {
     }
     
-     public List<Sauna> getSaunas()
+     public Map<Integer, Sauna> getSaunas()
     {
         return saunaRepository.getSaunas();
     }

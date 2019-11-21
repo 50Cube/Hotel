@@ -6,10 +6,23 @@
         <title>Main page</title>
     </h:head>
     <h:body>
-        Welcome to the Hotel California
+        Hotel
+        <!--
     <h:form>
         <h:commandButton value="login" action="loginChoose.xhtml"/>
     </h:form>
+        -->
+        
+        <ul>
+            <li><h:link value="List users" outcome="listUsers.xhtml" /></li>
+            <li><h:link value="List rooms" outcome="listRooms.xhtml" /></li>
+            <li><h:link value="List saunas" outcome="listSaunas.xhtml" /></li>
+        </ul>
+        <ul>
+            <li><h:link value="Add user" outcome="addUser.xhtml" /></li>
+            <li><h:link value="Add room" outcome="addRoom.xhtml" /></li>
+            <li><h:link value="Add sauna" outcome="addSauna.xhtml" /></li>
+        </ul>
     </h:body>
 </html>
 

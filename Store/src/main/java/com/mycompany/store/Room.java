@@ -7,6 +7,8 @@ public class Room {
     private int beds;
     private boolean isRent;
 
+    public Room () {}
+    
     public Room(int number, double area, int beds) {
         this.number = number;
         this.area = area;
@@ -51,7 +53,7 @@ public class Room {
     
     public String toString()
     {
-        return "The room nr " + this.number + " has " + this.area + " m2 and is designed for " + this.beds + " people.";
+        return "Room no. " + this.number + " has " + this.area + " m2 and is designed for " + this.beds + " people.";
     }
     
 }

@@ -1,7 +1,7 @@
 package com.mycompany.store;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -11,13 +11,13 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public class SaunaRepository {
 
-    private List<Sauna> saunas;
+    private Map<Integer, Sauna> saunas;
     
     public SaunaRepository() {
-        saunas = new ArrayList<>();
+        saunas = new HashMap<>();
     }
     
-    public List<Sauna> getSaunas()
+    public Map<Integer, Sauna> getSaunas()
     {
         return this.saunas;
     }
@@ -29,12 +29,12 @@ public class SaunaRepository {
     
     public void addSauna(Sauna sauna)
     {
-        saunas.add(sauna);
+        saunas.put(sauna.getNumber(), sauna);
     }
     
      public void updateSauna(int number, double price, boolean reserved)
     {
-        for(Sauna sauna : saunas)
+        for(Sauna sauna : saunas.values())
             if(sauna.getNumber() == number)
             {
                 sauna.setPricePerHour(price);
@@ -44,12 +44,12 @@ public class SaunaRepository {
     
     public void deleteSauna(int number) throws Exception
     {
-        for(Sauna sauna : saunas)
+        for(Sauna sauna : saunas.values())
             if(sauna.getNumber() == number){
                 if(!sauna.getIsReserved())
                     saunas.remove(sauna.getNumber());
-                else throw new Exception("The room is currently rent");}
-            else throw new Exception("Room with that number does not exist");
+                else throw new Exception("The sauna is currently reserved");}
+            else throw new Exception("Sauna with that number does not exist");
     }
     
     @PostConstruct

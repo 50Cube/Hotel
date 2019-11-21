@@ -3,12 +3,12 @@ package com.mycompany.store;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 
 
 @Named(value = "roomRepository")
-@Dependent
+@ApplicationScoped
 public class RoomRepository {
 
     private Map<Integer, Room> rooms;
