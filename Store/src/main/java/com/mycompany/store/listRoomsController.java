@@ -2,8 +2,8 @@ package com.mycompany.store;
 
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.inject.Named;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 import javax.inject.Inject;
 
 
@@ -30,7 +30,7 @@ public class listRoomsController {
         return rooms;
     }
     
-    public void removeRoom(int number) throws Exception
+    public void deleteRoom(int number) throws Exception
     {
         roomService.deleteRoom(number);
         loadRooms();

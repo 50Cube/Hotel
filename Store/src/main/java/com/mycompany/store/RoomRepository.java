@@ -63,14 +63,20 @@ public class RoomRepository {
             }
     }
     
-    public void deleteRoom(int number) throws Exception
+    public boolean deleteRoom(int number, String message)
     {
         for(Room room : rooms.values())
-            if(room.getNumber() == number){
+            if(room.getNumber() == number)
+            {
                 if(!room.getIsRent())
+                {
                     rooms.remove(room.getNumber());
-                else throw new Exception("The room is currently rent");}
-            else throw new Exception("Room with that number does not exist");
+                    return true;
+                }
+                else message = "This room is currently rent";
+            }
+            else message = "Room with that number does not exist";
+        return false;
     }
     
     

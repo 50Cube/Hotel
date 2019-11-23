@@ -52,7 +52,9 @@ public class RoomService {
     
     public void deleteRoom(int number) throws Exception
     {
-        roomRepository.deleteRoom(number);
+        String message = "";
+        if (!roomRepository.deleteRoom(number, message))
+            throw new Exception(message);
     }
     
 }

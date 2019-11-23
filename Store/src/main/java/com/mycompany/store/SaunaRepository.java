@@ -3,12 +3,12 @@ package com.mycompany.store;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 
 
 @Named(value = "saunaRepository")
-@Dependent
+@ApplicationScoped
 public class SaunaRepository {
 
     private Map<Integer, Sauna> saunas;
@@ -42,19 +42,26 @@ public class SaunaRepository {
             }
     }
     
-    public void deleteSauna(int number) throws Exception
+    public boolean deleteSauna(int number, String message)
     {
         for(Sauna sauna : saunas.values())
-            if(sauna.getNumber() == number){
+            if(sauna.getNumber() == number)
+            {
                 if(!sauna.getIsReserved())
+                {
                     saunas.remove(sauna.getNumber());
-                else throw new Exception("The sauna is currently reserved");}
-            else throw new Exception("Sauna with that number does not exist");
+                    return true;
+                }
+                else message = "This sauna is currently reserved";
+            }
+            else message = "Sauna with that number does not exist";
+        return false;
     }
     
     @PostConstruct
     private void initDataSauna()
     {
         addSauna(new Sauna(1,20));
+        addSauna(new Sauna(2,25));
     }
 }

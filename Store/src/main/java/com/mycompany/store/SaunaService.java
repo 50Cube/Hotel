@@ -38,6 +38,8 @@ public class SaunaService {
     
     public void deleteSauna(int number) throws Exception
     {
-        saunaRepository.deleteSauna(number);
+        String message = "";
+        if(!saunaRepository.deleteSauna(number,message))
+            throw new Exception(message);
     }
 }

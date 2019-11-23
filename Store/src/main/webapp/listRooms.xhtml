@@ -10,7 +10,8 @@
         <h:form>
             <h:dataTable value="#{listRoomsController.rooms}" var="room">
                 <h:column><h:outputText value="#{room.value}" /></h:column>
-                <h:column><h:commandButton value="Remove" action="#{listRoomsController.removeRoom(room.number)}"/></h:column>
+                <h:column><h:commandButton value="Remove" action="#{listRoomsController.deleteRoom(room.value.number)}"/></h:column>
+                <h:column><h:commandButton value="Update"/></h:column>
             </h:dataTable>
         </h:form>
     </h:body>

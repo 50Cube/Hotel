@@ -51,6 +51,7 @@ public class Room {
         this.isRent = rent;
     }
     
+    @Override
     public String toString()
     {
         return "Room no. " + this.number + " has " + this.area + " m2 and is designed for " + this.beds + " people.";

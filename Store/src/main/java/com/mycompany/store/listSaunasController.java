@@ -2,12 +2,12 @@ package com.mycompany.store;
 
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 @Named(value = "listSaunasController")
-@Dependent
+@ViewScoped
 public class listSaunasController {
 
     @Inject
@@ -24,7 +24,12 @@ public class listSaunasController {
         saunas = saunaService.getSaunas();
     }
     
-    public void removeSauna(int number) throws Exception
+    public Map<Integer, Sauna> getSaunas()
+    {
+        return saunas;
+    }
+    
+    public void deleteSauna(int number) throws Exception
     {
         saunaService.deleteSauna(number);
         loadSaunas();

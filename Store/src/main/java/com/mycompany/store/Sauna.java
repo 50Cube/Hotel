@@ -36,4 +36,10 @@ public class Sauna {
     {
         this.isReserved = is;
     }
+    
+    @Override
+    public String toString()
+    {
+        return "Sauna no. " + this.number + " costs " + this.pricePerHour + " per hour.";
+    }
 }
