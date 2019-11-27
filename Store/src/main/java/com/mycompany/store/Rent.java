@@ -1,5 +1,7 @@
 package com.mycompany.store;
 
+import com.mycompany.store.Model.Room;
+import com.mycompany.store.Model.Client;
 import java.util.Calendar;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;

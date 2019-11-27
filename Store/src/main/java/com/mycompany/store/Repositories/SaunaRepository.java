@@ -1,5 +1,6 @@
-package com.mycompany.store;
+package com.mycompany.store.Repositories;
 
+import com.mycompany.store.Model.Sauna;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;

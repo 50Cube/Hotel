@@ -1,5 +1,7 @@
-package com.mycompany.store;
+package com.mycompany.store.Repositories;
 
+import com.mycompany.store.Model.Client;
+import com.mycompany.store.SaunaReservation;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;

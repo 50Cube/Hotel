@@ -1,5 +1,8 @@
-package com.mycompany.store;
+package com.mycompany.store.Services;
 
+import com.mycompany.store.Repositories.SaunaRepository;
+import com.mycompany.store.Model.Sauna;
+import java.io.Serializable;
 import java.util.Map;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -8,7 +11,7 @@ import javax.inject.Inject;
 
 @Named(value = "saunaService")
 @Dependent
-public class SaunaService {
+public class SaunaService implements Serializable{
 
     @Inject
     private SaunaRepository saunaRepository;

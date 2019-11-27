@@ -1,15 +1,18 @@
-package com.mycompany.store;
+package com.mycompany.store.Controllers;
 
+import com.mycompany.store.Services.RoomService;
+import com.mycompany.store.Model.Room;
+import java.io.Serializable;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.inject.Inject;
 
 
 @Named(value = "listRoomsController")
 @ViewScoped
-public class listRoomsController {
+public class listRoomsController implements Serializable{
 
     @Inject
     private RoomService roomService;

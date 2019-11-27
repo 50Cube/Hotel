@@ -1,5 +1,7 @@
 package com.mycompany.store;
 
+import com.mycompany.store.Model.Sauna;
+import com.mycompany.store.Model.Client;
 import java.util.Calendar;
 import java.util.UUID;
 import javax.inject.Named;

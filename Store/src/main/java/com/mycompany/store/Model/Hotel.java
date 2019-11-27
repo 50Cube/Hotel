@@ -1,5 +1,7 @@
-package com.mycompany.store;
+package com.mycompany.store.Model;
 
+import com.mycompany.store.Repositories.RentRepository;
+import com.mycompany.store.Repositories.RoomRepository;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 

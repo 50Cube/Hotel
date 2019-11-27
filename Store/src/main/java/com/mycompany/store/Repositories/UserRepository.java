@@ -1,5 +1,9 @@
-package com.mycompany.store;
+package com.mycompany.store.Repositories;
 
+import com.mycompany.store.Model.Client;
+import com.mycompany.store.Model.Admin;
+import com.mycompany.store.Model.Manager;
+import com.mycompany.store.Model.User;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;

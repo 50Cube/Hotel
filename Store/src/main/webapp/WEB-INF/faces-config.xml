@@ -26,8 +26,8 @@
 
     <navigation-rule>
         <navigation-case>
-            <from-outcome></from-outcome>
-            <to-view-id></to-view-id>
+            <from-outcome>addRoom</from-outcome>
+            <to-view-id>addRoomConfirm.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>

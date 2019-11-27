@@ -1,4 +1,4 @@
-package com.mycompany.store;
+package com.mycompany.store.Model;
 
 
 public class Manager extends User
