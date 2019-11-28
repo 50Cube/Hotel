@@ -6,6 +6,8 @@ public class Sauna {
     private double pricePerHour;
     private boolean isReserved;
     
+    public Sauna() {}
+    
     public Sauna(int number, double price) {
         this.number = number;
         this.pricePerHour = price;
@@ -15,6 +17,11 @@ public class Sauna {
     public int getNumber()
     {
         return this.number;
+    }
+    
+    public void setNumber(int number)
+    {
+        this.number = number;
     }
     
     public double getPricePerHour()

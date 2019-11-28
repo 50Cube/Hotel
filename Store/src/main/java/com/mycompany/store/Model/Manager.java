@@ -7,4 +7,8 @@ public class Manager extends User
         super(name, surname, login, password, active);
     }
     
+    @Override
+    public String getType() {
+        return "Manager";
+    }
 }

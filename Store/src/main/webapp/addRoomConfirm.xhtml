@@ -3,10 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Add room confirm</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        Confirm room
+        <h:form>
+            Number: <h:outputText value="#{addRoomController.room.number}" /><br />
+            Area: <h:outputText value="#{addRoomController.room.area}" /><br />
+            Beds: <h:outputText value="#{addRoomController.room.beds}" /><br />
+            
+            <h:commandButton value="Confirm" action="#{addRoomController.addRoomConfirm()}"/>
+            <h:commandButton value="Cancel" action="mainPage.xhtml" immediate="true" />
+        </h:form>
     </h:body>
 </html>
 

@@ -9,9 +9,12 @@
         List of users
         <h:form>
             <h:dataTable value="#{listUsersController.users}" var="user">
-                <h:column><h:outputText value="#{user.value.login}"/></h:column>
+                <h:column><h:outputText value="Role: #{user.value.getType()}"/></h:column>
+                <h:column><h:outputText value="Login: #{user.value.login}"/></h:column>
+                <h:column><h:commandButton value="Update" /></h:column>
             </h:dataTable>
         </h:form>
+        <br /><h:link value="Back" outcome="home" />
     </h:body>
 </html>
 

@@ -1,6 +1,6 @@
 package com.mycompany.store.Model;
 
-public class User {
+public abstract class User {
     private String login;
     private String password;
     private String name;
@@ -60,6 +60,9 @@ public class User {
     {
         this.isActive = active;
     }
+    
+    public abstract String getType();
+            
     
     public String toString()
     {
