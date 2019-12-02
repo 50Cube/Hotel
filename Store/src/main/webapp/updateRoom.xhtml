@@ -9,11 +9,12 @@
         Update room
         <h:form>
             <br />
-            New area <h:inputText /> <br />
-            New amount of beds <h:inputText /> <br />
+            New number <h:inputText value="#{updateRoomController.room.number}" /> <br />
+            New area <h:inputText value="#{updateRoomController.room.area}"/> <br />
+            New amount of beds <h:inputText value="#{updateRoomController.room.beds}"/> <br />
             
             <br />
-            <h:commandButton value="Update" />
+            <h:commandButton value="Update" action="#{updateRoomController.updateRoom()}"/>
             <h:commandButton value="Cancel" action="listRooms.xhtml" immediate="true" />
         </h:form>
     </h:body>

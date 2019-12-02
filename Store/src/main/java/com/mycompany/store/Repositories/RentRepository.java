@@ -34,12 +34,7 @@ public class RentRepository {
     public void addRent(Rent rent) throws Exception
     {
         if (rent.getClient().getIsActive())
-            if (rent.getRoom().getIsRent())
-            {
-                rents.put(rent.getId(), rent);
-                rent.getRoom().setIsRent(true);
-            }
-            else throw new Exception("The room is already rent"); 
+            rents.put(rent.getId(), rent);
         else throw new Exception("User is not active");
     }
     

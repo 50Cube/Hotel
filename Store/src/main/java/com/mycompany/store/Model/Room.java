@@ -5,7 +5,6 @@ public class Room {
     private int number;
     private double area;
     private int beds;
-    private boolean isRent;
 
     public Room () {}
     
@@ -13,7 +12,6 @@ public class Room {
         this.number = number;
         this.area = area;
         this.beds = beds;
-        this.isRent = false;
     }
     
     public int getNumber()
@@ -44,16 +42,6 @@ public class Room {
     public void setBeds(int beds)
     {
         this.beds = beds;
-    }
-    
-    public boolean getIsRent()
-    {
-        return this.isRent;
-    }
-    
-    public void setIsRent(boolean rent)
-    {
-        this.isRent = rent;
     }
     
     @Override

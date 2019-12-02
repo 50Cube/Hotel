@@ -34,9 +34,9 @@ public class SaunaService implements Serializable{
         saunaRepository.addSauna(sauna);
     }
     
-     public void updateSauna(int number, double price, boolean reserved)
+     public void updateSauna(int number, double price)
     {
-        saunaRepository.updateSauna(number, price, reserved);
+        saunaRepository.updateSauna(number, price);
     }
     
     public void deleteSauna(int number) throws Exception

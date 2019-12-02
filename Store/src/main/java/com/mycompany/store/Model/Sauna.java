@@ -4,14 +4,12 @@ public class Sauna {
 
     private int number;
     private double pricePerHour;
-    private boolean isReserved;
     
     public Sauna() {}
     
     public Sauna(int number, double price) {
         this.number = number;
         this.pricePerHour = price;
-        this.isReserved = false;
     }
     
     public int getNumber()
@@ -32,16 +30,6 @@ public class Sauna {
     public void setPricePerHour(double price)
     {
         this.pricePerHour = price;
-    }
-    
-    public boolean getIsReserved()
-    {
-        return this.isReserved;
-    }
-    
-    public void setIsReserved(boolean is)
-    {
-        this.isReserved = is;
     }
     
     @Override

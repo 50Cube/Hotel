@@ -34,10 +34,28 @@
     </navigation-rule>
     
     <navigation-rule>
+        <from-view-id>updateRoom.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>updateRoom</from-outcome>
+            <to-view-id>updateRoomConfirm.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
         <from-view-id>addSauna.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>addSauna</from-outcome>
             <to-view-id>addSaunaConfirm.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>updateSauna.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>updateSauna</from-outcome>
+            <to-view-id>updateSaunaConfirm.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
@@ -54,6 +72,14 @@
         <navigation-case>
             <from-outcome>listRooms</from-outcome>
             <to-view-id>listRooms.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>listSaunas</from-outcome>
+            <to-view-id>listSaunas.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>

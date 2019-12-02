@@ -36,12 +36,14 @@ public class updateRoomController implements Serializable {
     }
     
     public String updateRoom() {
+        if(!conversation.isTransient())
+            conversation.end();
         conversation.begin();
         return "updateRoom";
     }
     
     public String updateRoomConfirm() {
-        roomService.updateRoom(room.getNumber(), room.getArea(), room.getBeds(), room.getIsRent());
+        roomService.updateRoom(room.getNumber(), room.getArea(), room.getBeds());
         conversation.end();
         return "listRooms";
     }

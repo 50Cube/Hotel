@@ -1,19 +1,19 @@
 package com.mycompany.store.Controllers;
 
 import com.mycompany.store.Model.Sauna;
-import com.mycompany.store.Services.SaunaService;
-import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
 import javax.inject.Inject;
+import java.io.Serializable;
+import com.mycompany.store.Services.SaunaService;
 
 
-@Named(value = "addSaunaController")
+@Named(value = "updateSaunaController")
 @ConversationScoped
-public class addSaunaController implements Serializable{
-    
+public class updateSaunaController implements Serializable {
+
     @Inject
     private SaunaService saunaService;
     
@@ -22,11 +22,12 @@ public class addSaunaController implements Serializable{
     
     private Sauna sauna;
     
-    public addSaunaController() {
+    public updateSaunaController() {
     }
     
     @PostConstruct
-    private void init() {
+    private void init()
+    {
         sauna = new Sauna();
     }
     
@@ -34,16 +35,16 @@ public class addSaunaController implements Serializable{
         return sauna;
     }
     
-    public String addSauna() {
+    public String updateSauna() {
         if(!conversation.isTransient())
             conversation.end();
         conversation.begin();
-        return "addSauna";
+        return "updateSauna";
     }
     
-    public String addSaunaConfirm() {
-        saunaService.addSauna(sauna);
+    public String updateSaunaConfirm() {
+        saunaService.updateSauna(sauna.getNumber(), sauna.getPricePerHour());
         conversation.end();
-        return "home";
+        return "listSaunas";
     }
 }

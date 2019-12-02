@@ -32,25 +32,15 @@ public class RoomService implements Serializable{
     {
         return roomRepository.getRoomsAmount();
     }
-    
-    public int getRentedRoomsAmount()
-    {
-        return roomRepository.getRentedRoomsAmount();
-    }
-    
-    public int getFreeRoomsAmount()
-    {
-        return roomRepository.getFreeRoomsAmount();
-    }
-    
+ 
     public void addRoom(Room room)
     {
         roomRepository.addRoom(room);
     }
     
-    public void updateRoom(int number, double newArea, int newBeds, boolean rent)
+    public void updateRoom(int number, double newArea, int newBeds)
     {
-        roomRepository.updateRoom(number, newArea, newBeds, rent);
+        roomRepository.updateRoom(number, newArea, newBeds);
     }
     
     public void deleteRoom(int number) throws Exception

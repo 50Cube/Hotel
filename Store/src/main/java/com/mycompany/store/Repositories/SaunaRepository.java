@@ -33,13 +33,12 @@ public class SaunaRepository {
         saunas.put(sauna.getNumber(), sauna);
     }
     
-     public void updateSauna(int number, double price, boolean reserved)
+     public void updateSauna(int number, double price)
     {
         for(Sauna sauna : saunas.values())
             if(sauna.getNumber() == number)
             {
                 sauna.setPricePerHour(price);
-                sauna.setIsReserved(reserved);
             }
     }
     
@@ -48,12 +47,8 @@ public class SaunaRepository {
         for(Sauna sauna : saunas.values())
             if(sauna.getNumber() == number)
             {
-                if(!sauna.getIsReserved())
-                {
-                    saunas.remove(sauna.getNumber());
-                    return true;
-                }
-                else message = "This sauna is currently reserved";
+                saunas.remove(sauna.getNumber());
+                return true;
             }
             else message = "Sauna with that number does not exist";
         return false;

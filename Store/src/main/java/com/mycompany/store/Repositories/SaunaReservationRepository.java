@@ -33,12 +33,7 @@ public class SaunaReservationRepository {
     public void addReservation(SaunaReservation sr) throws Exception
     {
         if (sr.getClient().getIsActive())
-            if (sr.getSauna().getIsReserved())
-            {
-                reservations.put(sr.getId(), sr);
-                sr.getSauna().setIsReserved(true);
-            }
-            else throw new Exception("Sauna is already reserved");
+            reservations.put(sr.getId(), sr);
         else throw new Exception("User is not active");
     }
     

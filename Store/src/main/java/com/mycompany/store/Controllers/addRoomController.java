@@ -35,6 +35,8 @@ public class addRoomController implements Serializable{
     }
     
     public String addRoom() {
+        if(!conversation.isTransient())
+            conversation.end();
         conversation.begin();
         return "addRoom";
     }
