@@ -8,9 +8,9 @@ import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 
 
-@Named(value = "saunaReservation")
+@Named(value = "Reservation")
 @Dependent
-public class SaunaReservation {
+public class Reservation {
 
     private UUID id = UUID.randomUUID();
     private Sauna sauna;
@@ -18,7 +18,7 @@ public class SaunaReservation {
     private Calendar reservationStart;
     private Calendar reservationStop;
     
-    public SaunaReservation(Sauna sauna, Client client, Calendar from, Calendar to) {
+    public Reservation(Sauna sauna, Client client, Calendar from, Calendar to) {
         this.sauna = sauna;
         this.client = client;
         this.reservationStart = from;
@@ -45,7 +45,7 @@ public class SaunaReservation {
         return this.reservationStart;
     }
     
-    public void setreservationStart(Calendar date)
+    public void setReservationStart(Calendar date)
     {
         this.reservationStart = date;
     }

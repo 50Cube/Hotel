@@ -74,12 +74,15 @@ public class RentRepository {
         return tmp;
     }
     
-    public void deleteRent(UUID id) throws Exception
+    public boolean deleteRent(UUID id, String message)
     {
         for (Rent rent : rents.values())
             if (rent.getId().equals(id))
-                if (rent.getRentStop().before(Calendar.getInstance()))
+                if (rent.getRentStop().before(Calendar.getInstance())) {
                     rents.remove(rent.getId());
-                else throw new Exception("Rent is not finished");
+                    return true;
+                }
+                else message = "Rent is not finished";
+        return false;
     }
 }
