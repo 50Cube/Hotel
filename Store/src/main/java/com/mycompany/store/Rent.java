@@ -2,6 +2,7 @@ package com.mycompany.store;
 
 import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.Client;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -58,5 +59,12 @@ public class Rent {
     public void setRentStop(Calendar date)
     {
         this.rentStop = date;
+    }
+    
+    @Override
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+
+        return "Room no. " + this.room.getNumber() + " is rent by " + this.client.getName() + " " + this.client.getSurname() + " from " + sdf.format(this.rentStart.getTime()) + " to " + sdf.format(this.rentStop.getTime());
     }
 }

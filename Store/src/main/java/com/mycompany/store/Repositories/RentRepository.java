@@ -4,17 +4,26 @@ import com.mycompany.store.Model.Client;
 import com.mycompany.store.Model.Room;
 import com.mycompany.store.Rent;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 
 
 @Named(value = "rentRepository")
 @Dependent
 public class RentRepository {
 
+    @Inject
+    private UserRepository userRepository;
+    
+    @Inject
+    private RoomRepository roomRepository;
+    
     private Map<UUID, Rent> rents;
     
     public RentRepository() {
@@ -31,11 +40,10 @@ public class RentRepository {
         return rents.get(id);
     }
     
-    public void addRent(Rent rent) throws Exception
+    public void addRent(Rent rent)
     {
         if (rent.getClient().getIsActive())
             rents.put(rent.getId(), rent);
-        else throw new Exception("User is not active");
     }
     
     public Map<UUID, Rent> getRentsBetween(Calendar startDate, Calendar stopDate)
@@ -84,5 +92,10 @@ public class RentRepository {
                 }
                 else message = "Rent is not finished";
         return false;
+    }
+    
+    @PostConstruct
+    private void initDataRent() {
+        addRent(new Rent(roomRepository.getRoom(1), (Client) userRepository.getUser("herb"), new GregorianCalendar(2019,12,05), new GregorianCalendar(2020,02,28)));
     }
 }

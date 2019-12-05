@@ -8,9 +8,9 @@
     <h:body>
         Add room
         <h:form>
-            Number<h:inputText value="#{addRoomController.room.number}" required="true" /> <br />
-            Area<h:inputText value="#{addRoomController.room.area}" required="true" /> <br />
-            Beds<h:inputText value="#{addRoomController.room.beds}" required="true" /> <br />
+            Number <h:inputText value="#{addRoomController.room.number}" required="true" /> <br />
+            Area <h:inputText value="#{addRoomController.room.area}" required="true" /> <br />
+            Beds <h:inputText value="#{addRoomController.room.beds}" required="true" /> <br />
             
             <h:commandButton value="Add" action="#{addRoomController.addRoom()}" />
             <h:commandButton value="Cancel" action="mainPage.xhtml" immediate="true" />

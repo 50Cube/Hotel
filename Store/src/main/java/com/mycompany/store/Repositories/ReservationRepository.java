@@ -3,17 +3,26 @@ package com.mycompany.store.Repositories;
 import com.mycompany.store.Model.Client;
 import com.mycompany.store.Reservation;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 
 
 @Named(value = "ReservationRepository")
 @Dependent
 public class ReservationRepository {
 
+    @Inject
+    private SaunaRepository saunaRepository;
+    
+    @Inject
+    private UserRepository userRepository;
+    
     private Map<UUID, Reservation> reservations;
     
     public ReservationRepository() {
@@ -30,11 +39,10 @@ public class ReservationRepository {
         return reservations.get(id);
     }
     
-    public void addReservation(Reservation sr) throws Exception
+    public void addReservation(Reservation sr)
     {
         if (sr.getClient().getIsActive())
             reservations.put(sr.getId(), sr);
-        else throw new Exception("User is not active");
     }
     
     
@@ -72,5 +80,10 @@ public class ReservationRepository {
                 }
                 else message = "Reservation is not finished";
         return false;
+    }
+    
+    @PostConstruct
+    private void initDataReservation() {
+        addReservation(new Reservation(saunaRepository.getSauna(1), (Client) userRepository.getUser("gabor"), new GregorianCalendar(2019,12,06), new GregorianCalendar(2019,12,24)));
     }
 }

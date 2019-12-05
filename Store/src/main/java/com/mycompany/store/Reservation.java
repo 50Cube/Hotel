@@ -2,6 +2,7 @@ package com.mycompany.store;
 
 import com.mycompany.store.Model.Sauna;
 import com.mycompany.store.Model.Client;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.UUID;
 import javax.inject.Named;
@@ -60,4 +61,10 @@ public class Reservation {
         this.reservationStop = date;
     }
     
+    @Override
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        
+        return "Sauna no. " + this.sauna.getNumber() + " is reservated by " + this.client.getName() + " " + this.client.getSurname() + " from " + sdf.format(this.reservationStart.getTime()) + " to " + sdf.format(this.reservationStop.getTime());
+    }
 }

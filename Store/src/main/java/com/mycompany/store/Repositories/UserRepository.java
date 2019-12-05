@@ -81,8 +81,8 @@ public class UserRepository {
         Admin admin = new Admin("Norbert", "Gierczak", "dis", "", true);
         Manager manager = new Manager("Marcin", "Krasucki", "jd", "", true);
         Client client1 = new Client("Gabriel", "Nowak", "gabor", "", true);
-        Client client2 = new Client("Jakub", "Bogdan", "herb", "", false);
-        Client client3 = new Client("Szymon", "Rutkowski", "4", "", true);
+        Client client2 = new Client("Jakub", "Bogdan", "herb", "", true);
+        Client client3 = new Client("Szymon", "Rutkowski", "4", "", false);
         
         users.put(admin.getLogin(), admin);
         users.put(manager.getLogin(), manager);
