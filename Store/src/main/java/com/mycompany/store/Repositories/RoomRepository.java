@@ -20,7 +20,7 @@ public class RoomRepository {
     
     public Map<Integer, Room> getRooms()
     {
-        return this.rooms;
+        return new HashMap<>(rooms);
     }
     
     public Room getRoom(int number)

@@ -20,7 +20,7 @@ public class SaunaRepository {
     
     public Map<Integer, Sauna> getSaunas()
     {
-        return this.saunas;
+        return new HashMap<>(saunas);
     }
     
     public Sauna getSauna(int number)

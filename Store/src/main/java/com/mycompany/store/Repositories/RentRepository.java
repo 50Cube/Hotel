@@ -32,7 +32,7 @@ public class RentRepository {
     
     public Map<UUID, Rent> getRents()
     {
-        return this.rents;
+        return new HashMap<>(rents);
     }
     
     public Rent getRent(UUID id)

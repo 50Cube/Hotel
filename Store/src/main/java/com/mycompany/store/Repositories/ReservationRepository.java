@@ -31,7 +31,7 @@ public class ReservationRepository {
     
     public Map<UUID, Reservation> getReservations()
     {
-        return reservations;
+        return new HashMap<>(reservations);
     }
     
     public Reservation getReservation(UUID id)

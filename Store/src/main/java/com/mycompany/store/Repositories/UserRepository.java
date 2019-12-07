@@ -22,7 +22,7 @@ public class UserRepository {
     
     public Map<String, User> getUsers()
     {
-        return users;
+        return new HashMap<>(users);
     }
     
     public User getUser(String login)
