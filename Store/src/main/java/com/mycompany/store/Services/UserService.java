@@ -1,5 +1,8 @@
 package com.mycompany.store.Services;
 
+import com.mycompany.store.Model.Admin;
+import com.mycompany.store.Model.Client;
+import com.mycompany.store.Model.Manager;
 import com.mycompany.store.Repositories.UserRepository;
 import com.mycompany.store.Model.User;
 import java.io.Serializable;
@@ -35,9 +38,16 @@ public class UserService implements Serializable{
         return userRepository.getUsersAmount();
     }
     
-    public void addUser(User user) throws Exception
-    {
-        userRepository.addUser(user);
+    public void addClient(String login, String password, String name, String surname, boolean active) throws Exception {
+            userRepository.addUser(new Client(login,password,name,surname,active));
+    }
+    
+    public void addManager(String login, String password, String name, String surname, boolean active) throws Exception {
+            userRepository.addUser(new Manager(login,password,name,surname,active));
+    }
+    
+    public void addAdmin(String login, String password, String name, String surname, boolean active) throws Exception {
+            userRepository.addUser(new Admin(login,password,name,surname,active));
     }
     
     public void updateUser(String id, String newName, String newSurname)
