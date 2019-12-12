@@ -9,8 +9,8 @@
         Update sauna
         <h:form>
             <br />
-            New number <h:inputText value="#{updateSaunaController.sauna.number}"/><br />
-            New cost <h:inputText value="#{updateSaunaController.sauna.pricePerHour}" /><br />
+            Number <h:inputText value="#{updateSaunaController.sauna.number}"/><br />
+            Cost <h:inputText value="#{updateSaunaController.sauna.pricePerHour}" /><br />
             <br />
             <h:commandButton value="Update" action="#{updateSaunaController.updateSauna()}"/>
             <h:commandButton value="Cancel" action="listSaunas.xhtml" immediate="true" />

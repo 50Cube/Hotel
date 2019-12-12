@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 
 @Named(value = "rentRepository")
-@Dependent
+@ApplicationScoped
 public class RentRepository {
 
     @Inject
@@ -97,5 +97,7 @@ public class RentRepository {
     @PostConstruct
     private void initDataRent() {
         addRent(new Rent(roomRepository.getRoom(1), (Client) userRepository.getUser("herb"), new GregorianCalendar(2019,12,05), new GregorianCalendar(2020,02,28)));
+        addRent(new Rent(roomRepository.getRoom(2), (Client) userRepository.getUser("herb"), new GregorianCalendar(2019,07,15), new GregorianCalendar(2019,07,25)));
+    
     }
 }

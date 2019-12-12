@@ -17,6 +17,9 @@ public class listRoomsController implements Serializable{
     @Inject
     private RoomService roomService;
     
+    @Inject
+    private DataHolder dh;
+    
     private Map<Integer, Room> rooms;
     
     public listRoomsController() {
@@ -37,5 +40,12 @@ public class listRoomsController implements Serializable{
     {
         roomService.deleteRoom(number);
         loadRooms();
+    }
+    
+    public String saveData(Room room) {
+        dh.setRoomNumber(room.getNumber());
+        dh.setRoomArea(room.getArea());
+        dh.setRoomBeds(room.getBeds());
+        return "updateRoom.xhtml";
     }
 }

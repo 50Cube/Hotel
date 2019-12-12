@@ -34,15 +34,6 @@
     </navigation-rule>
     
     <navigation-rule>
-        <from-view-id>updateRoom.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>updateRoom</from-outcome>
-            <to-view-id>updateRoomConfirm.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
         <from-view-id>addSauna.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>addSauna</from-outcome>
@@ -52,19 +43,28 @@
     </navigation-rule>
     
     <navigation-rule>
-        <from-view-id>updateSauna.xhtml</from-view-id>
+        <from-view-id>addUser.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>updateSauna</from-outcome>
-            <to-view-id>updateSaunaConfirm.xhtml</to-view-id>
+            <from-outcome>addUser</from-outcome>
+            <to-view-id>addUserConfirm.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
-        <from-view-id>addUser.xhtml</from-view-id>
+        <from-view-id>addRent.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>addUser</from-outcome>
-            <to-view-id>addUserConfirm.xhtml</to-view-id>
+            <from-outcome>addRent</from-outcome>
+            <to-view-id>addRentConfirm.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>addReservation.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addReservation</from-outcome>
+            <to-view-id>addReservationConfirm.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>

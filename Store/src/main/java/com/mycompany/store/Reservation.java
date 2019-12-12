@@ -5,12 +5,7 @@ import com.mycompany.store.Model.Client;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.UUID;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 
-
-@Named(value = "Reservation")
-@Dependent
 public class Reservation {
 
     private UUID id = UUID.randomUUID();
@@ -18,6 +13,8 @@ public class Reservation {
     private Client client;
     private Calendar reservationStart;
     private Calendar reservationStop;
+    
+    public Reservation() {}
     
     public Reservation(Sauna sauna, Client client, Calendar from, Calendar to) {
         this.sauna = sauna;

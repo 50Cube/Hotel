@@ -4,21 +4,20 @@ import com.mycompany.store.Model.Room;
 import com.mycompany.store.Services.RoomService;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.Conversation;
-import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 
 @Named(value = "updateRoomController")
-@ConversationScoped
+@RequestScoped
 public class updateRoomController implements Serializable {
 
     @Inject
-    private RoomService roomService;
+    DataHolder dh;
     
     @Inject
-    private Conversation conversation;
+    private RoomService roomService;
     
     private Room room;
     
@@ -28,7 +27,7 @@ public class updateRoomController implements Serializable {
     @PostConstruct
     private void init()
     {
-        room = new Room();
+        room = new Room(dh.getRoomNumber(), dh.getRoomArea(), dh.getRoomBeds());
     }
     
     public Room getRoom() {
@@ -36,15 +35,7 @@ public class updateRoomController implements Serializable {
     }
     
     public String updateRoom() {
-        if(!conversation.isTransient())
-            conversation.end();
-        conversation.begin();
-        return "updateRoom";
-    }
-    
-    public String updateRoomConfirm() {
         roomService.updateRoom(room.getNumber(), room.getArea(), room.getBeds());
-        conversation.end();
         return "listRooms";
     }
 }

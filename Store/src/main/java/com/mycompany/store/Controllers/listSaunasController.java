@@ -16,6 +16,9 @@ public class listSaunasController implements Serializable{
     @Inject
     private SaunaService saunaService;
     
+    @Inject
+    private DataHolder dh;
+    
     private Map<Integer, Sauna> saunas;
     
     public listSaunasController() {
@@ -38,4 +41,9 @@ public class listSaunasController implements Serializable{
         loadSaunas();
     }
     
+    public String saveData(Sauna sauna) {
+        dh.setSaunaNumber(sauna.getNumber());
+        dh.setSaunaPrice(sauna.getPricePerHour());
+        return "updateSauna.xhtml";
+    }
 }

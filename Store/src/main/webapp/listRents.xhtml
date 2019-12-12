@@ -10,7 +10,7 @@
         <h:form>
             <h:dataTable value="#{rentRepository.rents}" var="rent">
                 <h:column><h:outputText value="#{rent.value}" /></h:column>
-                <h:column><h:commandButton value="Remove" action="#{listRentsController.deleteRent(rent.id)}"/></h:column>
+                <h:column><h:commandButton value="Remove" action="#{listRentsController.deleteRent(rent.value.id)}"/></h:column>
             </h:dataTable>
         </h:form>
         <br /><h:link value="Back" outcome="home" />

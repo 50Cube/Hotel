@@ -4,13 +4,8 @@ import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.Client;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import java.util.UUID;
 
-
-@Named(value = "rent")
-@Dependent
 public class Rent {
 
     private UUID id = UUID.randomUUID();
@@ -18,6 +13,8 @@ public class Rent {
     private Client client;
     private Calendar rentStart;
     private Calendar rentStop;
+    
+    public Rent() {}
     
     public Rent(Room room, Client client, Calendar start, Calendar stop) {
         this.room = room;
