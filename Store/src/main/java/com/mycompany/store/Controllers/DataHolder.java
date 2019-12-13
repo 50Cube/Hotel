@@ -2,6 +2,7 @@ package com.mycompany.store.Controllers;
 
 import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.Sauna;
+import com.mycompany.store.Model.User;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -21,6 +22,7 @@ public class DataHolder implements Serializable {
     private int saunaNumber;
     private double saunaPrice;
 
+    private User user;
     
     public Room getRoom() {
         return this.room;
@@ -80,5 +82,15 @@ public class DataHolder implements Serializable {
 
     public void setSaunaPrice(double saunaPrice) {
         this.saunaPrice = saunaPrice;
+    }
+    
+    
+    
+    public User getUser() {
+        return this.user;
+    }
+    
+    public void setUser(User user) {
+        this.user = user;
     }
 }

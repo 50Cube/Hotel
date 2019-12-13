@@ -17,6 +17,9 @@ public class listUsersController implements Serializable{
     @Inject
     private UserService userService;
     
+    @Inject
+    private DataHolder dh;
+    
     private Map<String,User> users;
     
     public listUsersController() {
@@ -31,5 +34,10 @@ public class listUsersController implements Serializable{
     public Map<String, User> getUsers()
     {
         return users;
+    }
+    
+    public String saveData(User user) {
+        dh.setUser(user);
+        return "updateUser.xhtml";
     }
 }

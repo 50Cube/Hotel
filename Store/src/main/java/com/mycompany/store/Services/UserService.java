@@ -50,9 +50,9 @@ public class UserService implements Serializable{
             userRepository.addUser(new Admin(login,password,name,surname,active));
     }
     
-    public void updateUser(String id, String newName, String newSurname)
+    public void updateUser(String id, String newPassword, String newName, String newSurname)
     {
-        userRepository.updateUser(id, newName, newSurname);
+        userRepository.updateUser(id, newPassword, newName, newSurname);
     }
     
     public void activateUser(String login)

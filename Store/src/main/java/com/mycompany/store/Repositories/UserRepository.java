@@ -50,11 +50,12 @@ public class UserRepository {
         else users.put(user.getLogin(), user);
     }
     
-    public synchronized void updateUser(String id, String newName, String newSurname)
+    public synchronized void updateUser(String id, String newPassword, String newName, String newSurname)
     {
         for(User user : users.values())
             if (user.getLogin().equals(id))
             {
+                user.setPassword(newPassword);
                 user.setName(newName);
                 user.setSurname(newSurname);
             }

@@ -1,12 +1,7 @@
 package com.mycompany.store.Controllers;
 
-import com.mycompany.store.Model.Admin;
-import com.mycompany.store.Model.Client;
-import com.mycompany.store.Model.Manager;
-import com.mycompany.store.Model.User;
 import com.mycompany.store.Services.UserService;
 import java.io.Serializable;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
