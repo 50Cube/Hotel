@@ -17,18 +17,24 @@ public class listReservationsController implements Serializable {
     @Inject
     private ReservationService reservationService;
     
-    private Map<UUID, Reservation> reservations;
+    private Map<UUID, Reservation> pastReservations;
+    private Map<UUID, Reservation> currentReservations;
 
     public listReservationsController() {
     }
     
     @PostConstruct
     public void loadReservations() {
-        reservations = reservationService.getReservations();
+        pastReservations = reservationService.getPastReservations();
+        currentReservations = reservationService.getCurrentReservations();
     }
     
-    public Map<UUID, Reservation> getReservations() {
-        return reservations;
+    public Map<UUID, Reservation> getPastReservations() {
+        return pastReservations;
+    }
+    
+    public Map<UUID, Reservation> getCurrentReservations() {
+        return currentReservations;
     }
     
     public void deleteReservation(UUID id) throws Exception {

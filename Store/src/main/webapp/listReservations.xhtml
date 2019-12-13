@@ -6,11 +6,15 @@
         <title>List reservations</title>
     </h:head>
     <h:body>
-        List of reservations
+        List of past reservations
         <h:form>
-            <h:dataTable value="#{ReservationRepository.reservations}" var="reservation">
+            <h:dataTable value="#{ReservationRepository.pastReservations}" var="reservation">
                 <h:column><h:outputText value="#{reservation.value}" /></h:column>
-                <h:column><h:commandButton value="Remove" action="#{listReservationsController.deleteReservation(reservations.id)}" /></h:column>
+                <h:column><h:commandButton value="Remove" action="#{listReservationsController.deleteReservation(reservation.value.id)}" /></h:column>
+            </h:dataTable>
+            <br />List of current reservations
+            <h:dataTable value="#{ReservationRepository.currentReservations}" var="reservation">
+                <h:column><h:outputText value="#{reservation.value}" /></h:column>
             </h:dataTable>
         </h:form>
         <br /><h:link value="Back" outcome="home" />

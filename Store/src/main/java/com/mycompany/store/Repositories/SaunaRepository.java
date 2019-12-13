@@ -28,12 +28,12 @@ public class SaunaRepository {
         return saunas.get(number);
     }
     
-    public void addSauna(Sauna sauna)
+    public synchronized void addSauna(Sauna sauna)
     {
         saunas.put(sauna.getNumber(), sauna);
     }
     
-     public void updateSauna(int number, double price)
+     public synchronized void updateSauna(int number, double price)
     {
         for(Sauna sauna : saunas.values())
             if(sauna.getNumber() == number)
@@ -42,7 +42,7 @@ public class SaunaRepository {
             }
     }
     
-    public boolean deleteSauna(int number, String message)
+    public synchronized boolean deleteSauna(int number, String message)
     {
         for(Sauna sauna : saunas.values())
             if(sauna.getNumber() == number)

@@ -35,7 +35,7 @@ public class UserRepository {
         return users.size();
     }
     
-    public void addUser(User user) throws Exception
+    public synchronized void addUser(User user) throws Exception
     {
         boolean tmp = false;
         for(User u : users.values())
@@ -50,7 +50,7 @@ public class UserRepository {
         else users.put(user.getLogin(), user);
     }
     
-    public void updateUser(String id, String newName, String newSurname)
+    public synchronized void updateUser(String id, String newName, String newSurname)
     {
         for(User user : users.values())
             if (user.getLogin().equals(id))

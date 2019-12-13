@@ -23,6 +23,14 @@ public class ReservationService implements Serializable {
         return reservationRepository.getReservations();
     }
     
+    public Map<UUID, Reservation> getPastReservations() {
+        return reservationRepository.getPastReservations();
+    }
+    
+    public Map<UUID, Reservation> getCurrentReservations() {
+        return reservationRepository.getCurrentReservations();
+    }
+    
     public Reservation getReservation(UUID id) {
         return reservationRepository.getReservation(id);
     }

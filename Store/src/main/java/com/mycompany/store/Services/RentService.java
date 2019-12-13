@@ -23,6 +23,14 @@ public class RentService implements Serializable {
         return rentRepository.getRents();
     }
     
+    public Map<UUID, Rent> getPastRents() {
+        return rentRepository.getPastRents();
+    }
+    
+    public Map<UUID, Rent> getCurrentRents() {
+        return rentRepository.getCurrentRents();
+    }
+    
     public Rent getRent(UUID id) {
         return rentRepository.getRent(id);
     }

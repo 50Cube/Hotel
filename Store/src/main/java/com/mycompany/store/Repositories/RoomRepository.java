@@ -33,12 +33,12 @@ public class RoomRepository {
         return this.rooms.size();
     }
     
-    public void addRoom(Room room)
+    public synchronized void addRoom(Room room)
     {
         rooms.put(room.getNumber(), room);
     }
     
-    public void updateRoom(int number, double newArea, int newBeds)
+    public synchronized void updateRoom(int number, double newArea, int newBeds)
     {
         for(Room room : rooms.values())
             if(room.getNumber() == number)
@@ -48,7 +48,7 @@ public class RoomRepository {
             }
     }
     
-    public boolean deleteRoom(int number, String message)
+    public synchronized boolean deleteRoom(int number, String message)
     {
         for(Room room : rooms.values())
             if(room.getNumber() == number)

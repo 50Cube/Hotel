@@ -8,13 +8,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 
 @Named(value = "ReservationRepository")
-@Dependent
+@ApplicationScoped
 public class ReservationRepository {
 
     @Inject
@@ -34,12 +34,32 @@ public class ReservationRepository {
         return new HashMap<>(reservations);
     }
     
+    public Map<UUID, Reservation> getPastReservations() {
+        Map<UUID, Reservation> tmp = new HashMap<>();
+        
+        reservations.values().stream().filter((r) -> (r.getReservationStop().before(Calendar.getInstance()))).forEachOrdered((r) -> {
+            tmp.put(r.getId(), r);
+        });
+        
+        return tmp;
+    }
+    
+    public Map<UUID, Reservation> getCurrentReservations() {
+        Map<UUID, Reservation> tmp = new HashMap<>();
+        
+        reservations.values().stream().filter((r) -> (r.getReservationStop().after(Calendar.getInstance()))).forEachOrdered((r) -> {
+            tmp.put(r.getId(), r);
+        });
+        
+        return tmp;
+    }
+    
     public Reservation getReservation(UUID id)
     {
         return reservations.get(id);
     }
     
-    public void addReservation(Reservation sr)
+    public synchronized void addReservation(Reservation sr)
     {
         if (sr.getClient().getIsActive())
             reservations.put(sr.getId(), sr);
@@ -70,7 +90,7 @@ public class ReservationRepository {
         return tmp;
     }
     
-    public boolean deleteReservation(UUID id, String message)
+    public synchronized boolean deleteReservation(UUID id, String message)
     {
         for (Reservation sr : reservations.values())
             if (sr.getId().equals(id))
@@ -85,5 +105,6 @@ public class ReservationRepository {
     @PostConstruct
     private void initDataReservation() {
         addReservation(new Reservation(saunaRepository.getSauna(1), (Client) userRepository.getUser("gabor"), new GregorianCalendar(2019,12,06), new GregorianCalendar(2019,12,24)));
+        addReservation(new Reservation(saunaRepository.getSauna(1), (Client) userRepository.getUser("gabor"), new GregorianCalendar(2019,07,15), new GregorianCalendar(2019,07,16)));
     }
 }

@@ -17,18 +17,24 @@ public class listRentsController implements Serializable {
     @Inject
     private RentService rentService;
     
-    private Map<UUID, Rent> rents;
+    private Map<UUID, Rent> pastRents;
+    private Map<UUID, Rent> currentRents;
     
     public listRentsController() {
     }
     
     @PostConstruct
     public void loadRents() {
-        rents = rentService.getRents();
+        pastRents = rentService.getPastRents();
+        currentRents = rentService.getCurrentRents();
     }
     
-    public Map<UUID, Rent> getRents() {
-        return rents;
+    public Map<UUID, Rent> getPastRents() {
+        return pastRents;
+    }
+    
+    public Map<UUID, Rent> getCurrentRents() {
+        return currentRents;
     }
     
     public void deleteRent(UUID id) throws Exception {

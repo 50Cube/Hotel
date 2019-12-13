@@ -35,12 +35,32 @@ public class RentRepository {
         return new HashMap<>(rents);
     }
     
+    public Map<UUID, Rent> getPastRents() {
+        Map<UUID, Rent> tmp = new HashMap<>();
+        
+        rents.values().stream().filter((r) -> (r.getRentStop().before(Calendar.getInstance()))).forEachOrdered((r) -> {
+            tmp.put(r.getId(), r);
+        });
+        
+        return tmp;
+    }
+    
+    public Map<UUID, Rent> getCurrentRents() {
+        Map<UUID, Rent> tmp = new HashMap<>();
+        
+        rents.values().stream().filter((r) -> (r.getRentStop().after(Calendar.getInstance()))).forEachOrdered((r) -> {
+            tmp.put(r.getId(), r);
+        });
+        
+        return tmp;
+    }
+    
     public Rent getRent(UUID id)
     {
         return rents.get(id);
     }
     
-    public void addRent(Rent rent)
+    public synchronized void addRent(Rent rent)
     {
         if (rent.getClient().getIsActive())
             rents.put(rent.getId(), rent);
@@ -82,7 +102,7 @@ public class RentRepository {
         return tmp;
     }
     
-    public boolean deleteRent(UUID id, String message)
+    public synchronized boolean deleteRent(UUID id, String message)
     {
         for (Rent rent : rents.values())
             if (rent.getId().equals(id))
@@ -98,6 +118,6 @@ public class RentRepository {
     private void initDataRent() {
         addRent(new Rent(roomRepository.getRoom(1), (Client) userRepository.getUser("herb"), new GregorianCalendar(2019,12,05), new GregorianCalendar(2020,02,28)));
         addRent(new Rent(roomRepository.getRoom(2), (Client) userRepository.getUser("herb"), new GregorianCalendar(2019,07,15), new GregorianCalendar(2019,07,25)));
-    
+        addRent(new Rent(roomRepository.getRoom(2), (Client) userRepository.getUser("herb"), new GregorianCalendar(2019,05,20), new GregorianCalendar(2019,06,01)));
     }
 }
