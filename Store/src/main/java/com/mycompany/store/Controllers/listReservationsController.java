@@ -1,5 +1,6 @@
 package com.mycompany.store.Controllers;
 
+import com.mycompany.store.Model.Sauna;
 import com.mycompany.store.Reservation;
 import com.mycompany.store.Services.ReservationService;
 import java.io.Serializable;
@@ -17,8 +18,15 @@ public class listReservationsController implements Serializable {
     @Inject
     private ReservationService reservationService;
     
+    @Inject
+    private DataHolder dh;
+    
+    private Sauna sauna;
+    
     private Map<UUID, Reservation> pastReservations;
     private Map<UUID, Reservation> currentReservations;
+    private Map<UUID, Reservation> reservationsForClient;
+    private Map<UUID, Reservation> reservationsForSauna;
 
     public listReservationsController() {
     }
@@ -40,5 +48,21 @@ public class listReservationsController implements Serializable {
     public void deleteReservation(UUID id) throws Exception {
         reservationService.deleteReservation(id);
         loadReservations();
+    }
+    
+    public String getReservationsForSaunaPrepare(Sauna sauna) {
+        dh.setSauna(sauna);
+        return "listReservationsForSauna.xhtml";
+    }
+    
+    public Map<UUID, Reservation> getReservationsForSauna() {
+        this.sauna = dh.getSauna();
+        reservationsForSauna = reservationService.getReservationsForSauna(sauna);
+        return reservationsForSauna;
+    }
+    
+    public Sauna getSauna() {
+        this.sauna = dh.getSauna();
+        return this.sauna;
     }
 }

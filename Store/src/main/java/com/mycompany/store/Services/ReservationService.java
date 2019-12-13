@@ -1,5 +1,7 @@
 package com.mycompany.store.Services;
 
+import com.mycompany.store.Model.Client;
+import com.mycompany.store.Model.Sauna;
 import com.mycompany.store.Repositories.ReservationRepository;
 import com.mycompany.store.Reservation;
 import java.io.Serializable;
@@ -29,6 +31,14 @@ public class ReservationService implements Serializable {
     
     public Map<UUID, Reservation> getCurrentReservations() {
         return reservationRepository.getCurrentReservations();
+    }
+    
+    public Map<UUID, Reservation> getReservationsForClient(Client client) {
+        return reservationRepository.getReservationsForClient(client);
+    }
+    
+    public Map<UUID, Reservation> getReservationsForSauna(Sauna sauna) {
+        return reservationRepository.getReservationsForSauna(sauna);
     }
     
     public Reservation getReservation(UUID id) {

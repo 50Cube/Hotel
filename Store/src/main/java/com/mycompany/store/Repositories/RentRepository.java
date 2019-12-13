@@ -116,8 +116,8 @@ public class RentRepository {
     
     @PostConstruct
     private void initDataRent() {
-        addRent(new Rent(roomRepository.getRoom(1), (Client) userRepository.getUser("herb"), new GregorianCalendar(2019,12,05), new GregorianCalendar(2020,02,28)));
-        addRent(new Rent(roomRepository.getRoom(2), (Client) userRepository.getUser("herb"), new GregorianCalendar(2019,07,15), new GregorianCalendar(2019,07,25)));
-        addRent(new Rent(roomRepository.getRoom(2), (Client) userRepository.getUser("herb"), new GregorianCalendar(2019,05,20), new GregorianCalendar(2019,06,01)));
+        addRent(new Rent(roomRepository.getRoom(1), (Client) userRepository.getUser("client1"), new GregorianCalendar(2019,12,05), new GregorianCalendar(2020,02,28)));
+        addRent(new Rent(roomRepository.getRoom(2), (Client) userRepository.getUser("client1"), new GregorianCalendar(2019,07,15), new GregorianCalendar(2019,07,25)));
+        addRent(new Rent(roomRepository.getRoom(2), (Client) userRepository.getUser("client1"), new GregorianCalendar(2019,05,20), new GregorianCalendar(2019,06,01)));
     }
 }

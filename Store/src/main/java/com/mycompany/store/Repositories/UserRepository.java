@@ -78,11 +78,11 @@ public class UserRepository {
     @PostConstruct
     private void initDataUser()
     {
-        Admin admin = new Admin("Norbert", "Gierczak", "dis", "", true);
-        Manager manager = new Manager("Marcin", "Krasucki", "jd", "", true);
-        Client client1 = new Client("Gabriel", "Nowak", "gabor", "", true);
-        Client client2 = new Client("Jakub", "Bogdan", "herb", "", true);
-        Client client3 = new Client("Szymon", "Rutkowski", "4", "", false);
+        Admin admin = new Admin("Norbert", "Gierczak", "admin", "", true);
+        Manager manager = new Manager("Marcin", "Krasucki", "manager", "", true);
+        Client client1 = new Client("Gabriel", "Nowak", "client1", "", true);
+        Client client2 = new Client("Jakub", "Bogdan", "client2", "", true);
+        Client client3 = new Client("Szymon", "Rutkowski", "client3", "", false);
         
         users.put(admin.getLogin(), admin);
         users.put(manager.getLogin(), manager);

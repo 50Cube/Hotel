@@ -12,6 +12,7 @@
                 <h:column><h:outputText value="#{sauna.value}" /></h:column>
                 <h:column><h:commandButton value="Remove" action="#{listSaunasController.deleteSauna(sauna.value.number)}"/></h:column>
                 <h:column><h:commandButton value="Update" action="#{listSaunasController.saveData(sauna.value)}"/></h:column>
+                <h:column><h:commandButton value="List reservations" action="#{listReservationsController.getReservationsForSaunaPrepare(sauna.value)}"/></h:column>
                 <h:column><h:commandButton value="Reservation"/></h:column>
             </h:dataTable>
         </h:form>

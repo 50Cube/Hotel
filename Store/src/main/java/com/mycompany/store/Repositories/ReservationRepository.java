@@ -1,6 +1,7 @@
 package com.mycompany.store.Repositories;
 
 import com.mycompany.store.Model.Client;
+import com.mycompany.store.Model.Sauna;
 import com.mycompany.store.Reservation;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -90,6 +91,18 @@ public class ReservationRepository {
         return tmp;
     }
     
+    public Map<UUID, Reservation> getReservationsForSauna(Sauna sauna)
+    {
+        Map<UUID, Reservation> tmp = new HashMap<>();
+        
+        for (Reservation sr : reservations.values()) {
+            if(sr.getSauna().getNumber() == sauna.getNumber())
+                tmp.put(sr.getId(), sr);
+        }
+        
+        return tmp;
+    }
+    
     public synchronized boolean deleteReservation(UUID id, String message)
     {
         for (Reservation sr : reservations.values())
@@ -104,7 +117,7 @@ public class ReservationRepository {
     
     @PostConstruct
     private void initDataReservation() {
-        addReservation(new Reservation(saunaRepository.getSauna(1), (Client) userRepository.getUser("gabor"), new GregorianCalendar(2019,12,06), new GregorianCalendar(2019,12,24)));
-        addReservation(new Reservation(saunaRepository.getSauna(1), (Client) userRepository.getUser("gabor"), new GregorianCalendar(2019,07,15), new GregorianCalendar(2019,07,16)));
+        addReservation(new Reservation(saunaRepository.getSauna(1), (Client) userRepository.getUser("client2"), new GregorianCalendar(2019,12,06), new GregorianCalendar(2019,12,24)));
+        addReservation(new Reservation(saunaRepository.getSauna(1), (Client) userRepository.getUser("client2"), new GregorianCalendar(2019,07,15), new GregorianCalendar(2019,07,16)));
     }
 }

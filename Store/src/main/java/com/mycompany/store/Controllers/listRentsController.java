@@ -1,5 +1,6 @@
 package com.mycompany.store.Controllers;
 
+import com.mycompany.store.Model.Room;
 import com.mycompany.store.Rent;
 import com.mycompany.store.Services.RentService;
 import java.io.Serializable;
@@ -17,8 +18,15 @@ public class listRentsController implements Serializable {
     @Inject
     private RentService rentService;
     
+    @Inject
+    private DataHolder dh;
+    
+    private Room room;
+    
     private Map<UUID, Rent> pastRents;
     private Map<UUID, Rent> currentRents;
+    private Map<UUID, Rent> rentsForClient;
+    private Map<UUID, Rent> rentsForRoom;
     
     public listRentsController() {
     }
@@ -40,5 +48,25 @@ public class listRentsController implements Serializable {
     public void deleteRent(UUID id) throws Exception {
         rentService.deleteRent(id);
         loadRents();
+    }
+    
+    public String getRentsForRoomPrepare(Room room) {
+        dh.setRoom(room);
+        return "listRentsForRoom.xhtml";
+    }
+
+    public Map<UUID, Rent> getRentsForRoom() {
+        this.room = dh.getRoom();
+        rentsForRoom = rentService.getRentsForRoom(room);
+        return rentsForRoom;
+    }
+    
+    public Room getRoom() {
+        this.room = dh.getRoom();
+        return this.room;
+    }
+    
+    public Map<UUID, Rent> getRentsForClient() {
+        return rentsForClient;
     }
 }
