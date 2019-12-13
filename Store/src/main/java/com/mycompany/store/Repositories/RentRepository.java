@@ -2,6 +2,7 @@ package com.mycompany.store.Repositories;
 
 import com.mycompany.store.Model.Client;
 import com.mycompany.store.Model.Room;
+import com.mycompany.store.Model.User;
 import com.mycompany.store.Rent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -78,12 +79,12 @@ public class RentRepository {
         return tmp;
     }
     
-    public Map<UUID, Rent> getRentsForClient(Client client)
+    public Map<UUID, Rent> getRentsForClient(User user)
     {
         Map<UUID, Rent> tmp = new HashMap<>();
         
         for (Rent rent : rents.values()) {
-            if(rent.getClient().getLogin().equals(client.getLogin()))
+            if(rent.getClient().getLogin().equals(user.getLogin()))
                 tmp.put(rent.getId(), rent);
         }
         

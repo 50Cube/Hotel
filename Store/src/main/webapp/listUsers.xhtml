@@ -14,8 +14,8 @@
                 <h:column><h:outputText value="Name: #{user.value.name}"/></h:column>
                 <h:column><h:outputText value="Surname: #{user.value.surname}"/></h:column>
                 <h:column><h:commandButton value="Update" action="#{listUsersController.saveData(user.value)}"/></h:column>
-                <h:column><h:commandButton value="Rents" /></h:column>
-                <h:column><h:commandButton value="Reservations" /></h:column>
+                <h:column><h:commandButton value="Rents" action="#{listRentsController.getRentsForClientPrepare(user.value)}"/></h:column>
+                <h:column><h:commandButton value="Reservations" action="#{listReservationsController.getReservationsForClientPrepare(user.value)}"/></h:column>
             </h:dataTable>
         </h:form>
         <br /><h:link value="Back" outcome="home" />

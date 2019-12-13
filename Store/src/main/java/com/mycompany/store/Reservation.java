@@ -62,6 +62,6 @@ public class Reservation {
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         
-        return "Sauna no. " + this.sauna.getNumber() + " is reservated by " + this.client.getName() + " " + this.client.getSurname() + " from " + sdf.format(this.reservationStart.getTime()) + " to " + sdf.format(this.reservationStop.getTime());
+        return "Sauna no. " + this.sauna.getNumber() + " is reserved by " + this.client.getName() + " " + this.client.getSurname() + " from " + sdf.format(this.reservationStart.getTime()) + " to " + sdf.format(this.reservationStop.getTime());
     }
 }

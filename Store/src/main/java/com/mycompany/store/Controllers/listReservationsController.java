@@ -1,6 +1,7 @@
 package com.mycompany.store.Controllers;
 
 import com.mycompany.store.Model.Sauna;
+import com.mycompany.store.Model.User;
 import com.mycompany.store.Reservation;
 import com.mycompany.store.Services.ReservationService;
 import java.io.Serializable;
@@ -22,6 +23,7 @@ public class listReservationsController implements Serializable {
     private DataHolder dh;
     
     private Sauna sauna;
+    private User user;
     
     private Map<UUID, Reservation> pastReservations;
     private Map<UUID, Reservation> currentReservations;
@@ -64,5 +66,21 @@ public class listReservationsController implements Serializable {
     public Sauna getSauna() {
         this.sauna = dh.getSauna();
         return this.sauna;
+    }
+    
+    public String getReservationsForClientPrepare(User user) {
+        dh.setUser(user);
+        return "listReservationsForClient.xhtml";
+    }
+    
+    public Map<UUID, Reservation> getReservationsForClient() {
+        this.user = dh.getUser();
+        reservationsForClient = reservationService.getReservationsForClient(user);
+        return reservationsForClient;
+    }
+    
+    public User getUser() {
+        this.user = dh.getUser();
+        return this.user;
     }
 }

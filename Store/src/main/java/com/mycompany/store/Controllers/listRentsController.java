@@ -1,6 +1,7 @@
 package com.mycompany.store.Controllers;
 
 import com.mycompany.store.Model.Room;
+import com.mycompany.store.Model.User;
 import com.mycompany.store.Rent;
 import com.mycompany.store.Services.RentService;
 import java.io.Serializable;
@@ -22,6 +23,7 @@ public class listRentsController implements Serializable {
     private DataHolder dh;
     
     private Room room;
+    private User user;
     
     private Map<UUID, Rent> pastRents;
     private Map<UUID, Rent> currentRents;
@@ -66,7 +68,19 @@ public class listRentsController implements Serializable {
         return this.room;
     }
     
+    public String getRentsForClientPrepare(User user) {
+        dh.setUser(user);
+        return "listRentsForClient.xhtml";
+    }
+    
     public Map<UUID, Rent> getRentsForClient() {
+        this.user = dh.getUser();
+        rentsForClient = rentService.getRentsForClient(user);
         return rentsForClient;
+    }
+    
+    public User getUser() {
+        this.user = dh.getUser();
+        return this.user;
     }
 }

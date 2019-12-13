@@ -2,6 +2,7 @@ package com.mycompany.store.Repositories;
 
 import com.mycompany.store.Model.Client;
 import com.mycompany.store.Model.Sauna;
+import com.mycompany.store.Model.User;
 import com.mycompany.store.Reservation;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -79,12 +80,12 @@ public class ReservationRepository {
         return tmp;
     }
     
-    public Map<UUID, Reservation> getReservationsForClient(Client client)
+    public Map<UUID, Reservation> getReservationsForClient(User user)
     {
         Map<UUID, Reservation> tmp = new HashMap<>();
         
         for (Reservation sr : reservations.values()) {
-            if(sr.getClient().getLogin().equals(client.getLogin()))
+            if(sr.getClient().getLogin().equals(user.getLogin()))
                 tmp.put(sr.getId(), sr);
         }
         

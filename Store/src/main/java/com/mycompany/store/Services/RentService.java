@@ -1,7 +1,7 @@
 package com.mycompany.store.Services;
 
-import com.mycompany.store.Model.Client;
 import com.mycompany.store.Model.Room;
+import com.mycompany.store.Model.User;
 import com.mycompany.store.Rent;
 import com.mycompany.store.Repositories.RentRepository;
 import java.io.Serializable;
@@ -33,8 +33,8 @@ public class RentService implements Serializable {
         return rentRepository.getCurrentRents();
     }
 
-    public Map<UUID, Rent> getRentsForClient(Client client) {
-        return rentRepository.getRentsForClient(client);
+    public Map<UUID, Rent> getRentsForClient(User user) {
+        return rentRepository.getRentsForClient(user);
     }
     
     public Map<UUID, Rent> getRentsForRoom(Room room) {

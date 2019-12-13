@@ -1,5 +1,6 @@
 package com.mycompany.store.Controllers;
 
+import com.mycompany.store.Model.Client;
 import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.Sauna;
 import com.mycompany.store.Model.User;
