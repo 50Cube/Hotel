@@ -8,6 +8,9 @@
     <h:body>
         List of users
         <h:form>
+            <br />Search users: 
+            <h:inputText value="#{listUsersController.filter}"/>
+            <h:commandButton value="Search" action="#{listUsersController.getFilteredUsers()}"/> <br /><br />
             <h:dataTable value="#{listUsersController.users}" var="user">
                 <h:column><h:outputText value="Role: #{user.value.getType()}"/></h:column>
                 <h:column><h:outputText value="Login: #{user.value.login}"/></h:column>

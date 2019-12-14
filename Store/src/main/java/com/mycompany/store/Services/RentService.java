@@ -54,4 +54,12 @@ public class RentService implements Serializable {
         if (!rentRepository.deleteRent(id, message))
             throw new Exception(message);
     }
+    
+    public Map<UUID, Rent> getFilteredPastRents(String input) {
+        return rentRepository.getFilteredPastRents(input);
+    }
+    
+    public Map<UUID, Rent> getFilteredCurrentRents(String input) {
+        return rentRepository.getFilteredCurrentRents(input);
+    }
 }

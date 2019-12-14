@@ -21,6 +21,7 @@ public class listRoomsController implements Serializable{
     private DataHolder dh;
     
     private Map<Integer, Room> rooms;
+    private String filter;
     
     public listRoomsController() {
     }
@@ -47,5 +48,18 @@ public class listRoomsController implements Serializable{
         dh.setRoomArea(room.getArea());
         dh.setRoomBeds(room.getBeds());
         return "updateRoom.xhtml";
+    }
+    
+    public void getFilteredRooms() {
+        rooms = roomService.getFilteredRooms(this.filter);
+    }
+    
+        
+    public String getFilter() {
+        return this.filter;
+    }
+    
+    public void setFilter(String filter) {
+        this.filter = filter;
     }
 }

@@ -50,4 +50,7 @@ public class RoomService implements Serializable{
             throw new Exception(message);
     }
     
+    public Map<Integer, Room> getFilteredRooms(String input) {
+        return roomRepository.getFilteredRooms(input);
+    }
 }

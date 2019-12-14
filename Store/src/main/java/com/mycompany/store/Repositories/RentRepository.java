@@ -115,6 +115,28 @@ public class RentRepository {
         return false;
     }
     
+    public Map<UUID, Rent> getFilteredPastRents(String input) {
+        Map<UUID, Rent> tmp = new HashMap<>();
+        
+        this.getPastRents().values().stream().filter((rent) -> (rent.toFilterString().toLowerCase().contains(input.trim())))
+                .forEachOrdered((rent) -> {
+            tmp.put(rent.getId(), rent);
+        });
+        
+        return tmp;
+    }
+    
+    public Map<UUID, Rent> getFilteredCurrentRents(String input) {
+        Map<UUID, Rent> tmp = new HashMap<>();
+        
+        this.getCurrentRents().values().stream().filter((rent) -> (rent.toFilterString().toLowerCase().contains(input.trim())))
+                .forEachOrdered((rent) -> {
+            tmp.put(rent.getId(), rent);
+        });
+        
+        return tmp;
+    }
+    
     @PostConstruct
     private void initDataRent() {
         addRent(new Rent(roomRepository.getRoom(1), (Client) userRepository.getUser("client1"), new GregorianCalendar(2019,12,05), new GregorianCalendar(2020,02,28)));

@@ -24,6 +24,8 @@ public class listReservationsController implements Serializable {
     
     private Sauna sauna;
     private User user;
+    private String filterPast;
+    private String filterCurrent;
     
     private Map<UUID, Reservation> pastReservations;
     private Map<UUID, Reservation> currentReservations;
@@ -82,5 +84,29 @@ public class listReservationsController implements Serializable {
     public User getUser() {
         this.user = dh.getUser();
         return this.user;
+    }
+    
+    public void getFilteredPastReservations() {
+        pastReservations = reservationService.getFilteredPastReservations(this.filterPast);
+    }
+    
+    public void getFilteredCurrentReservations() {
+        currentReservations = reservationService.getFilteredCurrentReservations(this.filterCurrent);
+    }
+    
+    public String getFilterPast() {
+        return this.filterPast;
+    }
+    
+    public void setFilterPast(String filter) {
+        this.filterPast = filter;
+    }
+    
+    public String getFilterCurrent() {
+        return this.filterCurrent;
+    }
+    
+    public void setFilterCurrent(String filter) {
+        this.filterCurrent = filter;
     }
 }

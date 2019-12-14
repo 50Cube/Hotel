@@ -116,9 +116,32 @@ public class ReservationRepository {
         return false;
     }
     
+    public Map<UUID, Reservation> getFilteredPastReservations(String input) {
+        Map<UUID, Reservation> tmp = new HashMap<>();
+        
+        this.getPastReservations().values().stream().filter((reservation) -> (reservation.toFilterString().toLowerCase().contains(input.trim())))
+                .forEachOrdered((reservation) -> {
+            tmp.put(reservation.getId(), reservation);
+                });
+        
+        return tmp;
+    }
+    
+    public Map<UUID, Reservation> getFilteredCurrentReservations(String input) {
+        Map<UUID, Reservation> tmp = new HashMap<>();
+        
+        this.getCurrentReservations().values().stream().filter((reservation) -> (reservation.toFilterString().toLowerCase().contains(input.trim())))
+                .forEachOrdered((reservation) -> {
+                    tmp.put(reservation.getId(), reservation);
+                });
+        
+        return tmp;
+    }
+    
     @PostConstruct
     private void initDataReservation() {
         addReservation(new Reservation(saunaRepository.getSauna(1), (Client) userRepository.getUser("client2"), new GregorianCalendar(2019,12,06), new GregorianCalendar(2019,12,24)));
         addReservation(new Reservation(saunaRepository.getSauna(1), (Client) userRepository.getUser("client2"), new GregorianCalendar(2019,07,15), new GregorianCalendar(2019,07,16)));
+        addReservation(new Reservation(saunaRepository.getSauna(2), (Client) userRepository.getUser("client1"), new GregorianCalendar(2019,01,15), new GregorianCalendar(2019,01,16)));
     }
 }

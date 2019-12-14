@@ -8,6 +8,9 @@
     <h:body>
         List of rooms
         <h:form>
+            <br />Search rooms: 
+            <h:inputText value="#{listRoomsController.filter}"/>
+            <h:commandButton value="Search" action="#{listRoomsController.getFilteredRooms()}"/> <br /><br />
             <h:dataTable value="#{listRoomsController.rooms}" var="room">
                 <h:column><h:outputText value="#{room.value}" /></h:column>
                 <h:column><h:commandButton value="Remove" action="#{listRoomsController.deleteRoom(room.value.number)}"/></h:column>

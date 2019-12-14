@@ -75,6 +75,16 @@ public class UserRepository {
                 user.setIsActive(false);
     }
     
+    public Map<String, User> getFilteredUsers(String input) {
+        Map<String, User> tmp = new HashMap<>();
+        
+        users.values().stream().filter((user) -> ((user.toFilterString().toLowerCase()).contains(input.trim()))).forEachOrdered((user) -> {
+            tmp.put(user.getLogin(), user);
+        });
+        
+        return tmp;
+    }
+    
     
     @PostConstruct
     private void initDataUser()

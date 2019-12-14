@@ -64,4 +64,8 @@ public class UserService implements Serializable{
     {
         userRepository.deactivateUser(login);
     }
+    
+    public Map<String, User> getFilterUsers(String input) {
+        return userRepository.getFilteredUsers(input);
+    }
 }

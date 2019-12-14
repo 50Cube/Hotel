@@ -60,6 +60,15 @@ public class RoomRepository {
         return false;
     }
     
+    public Map<Integer, Room> getFilteredRooms(String input) {
+        Map<Integer, Room> tmp = new HashMap<>();
+        
+        rooms.values().stream().filter((room) -> (Integer.toString(room.getNumber()).contains(input.trim()))).forEachOrdered((room) -> {
+            tmp.put(room.getNumber(), room);
+        });
+        
+        return tmp;
+    }
     
     @PostConstruct
     private void initDataRoom()

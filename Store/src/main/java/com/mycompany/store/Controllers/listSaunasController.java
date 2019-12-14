@@ -20,6 +20,7 @@ public class listSaunasController implements Serializable{
     private DataHolder dh;
     
     private Map<Integer, Sauna> saunas;
+    private String filter;
     
     public listSaunasController() {
     }
@@ -45,5 +46,17 @@ public class listSaunasController implements Serializable{
         dh.setSaunaNumber(sauna.getNumber());
         dh.setSaunaPrice(sauna.getPricePerHour());
         return "updateSauna.xhtml";
+    }
+    
+    public void getFilteredSaunas() {
+        saunas = saunaService.getFilteredSaunas(this.filter);
+    }
+    
+    public String getFilter() {
+        return this.filter;
+    }
+    
+    public void setFilter(String filter) {
+        this.filter = filter;
     }
 }

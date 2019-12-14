@@ -54,6 +54,16 @@ public class SaunaRepository {
         return false;
     }
     
+    public Map<Integer, Sauna> getFilteredSaunas(String input) {
+        Map<Integer, Sauna> tmp = new HashMap<>();
+        
+        saunas.values().stream().filter((sauna) -> (Integer.toString(sauna.getNumber()).contains(input.trim()))).forEachOrdered((sauna) -> {
+            tmp.put(sauna.getNumber(), sauna);
+        });
+        
+        return tmp;
+    }
+    
     @PostConstruct
     private void initDataSauna()
     {

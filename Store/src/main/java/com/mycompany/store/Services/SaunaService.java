@@ -45,4 +45,8 @@ public class SaunaService implements Serializable{
         if(!saunaRepository.deleteSauna(number,message))
             throw new Exception(message);
     }
+    
+    public Map<Integer, Sauna> getFilteredSaunas(String input) {
+        return saunaRepository.getFilteredSaunas(input);
+    }
 }

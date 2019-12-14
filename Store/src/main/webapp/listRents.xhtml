@@ -6,15 +6,27 @@
         <title>List rents</title>
     </h:head>
     <h:body>
-        List of past rents
         <h:form>
-            <h:dataTable value="#{rentRepository.pastRents}" var="rent">
-                <h:column><h:outputText value="#{rent.value}" /></h:column>
-                <h:column><h:commandButton value="Remove" action="#{listRentsController.deleteRent(rent.value.id)}"/></h:column>
+            <br />Search past rents: 
+            <h:inputText value="#{listRentsController.filterPast}"/>
+            <h:commandButton value="Search" action="#{listRentsController.getFilteredPastRents()}"/> <br /><br />
+            List of past rents
+            <h:dataTable value="#{listRentsController.pastRents}" var="pastRent">
+                <h:column><h:outputText value="ID: "/></h:column>
+                <h:column><h:outputText value="#{pastRent.value.id}" /></h:column>
+                <h:column><h:outputText value=" | "/></h:column>
+                <h:column><h:outputText value="#{pastRent.value}" /></h:column>
+                <h:column><h:commandButton value="Remove" action="#{listRentsController.deleteRent(pastRent.value.id)}"/></h:column>
             </h:dataTable>
-            <br />List of current rents
-            <h:dataTable value="#{rentRepository.currentRents}" var="rent">
-                <h:column><h:outputText value="#{rent.value}" /></h:column>
+            <br />Search current rents: 
+            <h:inputText value="#{listRentsController.filterCurrent}"/>
+            <h:commandButton value="Search" action="#{listRentsController.getFilteredCurrentRents()}"/> <br /><br />
+            List of current rents
+            <h:dataTable value="#{listRentsController.currentRents}" var="currentRent">
+                <h:column><h:outputText value="ID: "/></h:column>
+                <h:column><h:outputText value="#{currentRent.value.id}" /></h:column>
+                <h:column><h:outputText value=" | "/></h:column>
+                <h:column><h:outputText value="#{currentRent.value}" /></h:column>
             </h:dataTable>
         </h:form>
         <br /><h:link value="Back" outcome="home" />

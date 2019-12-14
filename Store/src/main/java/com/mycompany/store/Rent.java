@@ -64,4 +64,8 @@ public class Rent {
 
         return "Room no. " + this.room.getNumber() + " is rent by " + this.client.getName() + " " + this.client.getSurname() + " from " + sdf.format(this.rentStart.getTime()) + " to " + sdf.format(this.rentStop.getTime());
     }
+    
+    public String toFilterString() {
+        return this.id.toString() + " " + this.client.toFilterString() + " " + Integer.toString(this.room.getNumber());
+    }
 }

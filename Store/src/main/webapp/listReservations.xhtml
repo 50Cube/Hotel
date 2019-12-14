@@ -6,15 +6,27 @@
         <title>List reservations</title>
     </h:head>
     <h:body>
-        List of past reservations
         <h:form>
-            <h:dataTable value="#{ReservationRepository.pastReservations}" var="reservation">
-                <h:column><h:outputText value="#{reservation.value}" /></h:column>
-                <h:column><h:commandButton value="Remove" action="#{listReservationsController.deleteReservation(reservation.value.id)}" /></h:column>
+            <br />Search past reservations: 
+            <h:inputText value="#{listReservationsController.filterPast}"/>
+            <h:commandButton value="Search" action="#{listReservationsController.getFilteredPastReservations()}"/> <br /><br />
+            List of past reservations
+            <h:dataTable value="#{listReservationsController.pastReservations}" var="pastReservation">
+                <h:column><h:outputText value="ID: "/></h:column>
+                <h:column><h:outputText value="#{pastReservation.value.id}" /></h:column>
+                <h:column><h:outputText value=" | "/></h:column>
+                <h:column><h:outputText value="#{pastReservation.value}" /></h:column>
+                <h:column><h:commandButton value="Remove" action="#{listReservationsController.deleteReservation(pastReservation.value.id)}" /></h:column>
             </h:dataTable>
+            <br />Search current reservations: 
+            <h:inputText value="#{listReservationsController.filterCurrent}"/>
+            <h:commandButton value="Search" action="#{listReservationsController.getFilteredCurrentReservations()}"/> <br /><br />
             <br />List of current reservations
-            <h:dataTable value="#{ReservationRepository.currentReservations}" var="reservation">
-                <h:column><h:outputText value="#{reservation.value}" /></h:column>
+            <h:dataTable value="#{listReservationsController.currentReservations}" var="currentReservation">
+                <h:column><h:outputText value="ID: "/></h:column>
+                <h:column><h:outputText value="#{currentReservation.value.id}" /></h:column>
+                <h:column><h:outputText value=" | "/></h:column>
+                <h:column><h:outputText value="#{currentReservation.value}" /></h:column>
             </h:dataTable>
         </h:form>
         <br /><h:link value="Back" outcome="home" />

@@ -8,6 +8,9 @@
     <h:body>
         List of saunas
         <h:form>
+            <br />Search saunas: 
+            <h:inputText value="#{listSaunasController.filter}"/>
+            <h:commandButton value="Search" action="#{listSaunasController.getFilteredSaunas()}"/> <br /><br />
             <h:dataTable value="#{listSaunasController.saunas}" var="sauna">
                 <h:column><h:outputText value="#{sauna.value}" /></h:column>
                 <h:column><h:commandButton value="Remove" action="#{listSaunasController.deleteSauna(sauna.value.number)}"/></h:column>

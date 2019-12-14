@@ -54,4 +54,12 @@ public class ReservationService implements Serializable {
         if (!reservationRepository.deleteReservation(id, message))
             throw new Exception(message);
     }
+    
+    public Map<UUID, Reservation> getFilteredPastReservations(String input) {
+        return reservationRepository.getFilteredPastReservations(input);
+    }
+    
+    public Map<UUID, Reservation> getFilteredCurrentReservations(String input) {
+        return reservationRepository.getFilteredCurrentReservations(input);
+    }
 }

@@ -64,4 +64,8 @@ public class Reservation {
         
         return "Sauna no. " + this.sauna.getNumber() + " is reserved by " + this.client.getName() + " " + this.client.getSurname() + " from " + sdf.format(this.reservationStart.getTime()) + " to " + sdf.format(this.reservationStop.getTime());
     }
+    
+    public String toFilterString() {
+        return this.id.toString() + " " + this.client.toFilterString() + " " + Integer.toString(this.sauna.getNumber());
+    }
 }

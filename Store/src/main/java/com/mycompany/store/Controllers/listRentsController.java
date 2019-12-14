@@ -24,6 +24,8 @@ public class listRentsController implements Serializable {
     
     private Room room;
     private User user;
+    private String filterPast;
+    private String filterCurrent;
     
     private Map<UUID, Rent> pastRents;
     private Map<UUID, Rent> currentRents;
@@ -82,5 +84,29 @@ public class listRentsController implements Serializable {
     public User getUser() {
         this.user = dh.getUser();
         return this.user;
+    }
+    
+    public void getFilteredPastRents() {
+        pastRents = rentService.getFilteredPastRents(this.filterPast);
+    }
+    
+    public void getFilteredCurrentRents() {
+        currentRents = rentService.getFilteredCurrentRents(this.filterCurrent);
+    }
+    
+    public String getFilterPast() {
+        return this.filterPast;
+    }
+    
+    public void setFilterPast(String filter) {
+        this.filterPast = filter;
+    }
+    
+    public String getFilterCurrent() {
+        return this.filterCurrent;
+    }
+    
+    public void setFilterCurrent(String filter) {
+        this.filterCurrent = filter;
     }
 }

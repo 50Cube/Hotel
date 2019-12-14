@@ -67,9 +67,13 @@ public abstract class User {
     
     public abstract String getType();
             
-    
+    @Override
     public String toString()
     {
         return "User details:\nName: " + this.getName() + "\nSurname: " + this.getSurname() + "\nLogin: " + this.getLogin() + "\nActive: " + this.getIsActive();
+    }
+    
+    public String toFilterString() {
+        return this.login + " " + this.name + " " + this.surname;
     }
 }

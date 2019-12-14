@@ -21,6 +21,7 @@ public class listUsersController implements Serializable{
     private DataHolder dh;
     
     private Map<String,User> users;
+    private String filter;
     
     public listUsersController() {
     }
@@ -39,5 +40,17 @@ public class listUsersController implements Serializable{
     public String saveData(User user) {
         dh.setUser(user);
         return "updateUser.xhtml";
+    }
+    
+    public void getFilteredUsers() {
+        users = userService.getFilterUsers(this.filter);
+    }
+    
+    public String getFilter() {
+        return this.filter;
+    }
+    
+    public void setFilter(String filter) {
+        this.filter = filter;
     }
 }
