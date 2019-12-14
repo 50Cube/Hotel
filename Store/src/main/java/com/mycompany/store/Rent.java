@@ -33,9 +33,17 @@ public class Rent {
         return this.room;
     }
     
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+    
     public Client getClient()
     {
         return this.client;
+    }
+    
+    public void setClient(Client client) {
+        this.client = client;
     }
     
     public Calendar getRentStart()

@@ -16,7 +16,7 @@
                 <h:column><h:commandButton value="Remove" action="#{listRoomsController.deleteRoom(room.value.number)}"/></h:column>
                 <h:column><h:commandButton value="Update" action="#{listRoomsController.saveData(room.value)}"/></h:column>
                 <h:column><h:commandButton value="List rents" action="#{listRentsController.getRentsForRoomPrepare(room.value)}"/></h:column>
-                <h:column><h:commandButton value="Rent"/></h:column>
+                <h:column><h:commandButton value="Rent" action="#{addRentController.addRent(room.value)}"/></h:column>
             </h:dataTable>
         </h:form>
         <br /><h:link value="Back" outcome="home" />
