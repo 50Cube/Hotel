@@ -85,6 +85,16 @@ public class UserRepository {
         return tmp;
     }
     
+    public Map<String, Client> getClients() {
+        Map<String, Client> tmp = new HashMap<>();
+        
+        users.values().stream().filter((user) -> (user instanceof Client)).forEachOrdered((user) -> {
+            tmp.put(user.getLogin(), (Client) user);
+        });
+        
+        return tmp;
+    }
+    
     
     @PostConstruct
     private void initDataUser()

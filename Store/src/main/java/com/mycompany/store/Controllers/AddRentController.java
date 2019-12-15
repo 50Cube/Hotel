@@ -4,10 +4,12 @@ import com.mycompany.store.Model.Client;
 import com.mycompany.store.Model.Room;
 import com.mycompany.store.Rent;
 import com.mycompany.store.Services.RentService;
+import com.mycompany.store.Services.UserService;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Map;
 import java.util.TimeZone;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
@@ -23,11 +25,18 @@ public class AddRentController implements Serializable {
     private RentService rentService;
     
     @Inject
+    private UserService userService;
+    
+    @Inject
     private Conversation conversation;
     
     private Rent rent;
     private Date start;
     private Date stop;
+    
+    private Map<String, Client> clients;
+    
+    private String clientLogin;
     
     public AddRentController() {
     }
@@ -35,6 +44,7 @@ public class AddRentController implements Serializable {
     @PostConstruct
     private void init() {
         rent = new Rent();
+        clients = userService.getClients();
     }
     
     public Rent getRent() {
@@ -47,7 +57,6 @@ public class AddRentController implements Serializable {
         conversation.begin();
         
         rent.setRoom(room);
-        rent.setClient(new Client("","","","",true));
         
         return "addRent";
     }
@@ -59,6 +68,7 @@ public class AddRentController implements Serializable {
         tmp2.setTime(stop);
         rent.setRentStart(tmp1);
         rent.setRentStop(tmp2);
+        chooseClient();
         rentService.addRent(rent);
         
         if(stop.before(start)) throw new Exception("Beginning date must be earlier than end date");
@@ -68,7 +78,7 @@ public class AddRentController implements Serializable {
     }
     
     private boolean checkIfRented(Calendar start, Calendar stop) {
-        for(Rent rent : rentService.getCurrentRents().values())
+        for(Rent rent : rentService.getRents().values())
             if( ( start.before(rent.getRentStart()) && stop.after(rent.getRentStop()) ) ||
                 ( start.after(rent.getRentStart()) && stop.before(rent.getRentStop()) ) ||
                 ( start.before(rent.getRentStart()) && stop.after(rent.getRentStart()) ) ||
@@ -95,5 +105,28 @@ public class AddRentController implements Serializable {
     
     public TimeZone getTimeZone() {
         return TimeZone.getDefault();
+    }
+    
+    public Map<String, Client> getClients() {
+        return this.clients;
+    }
+    
+    public String getClientLogin() {
+        return this.clientLogin;
+    }
+    
+    public void setClientLogin(String string) {
+        this.clientLogin = string;
+    }
+    
+    private void chooseClient() {
+        if(userService.getUser(clientLogin) != null) {
+            if(userService.getUser(clientLogin) instanceof Client)
+                if(userService.getUser(clientLogin).getIsActive())
+                    rent.setClient((Client) userService.getUser(clientLogin));
+                else throw new IllegalArgumentException("Client is inactive");
+            else throw new IllegalArgumentException("Only clients can rent rooms");
+        }
+        else throw new IllegalArgumentException("Client with this login does not exists");
     }
 }

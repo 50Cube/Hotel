@@ -68,4 +68,8 @@ public class UserService implements Serializable{
     public Map<String, User> getFilterUsers(String input) {
         return userRepository.getFilteredUsers(input);
     }
+    
+    public Map<String, Client> getClients() {
+        return userRepository.getClients();
+    }
 }
