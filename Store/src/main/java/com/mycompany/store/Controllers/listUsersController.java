@@ -53,4 +53,10 @@ public class listUsersController implements Serializable{
     public void setFilter(String filter) {
         this.filter = filter;
     }
+    
+    public void activate(User user) {
+        if(user.getIsActive())
+            userService.deactivateUser(user.getLogin());
+        else userService.activateUser(user.getLogin());
+    }
 }

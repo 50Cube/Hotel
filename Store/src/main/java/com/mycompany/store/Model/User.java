@@ -76,4 +76,9 @@ public abstract class User {
     public String toFilterString() {
         return this.login + " " + this.name + " " + this.surname;
     }
+    
+    public String activeString() {
+        if(this.isActive) return "Active";
+        else return "Inactive";
+    }
 }
