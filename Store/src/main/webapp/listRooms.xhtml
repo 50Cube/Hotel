@@ -11,7 +11,7 @@
             <br />Search rooms: 
             <h:inputText value="#{listRoomsController.filter}"/>
             <h:commandButton value="Search" action="#{listRoomsController.getFilteredRooms()}"/> <br /><br />
-            <h:dataTable value="#{listRoomsController.rooms}" var="room">
+            <h:dataTable value="#{listRoomsController.rooms}" var="room" border="1">
                 <h:column><h:outputText value="#{room.value}" /></h:column>
                 <h:column><h:commandButton value="Remove" action="#{listRoomsController.deleteRoom(room.value.number)}"/></h:column>
                 <h:column><h:commandButton value="Update" action="#{listRoomsController.saveData(room.value)}"/></h:column>

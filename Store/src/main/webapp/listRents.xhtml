@@ -11,10 +11,8 @@
             <h:inputText value="#{listRentsController.filterPast}"/>
             <h:commandButton value="Search" action="#{listRentsController.getFilteredPastRents()}"/> <br /><br />
             List of past rents
-            <h:dataTable value="#{listRentsController.pastRents}" var="pastRent">
-                <h:column><h:outputText value="ID: "/></h:column>
-                <h:column><h:outputText value="#{pastRent.value.id}" /></h:column>
-                <h:column><h:outputText value=" | "/></h:column>
+            <h:dataTable value="#{listRentsController.pastRents}" var="pastRent" border="1">
+                <h:column><h:outputText value="ID: #{pastRent.value.id}" /></h:column>
                 <h:column><h:outputText value="#{pastRent.value}" /></h:column>
                 <h:column><h:commandButton value="Remove" action="#{listRentsController.deleteRent(pastRent.value.id)}"/></h:column>
             </h:dataTable>
@@ -22,10 +20,8 @@
             <h:inputText value="#{listRentsController.filterCurrent}"/>
             <h:commandButton value="Search" action="#{listRentsController.getFilteredCurrentRents()}"/> <br /><br />
             List of current rents
-            <h:dataTable value="#{listRentsController.currentRents}" var="currentRent">
-                <h:column><h:outputText value="ID: "/></h:column>
-                <h:column><h:outputText value="#{currentRent.value.id}" /></h:column>
-                <h:column><h:outputText value=" | "/></h:column>
+            <h:dataTable value="#{listRentsController.currentRents}" var="currentRent" border="1">
+                <h:column><h:outputText value="ID: #{currentRent.value.id}" /></h:column>
                 <h:column><h:outputText value="#{currentRent.value}" /></h:column>
             </h:dataTable>
         </h:form>

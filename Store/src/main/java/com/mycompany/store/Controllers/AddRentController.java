@@ -29,13 +29,10 @@ public class AddRentController implements Serializable {
     
     @Inject
     private Conversation conversation;
-    
     private Rent rent;
     private Date start;
     private Date stop;
-    
     private Map<String, Client> clients;
-    
     private String clientLogin;
     
     public AddRentController() {
@@ -120,13 +117,12 @@ public class AddRentController implements Serializable {
     }
     
     private void chooseClient() {
-        if(userService.getUser(clientLogin) != null) {
+        if(userService.getUser(clientLogin) != null)
             if(userService.getUser(clientLogin) instanceof Client)
                 if(userService.getUser(clientLogin).getIsActive())
                     rent.setClient((Client) userService.getUser(clientLogin));
                 else throw new IllegalArgumentException("Client is inactive");
             else throw new IllegalArgumentException("Only clients can rent rooms");
-        }
         else throw new IllegalArgumentException("Client with this login does not exists");
     }
 }

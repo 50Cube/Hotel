@@ -73,7 +73,7 @@ public class ReservationRepository {
         Map<UUID, Reservation> tmp = new HashMap<>();
         
         for (Reservation sr : reservations.values()) {
-            if(sr.getreservationStart().after(startDate) && sr.getReservationStop().before(stopDate))
+            if(sr.getReservationStart().after(startDate) && sr.getReservationStop().before(stopDate))
                 tmp.put(sr.getId(), sr);
         }
         

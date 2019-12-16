@@ -11,10 +11,8 @@
             <h:inputText value="#{listReservationsController.filterPast}"/>
             <h:commandButton value="Search" action="#{listReservationsController.getFilteredPastReservations()}"/> <br /><br />
             List of past reservations
-            <h:dataTable value="#{listReservationsController.pastReservations}" var="pastReservation">
-                <h:column><h:outputText value="ID: "/></h:column>
-                <h:column><h:outputText value="#{pastReservation.value.id}" /></h:column>
-                <h:column><h:outputText value=" | "/></h:column>
+            <h:dataTable value="#{listReservationsController.pastReservations}" var="pastReservation" border="1">
+                <h:column><h:outputText value="ID: #{pastReservation.value.id}" /></h:column>
                 <h:column><h:outputText value="#{pastReservation.value}" /></h:column>
                 <h:column><h:commandButton value="Remove" action="#{listReservationsController.deleteReservation(pastReservation.value.id)}" /></h:column>
             </h:dataTable>
@@ -22,10 +20,8 @@
             <h:inputText value="#{listReservationsController.filterCurrent}"/>
             <h:commandButton value="Search" action="#{listReservationsController.getFilteredCurrentReservations()}"/> <br /><br />
             <br />List of current reservations
-            <h:dataTable value="#{listReservationsController.currentReservations}" var="currentReservation">
-                <h:column><h:outputText value="ID: "/></h:column>
-                <h:column><h:outputText value="#{currentReservation.value.id}" /></h:column>
-                <h:column><h:outputText value=" | "/></h:column>
+            <h:dataTable value="#{listReservationsController.currentReservations}" var="currentReservation" border="1">
+                <h:column><h:outputText value="ID: #{currentReservation.value.id}" /></h:column>
                 <h:column><h:outputText value="#{currentReservation.value}" /></h:column>
             </h:dataTable>
         </h:form>

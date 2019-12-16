@@ -33,12 +33,20 @@ public class Reservation {
         return this.sauna;
     }
     
+    public void setSauna(Sauna sauna) {
+        this.sauna = sauna;
+    }
+    
     public Client getClient()
     {
         return this.client;
     }
     
-    public Calendar getreservationStart()
+    public void setClient(Client client) {
+        this.client = client;
+    }
+    
+    public Calendar getReservationStart()
     {
         return this.reservationStart;
     }

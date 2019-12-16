@@ -11,7 +11,7 @@
             <br />Search users: 
             <h:inputText value="#{listUsersController.filter}"/>
             <h:commandButton value="Search" action="#{listUsersController.getFilteredUsers()}"/> <br /><br />
-            <h:dataTable value="#{listUsersController.users}" var="user">
+            <h:dataTable value="#{listUsersController.users}" var="user" border="1">
                 <h:column><h:outputText value="Role: #{user.value.getType()}"/></h:column>
                 <h:column><h:outputText value="Login: #{user.value.login}"/></h:column>
                 <h:column><h:outputText value="Name: #{user.value.name}"/></h:column>

@@ -11,12 +11,12 @@
             <br />Search saunas: 
             <h:inputText value="#{listSaunasController.filter}"/>
             <h:commandButton value="Search" action="#{listSaunasController.getFilteredSaunas()}"/> <br /><br />
-            <h:dataTable value="#{listSaunasController.saunas}" var="sauna">
+            <h:dataTable value="#{listSaunasController.saunas}" var="sauna" border="1">
                 <h:column><h:outputText value="#{sauna.value}" /></h:column>
                 <h:column><h:commandButton value="Remove" action="#{listSaunasController.deleteSauna(sauna.value.number)}"/></h:column>
                 <h:column><h:commandButton value="Update" action="#{listSaunasController.saveData(sauna.value)}"/></h:column>
                 <h:column><h:commandButton value="List reservations" action="#{listReservationsController.getReservationsForSaunaPrepare(sauna.value)}"/></h:column>
-                <h:column><h:commandButton value="Reserve"/></h:column>
+                <h:column><h:commandButton value="Reserve" action="#{addReservationController.addReservation(sauna.value)}"/></h:column>
             </h:dataTable>
         </h:form>
         <br /><h:link value="Back" outcome="home" />
