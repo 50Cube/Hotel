@@ -13,11 +13,11 @@
             <h:inputText value="#{addRentController.clientLogin}"/>
             <br /><br />
             Beginning of rent
-            <h:inputText value="#{addRentController.start}" required="true">
+            <h:inputText value="#{addRentController.start}" required="true" maxlength="10">
                 <f:convertDateTime pattern="dd-MM-yyyy" timeZone="#{addRentController.timeZone}"/>
             </h:inputText> <br/>
             End of rent
-            <h:inputText value="#{addRentController.stop}" required="true">
+            <h:inputText value="#{addRentController.stop}" required="true" maxlength="10">
                 <f:convertDateTime pattern="dd-MM-yyyy" timeZone="#{addRentController.timeZone}"/>
             </h:inputText>
             <br /><br />

@@ -13,11 +13,11 @@
             <h:inputText value="#{addReservationController.clientLogin}"/>
             <br /><br />
             Beginning of reservation
-            <h:inputText value="#{addReservationController.start}" required="true">
+            <h:inputText value="#{addReservationController.start}" required="true" maxlength="10">
                 <f:convertDateTime pattern="dd-MM-yyyy" timeZone="#{addReservationController.timeZone}"/>
             </h:inputText> <br/>
             End of reservation
-            <h:inputText value="#{addReservationController.stop}" required="true">
+            <h:inputText value="#{addReservationController.stop}" required="true" maxlength="10">
                 <f:convertDateTime pattern="dd-MM-yyyy" timeZone="#{addReservationController.timeZone}"/>
             </h:inputText>
             <br /><br />
