@@ -36,14 +36,14 @@ public class SaunaService implements Serializable{
     
      public void updateSauna(int number, double price)
     {
-        saunaRepository.updateSauna(number, price);
+        saunaRepository.updateSauna(saunaRepository.getSauna(number), price);
     }
     
     public void deleteSauna(int number) throws Exception
     {
-        String message = "";
-        if(!saunaRepository.deleteSauna(number,message))
-            throw new Exception(message);
+        if(saunaRepository.getSaunas().containsKey(number))
+            saunaRepository.deleteSauna(saunaRepository.getSauna(number));
+        else throw new Exception("Sauna with that number does not exist");
     }
     
     public Map<Integer, Sauna> getFilteredSaunas(String input) {

@@ -63,8 +63,7 @@ public class RentRepository {
     
     public synchronized void addRent(Rent rent)
     {
-        if (rent.getClient().getIsActive())
-            rents.put(rent.getId(), rent);
+        rents.put(rent.getId(), rent);
     }
     
     public Map<UUID, Rent> getRentsBetween(Calendar startDate, Calendar stopDate)
@@ -103,16 +102,9 @@ public class RentRepository {
         return tmp;
     }
     
-    public synchronized boolean deleteRent(UUID id, String message)
+    public synchronized void deleteRent(Rent rent)
     {
-        for (Rent rent : rents.values())
-            if (rent.getId().equals(id))
-                if (rent.getRentStop().before(Calendar.getInstance())) {
-                    rents.remove(rent.getId());
-                    return true;
-                }
-                else message = "Rent is not finished";
-        return false;
+        rents.remove(rent.getId());
     }
     
     public Map<UUID, Rent> getFilteredPastRents(String input) {

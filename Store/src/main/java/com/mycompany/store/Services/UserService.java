@@ -39,30 +39,38 @@ public class UserService implements Serializable{
     }
     
     public void addClient(String login, String password, String name, String surname, boolean active) throws Exception {
+        if(!userRepository.getUsers().containsKey(login))
             userRepository.addUser(new Client(login,password,name,surname,active));
+        else throw new Exception("User already exists");
     }
     
     public void addManager(String login, String password, String name, String surname, boolean active) throws Exception {
+        if(!userRepository.getUsers().containsKey(login))
             userRepository.addUser(new Manager(login,password,name,surname,active));
+         else throw new Exception("User already exists");
     }
     
     public void addAdmin(String login, String password, String name, String surname, boolean active) throws Exception {
+        if(!userRepository.getUsers().containsKey(login))
             userRepository.addUser(new Admin(login,password,name,surname,active));
+        else throw new Exception("User already exists");
     }
     
-    public void updateUser(String id, String newPassword, String newName, String newSurname)
+    public void updateUser(String login, String newPassword, String newName, String newSurname)
     {
-        userRepository.updateUser(id, newPassword, newName, newSurname);
+        userRepository.updateUser(userRepository.getUser(login), newPassword, newName, newSurname);
     }
     
     public void activateUser(String login)
     {
-        userRepository.activateUser(login);
+        if(!userRepository.getUser(login).getIsActive())
+            userRepository.activateUser(userRepository.getUser(login));
     }
     
     public void deactivateUser(String login)
     {
-        userRepository.deactivateUser(login);
+        if(userRepository.getUser(login).getIsActive())
+            userRepository.deactivateUser(userRepository.getUser(login));
     }
     
     public Map<String, User> getFilterUsers(String input) {

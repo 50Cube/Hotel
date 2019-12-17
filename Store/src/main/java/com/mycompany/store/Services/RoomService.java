@@ -40,14 +40,14 @@ public class RoomService implements Serializable{
     
     public void updateRoom(int number, double newArea, int newBeds)
     {
-        roomRepository.updateRoom(number, newArea, newBeds);
+        roomRepository.updateRoom(roomRepository.getRoom(number), newArea, newBeds);
     }
     
     public void deleteRoom(int number) throws Exception
     {
-        String message = "";
-        if (!roomRepository.deleteRoom(number, message))
-            throw new Exception(message);
+        if(roomRepository.getRooms().containsKey(number))
+            roomRepository.deleteRoom(roomRepository.getRoom(number));
+        else throw new Exception("Room with that number does not exist");
     }
     
     public Map<Integer, Room> getFilteredRooms(String input) {

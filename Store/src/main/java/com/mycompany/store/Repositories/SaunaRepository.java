@@ -33,25 +33,14 @@ public class SaunaRepository {
         saunas.put(sauna.getNumber(), sauna);
     }
     
-     public synchronized void updateSauna(int number, double price)
+     public synchronized void updateSauna(Sauna sauna, double price)
     {
-        for(Sauna sauna : saunas.values())
-            if(sauna.getNumber() == number)
-            {
-                sauna.setPricePerHour(price);
-            }
+        sauna.setPricePerHour(price);
     }
     
-    public synchronized boolean deleteSauna(int number, String message)
+    public synchronized void deleteSauna(Sauna sauna)
     {
-        for(Sauna sauna : saunas.values())
-            if(sauna.getNumber() == number)
-            {
-                saunas.remove(sauna.getNumber());
-                return true;
-            }
-            else message = "Sauna with that number does not exist";
-        return false;
+        saunas.remove(sauna.getNumber());
     }
     
     public Map<Integer, Sauna> getFilteredSaunas(String input) {

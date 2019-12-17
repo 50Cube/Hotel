@@ -7,7 +7,7 @@ public abstract class User {
     private String surname;
     private boolean isActive;
     
-    public User(String name, String surname, String login, String password, boolean active) {
+    public User(String login, String password, String name, String surname, boolean active) {
         this.name = name;
         this.surname = surname;
         this.login = login;

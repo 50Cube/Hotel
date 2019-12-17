@@ -5,6 +5,7 @@ import com.mycompany.store.Model.User;
 import com.mycompany.store.Repositories.ReservationRepository;
 import com.mycompany.store.Reservation;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Map;
 import java.util.UUID;
 import javax.inject.Named;
@@ -46,13 +47,16 @@ public class ReservationService implements Serializable {
     }
     
     public void addReservation(Reservation reservation) throws Exception {
-        reservationRepository.addReservation(reservation);
+        if(reservation.getClient().getIsActive())
+            reservationRepository.addReservation(reservation);
+        else throw new Exception("Client is inactive");
     }
     
     public void deleteReservation(UUID id) throws Exception {
-        String message = "";
-        if (!reservationRepository.deleteReservation(id, message))
-            throw new Exception(message);
+        if(reservationRepository.getReservations().containsKey(id))
+            if(reservationRepository.getReservation(id).getReservationStop().after(Calendar.getInstance()))
+                reservationRepository.deleteReservation(reservationRepository.getReservation(id));
+            else throw new Exception("Reservation is not finished");
     }
     
     public Map<UUID, Reservation> getFilteredPastReservations(String input) {

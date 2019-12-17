@@ -12,13 +12,15 @@
             Enter login
             <h:inputText value="#{addReservationController.clientLogin}"/>
             <br /><br />
+            Enter dates in following format: dd-mm-yyyy hh:mm
+            <br /><br />
             Beginning of reservation
-            <h:inputText value="#{addReservationController.start}" required="true" maxlength="10">
-                <f:convertDateTime pattern="dd-MM-yyyy" timeZone="#{addReservationController.timeZone}"/>
+            <h:inputText value="#{addReservationController.start}" required="true" maxlength="16">
+                <f:convertDateTime pattern="dd-MM-yyyy HH:mm" timeZone="#{addReservationController.timeZone}"/>
             </h:inputText> <br/>
             End of reservation
-            <h:inputText value="#{addReservationController.stop}" required="true" maxlength="10">
-                <f:convertDateTime pattern="dd-MM-yyyy" timeZone="#{addReservationController.timeZone}"/>
+            <h:inputText value="#{addReservationController.stop}" required="true" maxlength="16">
+                <f:convertDateTime pattern="dd-MM-yyyy HH:mm" timeZone="#{addReservationController.timeZone}"/>
             </h:inputText>
             <br /><br />
             <h:commandButton value="Add" action="#{addReservationController.addReservationConfirm()}"/>

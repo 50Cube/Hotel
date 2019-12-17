@@ -5,6 +5,7 @@ import com.mycompany.store.Model.User;
 import com.mycompany.store.Rent;
 import com.mycompany.store.Repositories.RentRepository;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Map;
 import java.util.UUID;
 import javax.inject.Named;
@@ -46,13 +47,16 @@ public class RentService implements Serializable {
     }
     
     public void addRent(Rent rent) throws Exception {
-        rentRepository.addRent(rent);
+        if(rent.getClient().getIsActive())
+            rentRepository.addRent(rent);
+        else throw new Exception("Client is inactive");
     }
     
     public void deleteRent(UUID id) throws Exception {
-        String message = "";
-        if (!rentRepository.deleteRent(id, message))
-            throw new Exception(message);
+        if(rentRepository.getRents().containsKey(id))
+            if(rentRepository.getRent(id).getRentStop().after(Calendar.getInstance()))
+                rentRepository.deleteRent(rentRepository.getRent(id));
+            else throw new Exception("Rent is not finished");
     }
     
     public Map<UUID, Rent> getFilteredPastRents(String input) {

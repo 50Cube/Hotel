@@ -63,8 +63,7 @@ public class ReservationRepository {
     
     public synchronized void addReservation(Reservation sr)
     {
-        if (sr.getClient().getIsActive())
-            reservations.put(sr.getId(), sr);
+        reservations.put(sr.getId(), sr);
     }
     
     
@@ -104,16 +103,9 @@ public class ReservationRepository {
         return tmp;
     }
     
-    public synchronized boolean deleteReservation(UUID id, String message)
+    public synchronized void deleteReservation(Reservation reservation)
     {
-        for (Reservation sr : reservations.values())
-            if (sr.getId().equals(id))
-                if (sr.getReservationStop().before(Calendar.getInstance())) {
-                    reservations.remove(sr.getId());
-                    return true;
-                }
-                else message = "Reservation is not finished";
-        return false;
+        reservations.remove(reservation.getId());
     }
     
     public Map<UUID, Reservation> getFilteredPastReservations(String input) {

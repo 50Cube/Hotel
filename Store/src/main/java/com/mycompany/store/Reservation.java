@@ -68,7 +68,7 @@ public class Reservation {
     
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         
         return "Sauna no. " + this.sauna.getNumber() + " is reserved by " + this.client.getName() + " " + this.client.getSurname() + " from " + sdf.format(this.reservationStart.getTime()) + " to " + sdf.format(this.reservationStop.getTime());
     }

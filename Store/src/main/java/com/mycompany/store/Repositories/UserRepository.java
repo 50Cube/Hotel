@@ -35,44 +35,26 @@ public class UserRepository {
         return users.size();
     }
     
-    public synchronized void addUser(User user) throws Exception
+    public synchronized void addUser(User user)
     {
-        boolean tmp = false;
-        for(User u : users.values())
-            if(u.getLogin().equals(user.getLogin()))
-            {
-                tmp = true;
-                break;
-            }
-        
-        if(tmp)
-            throw new Exception("User already exists");
-        else users.put(user.getLogin(), user);
+        users.put(user.getLogin(), user);
     }
     
-    public synchronized void updateUser(String id, String newPassword, String newName, String newSurname)
+    public synchronized void updateUser(User user, String newPassword, String newName, String newSurname)
     {
-        for(User user : users.values())
-            if (user.getLogin().equals(id))
-            {
-                user.setPassword(newPassword);
-                user.setName(newName);
-                user.setSurname(newSurname);
-            }
+        user.setPassword(newPassword);
+        user.setName(newName);
+        user.setSurname(newSurname);
     }
     
-    public void activateUser(String login)
+    public void activateUser(User user)
     {
-        for(User user : users.values())
-            if (user.getLogin().equals(login) && !user.getIsActive())
-                user.setIsActive(true);
+        user.setIsActive(true);
     }
     
-    public void deactivateUser(String login)
+    public void deactivateUser(User user)
     {
-        for(User user : users.values())
-            if (user.getLogin().equals(login) && user.getIsActive())
-                user.setIsActive(false);
+        user.setIsActive(false);
     }
     
     public Map<String, User> getFilteredUsers(String input) {
@@ -99,11 +81,11 @@ public class UserRepository {
     @PostConstruct
     private void initDataUser()
     {
-        Admin admin = new Admin("Norbert", "Gierczak", "admin", "", true);
-        Manager manager = new Manager("Marcin", "Krasucki", "manager", "", true);
-        Client client1 = new Client("Gabriel", "Nowak", "client1", "", true);
-        Client client2 = new Client("Jakub", "Bogdan", "client2", "", true);
-        Client client3 = new Client("Szymon", "Rutkowski", "client3", "", false);
+        Admin admin = new Admin("admin", "", "Norbert", "Gierczak", true);
+        Manager manager = new Manager("manager", "", "Marcin", "Krasucki", true);
+        Client client1 = new Client("client1", "", "Gabriel", "Nowak", true);
+        Client client2 = new Client("client2", "", "Jakub", "Bogdan", true);
+        Client client3 = new Client("client3", "", "Szymon", "Rutkowski", false);
         
         users.put(admin.getLogin(), admin);
         users.put(manager.getLogin(), manager);

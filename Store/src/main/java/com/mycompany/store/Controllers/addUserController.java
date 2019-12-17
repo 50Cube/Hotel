@@ -85,11 +85,11 @@ public class addUserController implements Serializable{
     
     public String addUserConfirm() throws Exception {
         if (userType.equals("Client"))
-            userService.addClient(name, surname, login, password, isActive);
+            userService.addClient(login, password, name, surname, isActive);
         else if (userType.equals("Manager"))
-            userService.addManager(name, surname, login, password, isActive);
+            userService.addManager(login, password, name, surname, isActive);
         else if (userType.equals("Admin"))
-            userService.addAdmin(name, surname, login, password, isActive);
+            userService.addAdmin(login, password, name, surname, isActive);
         
         conversation.end();
         return "home";

@@ -38,26 +38,15 @@ public class RoomRepository {
         rooms.put(room.getNumber(), room);
     }
     
-    public synchronized void updateRoom(int number, double newArea, int newBeds)
+    public synchronized void updateRoom(Room room, double newArea, int newBeds)
     {
-        for(Room room : rooms.values())
-            if(room.getNumber() == number)
-            {
-                room.setArea(newArea);
-                room.setBeds(newBeds);
-            }
+        room.setArea(newArea);
+        room.setBeds(newBeds);
     }
     
-    public synchronized boolean deleteRoom(int number, String message)
+    public synchronized void deleteRoom(Room room)
     {
-        for(Room room : rooms.values())
-            if(room.getNumber() == number)
-            {
-                rooms.remove(room.getNumber());
-                return true;
-            }
-            else message = "Room with that number does not exist";
-        return false;
+        rooms.remove(room.getNumber());
     }
     
     public Map<Integer, Room> getFilteredRooms(String input) {
