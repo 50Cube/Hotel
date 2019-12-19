@@ -54,7 +54,7 @@ public class RentService implements Serializable {
     
     public void deleteRent(UUID id) throws Exception {
         if(rentRepository.getRents().containsKey(id))
-            if(rentRepository.getRent(id).getRentStop().after(Calendar.getInstance()))
+             if(rentRepository.getRent(id).getRentStop().before(Calendar.getInstance()))
                 rentRepository.deleteRent(rentRepository.getRent(id));
             else throw new Exception("Rent is not finished");
     }

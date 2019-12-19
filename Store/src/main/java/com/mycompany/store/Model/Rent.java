@@ -66,7 +66,7 @@ public class Rent {
     
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         String tmp = "";
         if(this.rentable instanceof Room) tmp = "Room";
