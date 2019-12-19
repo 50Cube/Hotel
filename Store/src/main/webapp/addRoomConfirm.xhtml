@@ -8,11 +8,11 @@
     <h:body>
         Confirm room
         <h:form>
-            Number: <h:outputText value="#{addRoomController.room.number}" /><br />
-            Area: <h:outputText value="#{addRoomController.room.area}" /><br />
-            Beds: <h:outputText value="#{addRoomController.room.beds}" /><br />
+            Number: <h:outputText value="#{addRentableController.room.number}" /><br />
+            Area: <h:outputText value="#{addRentableController.room.area}" /><br />
+            Beds: <h:outputText value="#{addRentableController.room.beds}" /><br />
             
-            <h:commandButton value="Confirm" action="#{addRoomController.addRoomConfirm()}"/>
+            <h:commandButton value="Confirm" action="#{addRentableController.addRoomConfirm()}"/>
             <h:commandButton value="Cancel" action="mainPage.xhtml" immediate="true" />
         </h:form>
     </h:body>

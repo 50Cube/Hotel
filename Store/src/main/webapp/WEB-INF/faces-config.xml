@@ -61,15 +61,6 @@
     </navigation-rule>
     
     <navigation-rule>
-        <from-view-id>addReservation.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>addReservation</from-outcome>
-            <to-view-id>addReservationConfirm.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
         <navigation-case>
             <from-outcome>home</from-outcome>
             <to-view-id>mainPage.xhtml</to-view-id>
@@ -79,16 +70,8 @@
     
     <navigation-rule>
         <navigation-case>
-            <from-outcome>listRooms</from-outcome>
-            <to-view-id>listRooms.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-        <navigation-case>
-            <from-outcome>listSaunas</from-outcome>
-            <to-view-id>listSaunas.xhtml</to-view-id>
+            <from-outcome>listRentables</from-outcome>
+            <to-view-id>listRentables.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>

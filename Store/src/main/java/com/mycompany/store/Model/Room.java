@@ -1,27 +1,15 @@
 package com.mycompany.store.Model;
 
-public class Room {
-    
-    private int number;
+public class Room extends Rentable {
     private double area;
     private int beds;
 
     public Room () {}
     
     public Room(int number, double area, int beds) {
-        this.number = number;
+        super(number);
         this.area = area;
         this.beds = beds;
-    }
-    
-    public int getNumber()
-    {
-        return this.number;
-    }
-    
-    public void setNumber(int number)
-    {
-        this.number = number;
     }
     
     public double getArea()
@@ -47,7 +35,7 @@ public class Room {
     @Override
     public String toString()
     {
-        return "Room no. " + this.number + " has " + this.area + " m2 and is designed for " + this.beds + " people.";
+        return "Room no. " + this.getNumber() + " has " + this.area + " m2 and is designed for " + this.beds + " people.";
     }
     
 }

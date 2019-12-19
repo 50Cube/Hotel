@@ -1,25 +1,13 @@
 package com.mycompany.store.Model;
 
-public class Sauna {
-
-    private int number;
+public class Sauna extends Rentable {
     private double pricePerHour;
     
     public Sauna() {}
     
     public Sauna(int number, double price) {
-        this.number = number;
+        super(number);
         this.pricePerHour = price;
-    }
-    
-    public int getNumber()
-    {
-        return this.number;
-    }
-    
-    public void setNumber(int number)
-    {
-        this.number = number;
     }
     
     public double getPricePerHour()
@@ -35,6 +23,6 @@ public class Sauna {
     @Override
     public String toString()
     {
-        return "Sauna no. " + this.number + " costs " + this.pricePerHour + " per hour.";
+        return "Sauna no. " + this.getNumber() + " costs " + this.pricePerHour + " per hour.";
     }
 }

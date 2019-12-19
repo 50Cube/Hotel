@@ -20,7 +20,6 @@
                 <h:column><h:commandButton value="Update" action="#{listUsersController.saveData(user.value)}"/></h:column>
                 <h:column><h:commandButton value="(de)activate" action="#{listUsersController.activate(user.value)}"/></h:column>
                 <h:column><h:commandButton value="Rents" action="#{listRentsController.getRentsForClientPrepare(user.value)}"/></h:column>
-                <h:column><h:commandButton value="Reservations" action="#{listReservationsController.getReservationsForClientPrepare(user.value)}"/></h:column>
             </h:dataTable>
         </h:form>
         <br /><h:link value="Back" outcome="home" />

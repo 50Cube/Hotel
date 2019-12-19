@@ -1,6 +1,6 @@
 package com.mycompany.store.Controllers;
 
-import com.mycompany.store.Model.Client;
+import com.mycompany.store.Model.Rentable;
 import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.Sauna;
 import com.mycompany.store.Model.User;
@@ -12,6 +12,8 @@ import java.io.Serializable;
 @SessionScoped
 public class DataHolder implements Serializable {
 
+    private Rentable rentable;
+    
     private Room room;
     
     private int roomNumber;
@@ -25,6 +27,14 @@ public class DataHolder implements Serializable {
 
     private User user;
     
+    public Rentable getRentable() {
+        return this.rentable;
+    }
+    
+    public void setRentable(Rentable rentable) {
+        this.rentable = rentable;
+    }
+    
     public Room getRoom() {
         return this.room;
     }
@@ -32,7 +42,6 @@ public class DataHolder implements Serializable {
     public void setRoom(Room room) {
         this.room = room;
     }
-    
     
     public int getRoomNumber() {
         return roomNumber;

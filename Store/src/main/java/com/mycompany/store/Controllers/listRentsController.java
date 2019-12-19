@@ -1,8 +1,8 @@
 package com.mycompany.store.Controllers;
 
-import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.User;
 import com.mycompany.store.Model.Rent;
+import com.mycompany.store.Model.Rentable;
 import com.mycompany.store.Services.RentService;
 import java.io.Serializable;
 import java.util.Map;
@@ -22,7 +22,7 @@ public class listRentsController implements Serializable {
     @Inject
     private DataHolder dh;
     
-    private Room room;
+    private Rentable rentable;
     private User user;
     private String filterPast;
     private String filterCurrent;
@@ -30,7 +30,7 @@ public class listRentsController implements Serializable {
     private Map<UUID, Rent> pastRents;
     private Map<UUID, Rent> currentRents;
     private Map<UUID, Rent> rentsForClient;
-    private Map<UUID, Rent> rentsForRoom;
+    private Map<UUID, Rent> rentsForRentable;
     
     public listRentsController() {
     }
@@ -54,20 +54,20 @@ public class listRentsController implements Serializable {
         loadRents();
     }
     
-    public String getRentsForRoomPrepare(Room room) {
-        dh.setRoom(room);
-        return "listRentsForRoom.xhtml";
+    public String getRentsForRentablePrepare(Rentable rentable) {
+        dh.setRentable(rentable);
+        return "listRentsForRentable.xhtml";
     }
 
-    public Map<UUID, Rent> getRentsForRoom() {
-        this.room = dh.getRoom();
-        rentsForRoom = rentService.getRentsForRoom(room);
-        return rentsForRoom;
+    public Map<UUID, Rent> getRentsForRentable() {
+        this.rentable = dh.getRentable();
+        rentsForRentable = rentService.getRentsForRentable(rentable);
+        return rentsForRentable;
     }
     
-    public Room getRoom() {
-        this.room = dh.getRoom();
-        return this.room;
+    public Rentable getRentable() {
+        this.rentable = dh.getRentable();
+        return this.rentable;
     }
     
     public String getRentsForClientPrepare(User user) {

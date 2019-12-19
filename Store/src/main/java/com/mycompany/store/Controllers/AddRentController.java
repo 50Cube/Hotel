@@ -1,8 +1,8 @@
 package com.mycompany.store.Controllers;
 
 import com.mycompany.store.Model.Client;
-import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.Rent;
+import com.mycompany.store.Model.Rentable;
 import com.mycompany.store.Services.RentService;
 import com.mycompany.store.Services.UserService;
 import java.io.Serializable;
@@ -48,12 +48,12 @@ public class AddRentController implements Serializable {
         return rent;
     }
     
-    public String addRent(Room room) {
+    public String addRent(Rentable rentable) {
         if(!conversation.isTransient())
             conversation.end();
         conversation.begin();
         
-        rent.setRoom(room);
+        rent.setRentable(rentable);
         
         return "addRent";
     }

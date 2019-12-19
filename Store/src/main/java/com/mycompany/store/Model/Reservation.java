@@ -1,7 +1,5 @@
 package com.mycompany.store.Model;
 
-import com.mycompany.store.Model.Sauna;
-import com.mycompany.store.Model.Client;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.UUID;

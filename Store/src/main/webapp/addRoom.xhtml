@@ -10,17 +10,17 @@
         Add room
         <h:form>
             Number 
-            <h:inputText value="#{addRoomController.room.number}" required="true"/> <br />
+            <h:inputText value="#{addRentableController.room.number}" required="true"/> <br />
             Area 
-            <h:inputText value="#{addRoomController.room.area}" required="true">
+            <h:inputText value="#{addRentableController.room.area}" required="true">
                 <f:validateDoubleRange minimum="0"/>
             </h:inputText> <br />
             Beds 
-            <h:inputText value="#{addRoomController.room.beds}" required="true">
+            <h:inputText value="#{addRentableController.room.beds}" required="true">
                 <f:validateDoubleRange minimum="0"/>
             </h:inputText> <br />
             
-            <h:commandButton value="Add" action="#{addRoomController.addRoom()}" />
+            <h:commandButton value="Add" action="#{addRentableController.addRoom()}" />
             <h:commandButton value="Cancel" action="mainPage.xhtml" immediate="true" />
         </h:form>
     </h:body>

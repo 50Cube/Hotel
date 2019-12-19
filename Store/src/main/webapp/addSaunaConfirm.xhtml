@@ -8,10 +8,10 @@
     <h:body>
         Confirm sauna
         <h:form>
-            Number: <h:outputText value="#{addSaunaController.sauna.number}" /><br />
-            Price per hour: <h:outputText value="#{addSaunaController.sauna.pricePerHour}" /><br />
+            Number: <h:outputText value="#{addRentableController.sauna.number}" /><br />
+            Price per hour: <h:outputText value="#{addRentableController.sauna.pricePerHour}" /><br />
 
-            <h:commandButton value="Confirm" action="#{addSaunaController.addSaunaConfirm()}" />
+            <h:commandButton value="Confirm" action="#{addRentableController.addSaunaConfirm()}" />
             <h:commandButton value="Cancel" action="mainPage.xhtml" immediate="true" />
         </h:form>
     </h:body>

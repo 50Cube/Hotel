@@ -1,9 +1,9 @@
 package com.mycompany.store.Repositories;
 
 import com.mycompany.store.Model.Client;
-import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.User;
 import com.mycompany.store.Model.Rent;
+import com.mycompany.store.Model.Rentable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ public class RentRepository {
     private UserRepository userRepository;
     
     @Inject
-    private RoomRepository roomRepository;
+    private RentableRepository rentableRepository;
     
     private Map<UUID, Rent> rents;
     
@@ -90,12 +90,12 @@ public class RentRepository {
         return tmp;
     }
     
-    public Map<UUID, Rent> getRentsForRoom(Room room)
+    public Map<UUID, Rent> getRentsForRentable(Rentable rentable)
     {
         Map<UUID, Rent> tmp = new HashMap<>();
         
         for (Rent rent : rents.values()) {
-            if(rent.getRoom().getNumber() == room.getNumber())
+            if(rent.getRentable().getNumber() == rentable.getNumber())
                 tmp.put(rent.getId(), rent);
         }
         
@@ -131,8 +131,12 @@ public class RentRepository {
     
     @PostConstruct
     private void initDataRent() {
-        addRent(new Rent(roomRepository.getRoom(1), (Client) userRepository.getUser("client1"), new GregorianCalendar(2019,12,05), new GregorianCalendar(2020,02,28)));
-        addRent(new Rent(roomRepository.getRoom(2), (Client) userRepository.getUser("client1"), new GregorianCalendar(2019,07,15), new GregorianCalendar(2019,07,25)));
-        addRent(new Rent(roomRepository.getRoom(2), (Client) userRepository.getUser("client1"), new GregorianCalendar(2019,05,20), new GregorianCalendar(2019,06,01)));
+        addRent(new Rent(rentableRepository.getRentable(1), (Client) userRepository.getUser("client1"), new GregorianCalendar(2019,12,05), new GregorianCalendar(2020,02,28)));
+        addRent(new Rent(rentableRepository.getRentable(2), (Client) userRepository.getUser("client1"), new GregorianCalendar(2019,07,15), new GregorianCalendar(2019,07,25)));
+        addRent(new Rent(rentableRepository.getRentable(2), (Client) userRepository.getUser("client1"), new GregorianCalendar(2019,05,20), new GregorianCalendar(2019,06,01)));
+    
+        addRent(new Rent(rentableRepository.getRentable(10), (Client) userRepository.getUser("client2"), new GregorianCalendar(2019,12,06), new GregorianCalendar(2019,12,24)));
+        addRent(new Rent(rentableRepository.getRentable(10), (Client) userRepository.getUser("client2"), new GregorianCalendar(2019,07,15), new GregorianCalendar(2019,07,16)));
+        addRent(new Rent(rentableRepository.getRentable(20), (Client) userRepository.getUser("client1"), new GregorianCalendar(2019,01,15), new GregorianCalendar(2019,01,16)));
     }
 }

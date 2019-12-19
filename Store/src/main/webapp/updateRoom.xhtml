@@ -9,13 +9,12 @@
         Update room
         <h:form>
             <br />
-            Number <h:outputText value="#{updateRoomController.room.number}" /> <br />
-            Area <h:inputText value="#{updateRoomController.room.area}"/> <br />
-            Beds <h:inputText value="#{updateRoomController.room.beds}"/> <br />
-            
+            Number <h:outputText value="#{updateRentableController.room.number}" /> <br />
+            Area <h:inputText value="#{updateRentableController.room.area}"/> <br />
+            Beds <h:inputText value="#{updateRentableController.room.beds}"/> <br />
             <br />
-            <h:commandButton value="Update" action="#{updateRoomController.updateRoom()}"/>
-            <h:commandButton value="Cancel" action="listRooms.xhtml" immediate="true" />
+            <h:commandButton value="Update" action="#{updateRentableController.updateRoom()}"/>
+            <h:commandButton value="Cancel" action="listRentables.xhtml" immediate="true" />
         </h:form>
     </h:body>
 </html>

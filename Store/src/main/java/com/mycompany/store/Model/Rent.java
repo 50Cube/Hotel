@@ -1,7 +1,5 @@
 package com.mycompany.store.Model;
 
-import com.mycompany.store.Model.Room;
-import com.mycompany.store.Model.Client;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.UUID;
@@ -9,15 +7,15 @@ import java.util.UUID;
 public class Rent {
 
     private UUID id = UUID.randomUUID();
-    private Room room;
+    private Rentable rentable;
     private Client client;
     private Calendar rentStart;
     private Calendar rentStop;
     
     public Rent() {}
     
-    public Rent(Room room, Client client, Calendar start, Calendar stop) {
-        this.room = room;
+    public Rent(Rentable rentable, Client client, Calendar start, Calendar stop) {
+        this.rentable = rentable;
         this.client = client;
         this.rentStart = start;
         this.rentStop = stop;
@@ -28,13 +26,13 @@ public class Rent {
         return this.id;
     }
     
-    public Room getRoom()
+    public Rentable getRentable()
     {
-        return this.room;
+        return this.rentable;
     }
     
-    public void setRoom(Room room) {
-        this.room = room;
+    public void setRentable(Rentable rentable) {
+        this.rentable = rentable;
     }
     
     public Client getClient()
@@ -70,10 +68,13 @@ public class Rent {
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        return "Room no. " + Integer.toString(this.room.getNumber()) + " is rent by " + this.client.getName() + " " + this.client.getSurname() + " from " + sdf.format(this.rentStart.getTime()) + " to " + sdf.format(this.rentStop.getTime());
+        String tmp = "";
+        if(this.rentable instanceof Room) tmp = "Room";
+        else tmp = "Sauna";
+        return tmp + " no. " + Integer.toString(this.rentable.getNumber()) + " is rent by " + this.client.getName() + " " + this.client.getSurname() + " from " + sdf.format(this.rentStart.getTime()) + " to " + sdf.format(this.rentStop.getTime());
     }
     
     public String toFilterString() {
-        return this.id.toString() + " " + this.client.toFilterString() + " " + Integer.toString(this.room.getNumber());
+        return this.id.toString() + " " + this.client.toFilterString() + " " + Integer.toString(this.rentable.getNumber());
     }
 }
