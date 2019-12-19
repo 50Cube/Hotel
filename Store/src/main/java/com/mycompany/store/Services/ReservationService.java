@@ -3,7 +3,7 @@ package com.mycompany.store.Services;
 import com.mycompany.store.Model.Sauna;
 import com.mycompany.store.Model.User;
 import com.mycompany.store.Repositories.ReservationRepository;
-import com.mycompany.store.Reservation;
+import com.mycompany.store.Model.Reservation;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Map;

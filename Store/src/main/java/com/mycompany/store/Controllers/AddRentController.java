@@ -2,7 +2,7 @@ package com.mycompany.store.Controllers;
 
 import com.mycompany.store.Model.Client;
 import com.mycompany.store.Model.Room;
-import com.mycompany.store.Rent;
+import com.mycompany.store.Model.Rent;
 import com.mycompany.store.Services.RentService;
 import com.mycompany.store.Services.UserService;
 import java.io.Serializable;

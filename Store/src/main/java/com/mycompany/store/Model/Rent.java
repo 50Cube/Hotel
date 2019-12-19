@@ -1,4 +1,4 @@
-package com.mycompany.store;
+package com.mycompany.store.Model;
 
 import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.Client;

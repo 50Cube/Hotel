@@ -3,7 +3,7 @@ package com.mycompany.store.Repositories;
 import com.mycompany.store.Model.Client;
 import com.mycompany.store.Model.Sauna;
 import com.mycompany.store.Model.User;
-import com.mycompany.store.Reservation;
+import com.mycompany.store.Model.Reservation;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;

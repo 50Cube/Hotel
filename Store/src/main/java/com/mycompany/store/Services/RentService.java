@@ -2,7 +2,7 @@ package com.mycompany.store.Services;
 
 import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.User;
-import com.mycompany.store.Rent;
+import com.mycompany.store.Model.Rent;
 import com.mycompany.store.Repositories.RentRepository;
 import java.io.Serializable;
 import java.util.Calendar;

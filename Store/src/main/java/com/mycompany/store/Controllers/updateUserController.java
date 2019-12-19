@@ -29,11 +29,11 @@ public class updateUserController implements Serializable {
     @PostConstruct
     private void init() {
         if(dh.getUser().getType().equals("Admin"))
-            user = new Admin(dh.getUser().getName(), dh.getUser().getSurname(), dh.getUser().getLogin(), dh.getUser().getPassword(), dh.getUser().getIsActive());
+            user = new Admin(dh.getUser().getLogin(), dh.getUser().getPassword(), dh.getUser().getName(), dh.getUser().getSurname(), dh.getUser().getIsActive());
         else if(dh.getUser().getType().equals("Manager"))
-            user = new Manager(dh.getUser().getName(), dh.getUser().getSurname(), dh.getUser().getLogin(), dh.getUser().getPassword(), dh.getUser().getIsActive());
+            user = new Manager(dh.getUser().getLogin(), dh.getUser().getPassword(), dh.getUser().getName(), dh.getUser().getSurname(), dh.getUser().getIsActive());
         else if(dh.getUser().getType().equals("Client"))
-            user = new Client(dh.getUser().getName(), dh.getUser().getSurname(), dh.getUser().getLogin(), dh.getUser().getPassword(), dh.getUser().getIsActive());
+            user = new Client(dh.getUser().getLogin(), dh.getUser().getPassword(), dh.getUser().getName(), dh.getUser().getSurname(), dh.getUser().getIsActive());
     }
     
     public User getUser() {

@@ -3,7 +3,7 @@ package com.mycompany.store.Repositories;
 import com.mycompany.store.Model.Client;
 import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.User;
-import com.mycompany.store.Rent;
+import com.mycompany.store.Model.Rent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;

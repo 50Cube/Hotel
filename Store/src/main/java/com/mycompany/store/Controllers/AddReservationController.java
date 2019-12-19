@@ -2,7 +2,7 @@ package com.mycompany.store.Controllers;
 
 import com.mycompany.store.Model.Client;
 import com.mycompany.store.Model.Sauna;
-import com.mycompany.store.Reservation;
+import com.mycompany.store.Model.Reservation;
 import com.mycompany.store.Services.ReservationService;
 import com.mycompany.store.Services.UserService;
 import java.io.Serializable;
