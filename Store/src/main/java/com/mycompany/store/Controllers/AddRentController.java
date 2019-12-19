@@ -58,7 +58,7 @@ public class AddRentController implements Serializable {
         return "addRent";
     }
     
-    public String addRentConfirm() throws Exception {
+    public String addRentConfirm() {
         Calendar tmp1 = new GregorianCalendar();
         Calendar tmp2 = new GregorianCalendar();
         tmp1.setTime(start);
@@ -68,8 +68,8 @@ public class AddRentController implements Serializable {
         chooseClient();
         rentService.addRent(rent);
         
-        if(stop.before(start)) throw new Exception("Beginning date must be earlier than end date");
-        if(!checkIfRented(tmp1,tmp2)) throw new Exception("Room is already rent");
+        if(stop.before(start)) throw new IllegalArgumentException("Beginning date must be earlier than end date");
+        if(!checkIfRented(tmp1,tmp2)) throw new IllegalArgumentException("Room is already rent");
         conversation.end();
         return "home";
     }

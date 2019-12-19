@@ -46,10 +46,14 @@ public class RentService implements Serializable {
         return rentRepository.getRent(id);
     }
     
-    public void addRent(Rent rent) throws Exception {
-        if(rent.getClient().getIsActive())
-            rentRepository.addRent(rent);
-        else throw new Exception("Client is inactive");
+    public void addRent(Rent rent) {
+        if(rentRepository.getRents().containsKey(rent.getId()))
+        {
+            if(rent.getClient().getIsActive())
+                rentRepository.addRent(rent);
+            else throw new IllegalArgumentException("Client is inactive");
+        }
+        else throw new IllegalArgumentException("Room or sauna does not exists");
     }
     
     public void deleteRent(UUID id) throws Exception {

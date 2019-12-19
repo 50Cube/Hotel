@@ -40,20 +40,26 @@ public class RentableService implements Serializable{
  
     public void addRentable(Rentable rentable)
     {
-        rentableRepository.addRentable(rentable);
+        if(rentableRepository.getRentables().containsKey(rentable.getNumber()))
+            throw new IllegalArgumentException("Room or sauna with this number already exists.");
+        else rentableRepository.addRentable(rentable);
     }
     
     public void updateRoom(int number, double newArea, int newBeds)
     {
-        if(rentableRepository.getRentables().containsKey(number))
+        if(rentableRepository.getRentables().containsKey(number)) {
             if(rentableRepository.getRentable(number) instanceof Room)
                 rentableRepository.updateRentable(number, new Room(number, newArea, newBeds));
+        }
+        else throw new IllegalArgumentException("Room does not exists");
     }
     
     public void updateSauna(int number, double newCost) {
-        if(rentableRepository.getRentables().containsKey(number))
+        if(rentableRepository.getRentables().containsKey(number)) {
             if(rentableRepository.getRentable(number) instanceof Sauna)
                 rentableRepository.updateRentable(number, new Sauna(number, newCost));
+        }
+        else throw new IllegalArgumentException("Sauna does not exists");
     }
     
     public void deleteRentable(int number) throws Exception
