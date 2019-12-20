@@ -1,9 +1,11 @@
 package com.mycompany.store.Services;
 
+import com.mycompany.store.Model.Client;
 import com.mycompany.store.Model.User;
 import com.mycompany.store.Model.Rent;
 import com.mycompany.store.Model.Rentable;
 import com.mycompany.store.Repositories.RentRepository;
+import com.mycompany.store.Repositories.RentableRepository;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Map;
@@ -18,6 +20,9 @@ public class RentService implements Serializable {
 
     @Inject
     private RentRepository rentRepository;
+    
+    @Inject
+    private RentableRepository rentableRepository;
     
     public RentService() {
     }
@@ -46,11 +51,11 @@ public class RentService implements Serializable {
         return rentRepository.getRent(id);
     }
     
-    public void addRent(Rent rent) {
-        if(rentRepository.getRents().containsKey(rent.getId()))
+    public void addRent(Rentable rentable, Client client, Calendar start, Calendar stop) {
+        if(rentableRepository.getRentables().containsKey(rentable.getNumber()))
         {
-            if(rent.getClient().getIsActive())
-                rentRepository.addRent(rent);
+            if(client.getIsActive())
+                rentRepository.addRent(new Rent(rentable, client, start, stop));
             else throw new IllegalArgumentException("Client is inactive");
         }
         else throw new IllegalArgumentException("Room or sauna does not exists");
@@ -69,5 +74,15 @@ public class RentService implements Serializable {
     
     public Map<UUID, Rent> getFilteredCurrentRents(String input) {
         return rentRepository.getFilteredCurrentRents(input);
+    }
+    
+    public boolean checkIfRented(Calendar start, Calendar stop) {
+        for(Rent rent : this.getRents().values())
+            if( ( start.before(rent.getRentStart()) && stop.after(rent.getRentStop()) ) ||
+                ( start.after(rent.getRentStart()) && stop.before(rent.getRentStop()) ) ||
+                ( start.before(rent.getRentStart()) && stop.after(rent.getRentStart()) ) ||
+                ( start.before(rent.getRentStop()) && stop.after(rent.getRentStop()) ) )
+                return false;
+        return true;
     }
 }

@@ -1,8 +1,10 @@
 package com.mycompany.store.Services;
 
+import com.mycompany.store.Model.Rent;
 import com.mycompany.store.Model.Rentable;
 import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.Sauna;
+import com.mycompany.store.Repositories.RentRepository;
 import com.mycompany.store.Repositories.RentableRepository;
 import java.io.Serializable;
 import java.util.Map;
@@ -16,6 +18,9 @@ public class RentableService implements Serializable{
     
     @Inject
     private RentableRepository rentableRepository;
+    
+    @Inject
+    private RentRepository rentRepository;
     
     public RentableService() {
     }
@@ -62,11 +67,18 @@ public class RentableService implements Serializable{
         else throw new IllegalArgumentException("Sauna does not exists");
     }
     
-    public void deleteRentable(int number) throws Exception
+    public void deleteRentable(int number)
     {
-        if(rentableRepository.getRentables().containsKey(number))
-            rentableRepository.deleteRentable(rentableRepository.getRentable(number));
-        else throw new Exception("Room or sauna with that number does not exist");
+        if(rentableRepository.getRentables().containsKey(number)) {
+            if(checkIfIsRented(number))
+                rentableRepository.deleteRentable(rentableRepository.getRentable(number));
+            else throw new IllegalArgumentException("Cannot remove room or sauna which is rented");
+        }
+        else throw new IllegalArgumentException("Room or sauna with that number does not exist");
+    }
+    
+    private boolean checkIfIsRented(int number) {
+        return rentRepository.getCurrentRents().values().stream().noneMatch((rent) -> (rent.getRentable().getNumber() == number));
     }
     
     public Map<Integer, Rentable> getFilteredRentables(String input) {

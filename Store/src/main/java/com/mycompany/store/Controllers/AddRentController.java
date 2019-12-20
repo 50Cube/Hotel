@@ -63,26 +63,25 @@ public class AddRentController implements Serializable {
         Calendar tmp2 = new GregorianCalendar();
         tmp1.setTime(start);
         tmp2.setTime(stop);
-        rent.setRentStart(tmp1);
-        rent.setRentStop(tmp2);
         chooseClient();
-        rentService.addRent(rent);
         
         if(stop.before(start)) throw new IllegalArgumentException("Beginning date must be earlier than end date");
-        if(!checkIfRented(tmp1,tmp2)) throw new IllegalArgumentException("Room is already rent");
+        if(!rentService.checkIfRented(tmp1,tmp2)) throw new IllegalArgumentException("Room is already rent");
+        
+        rentService.addRent(rent.getRentable(), rent.getClient(), tmp1, tmp2);
         conversation.end();
         return "home";
     }
     
-    private boolean checkIfRented(Calendar start, Calendar stop) {
-        for(Rent rent : rentService.getRents().values())
-            if( ( start.before(rent.getRentStart()) && stop.after(rent.getRentStop()) ) ||
-                ( start.after(rent.getRentStart()) && stop.before(rent.getRentStop()) ) ||
-                ( start.before(rent.getRentStart()) && stop.after(rent.getRentStart()) ) ||
-                ( start.before(rent.getRentStop()) && stop.after(rent.getRentStop()) ) )
-                return false;
-        return true;
-    }
+//    private boolean checkIfRented(Calendar start, Calendar stop) {
+//        for(Rent rent : rentService.getRents().values())
+//            if( ( start.before(rent.getRentStart()) && stop.after(rent.getRentStop()) ) ||
+//                ( start.after(rent.getRentStart()) && stop.before(rent.getRentStop()) ) ||
+//                ( start.before(rent.getRentStart()) && stop.after(rent.getRentStart()) ) ||
+//                ( start.before(rent.getRentStop()) && stop.after(rent.getRentStop()) ) )
+//                return false;
+//        return true;
+//    }
     
     public Date getStart() {
         return this.start;

@@ -77,4 +77,9 @@ public class Rent {
     public String toFilterString() {
         return this.id.toString() + " " + this.client.toFilterString() + " " + Integer.toString(this.rentable.getNumber());
     }
+    
+    public String getRentableType() {
+        if(this.rentable instanceof Room) return "room";
+        else return "sauna";
+    }
 }
