@@ -18,7 +18,30 @@
             30
         </session-timeout>
     </session-config>
+    <security-constraint>
+      <web-resource-collection>
+         <web-resource-name>All</web-resource-name>
+         <url-pattern>/*</url-pattern>
+      </web-resource-collection>
+      <auth-constraint>
+        <role-name>Admin</role-name>
+      </auth-constraint>
+      <user-data-constraint>
+          <transport-guarantee>  CONFIDENTIAL  </transport-guarantee>
+      </user-data-constraint>
+
+   </security-constraint>
+    <security-role>
+        <role-name>Admin</role-name>
+    </security-role>
     <welcome-file-list>
-        <welcome-file>faces/login.xhtml</welcome-file>
+        <welcome-file>faces/mainPage.xhtml</welcome-file>
     </welcome-file-list>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/faces/login.html</form-login-page>
+            <form-error-page>/faces/loginFailed.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
 </web-app>
