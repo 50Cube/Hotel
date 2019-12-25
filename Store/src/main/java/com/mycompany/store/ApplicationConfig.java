@@ -5,10 +5,9 @@ import javax.faces.annotation.FacesConfig;
 import javax.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
 import javax.security.enterprise.authentication.mechanism.http.LoginToContinue;
 
-
 @CustomFormAuthenticationMechanismDefinition(
         loginToContinue = @LoginToContinue(
-                loginPage = "/login.html",
+                loginPage = "/faces/login.xhtml",
                 useForwardToLogin = false
             )
 )

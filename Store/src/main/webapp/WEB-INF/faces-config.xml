@@ -25,7 +25,7 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd">
 
     <navigation-rule>
-        <from-view-id>addRoom.xhtml</from-view-id>
+        <from-view-id>/Main/addRoom.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>addRoom</from-outcome>
             <to-view-id>Main/addRoomConfirm.xhtml</to-view-id>
@@ -43,7 +43,7 @@
     </navigation-rule>
     
     <navigation-rule>
-        <from-view-id>addUser.xhtml</from-view-id>
+        <from-view-id>/Main/addUser.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>addUser</from-outcome>
             <to-view-id>Main/addUserConfirm.xhtml</to-view-id>

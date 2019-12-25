@@ -34,7 +34,7 @@
     <security-constraint>
       <web-resource-collection>
          <web-resource-name>AfterLogin</web-resource-name>
-         <url-pattern>/faces/*</url-pattern>
+         <url-pattern>/faces/Main/*</url-pattern>
       </web-resource-collection>
       <auth-constraint>
         <role-name>Admin</role-name>

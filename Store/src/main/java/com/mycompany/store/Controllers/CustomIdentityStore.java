@@ -5,9 +5,12 @@
  */
 package com.mycompany.store.Controllers;
 
+import com.mycompany.store.Model.User;
+import com.mycompany.store.Repositories.UserRepository;
 import java.util.Arrays;
 import java.util.HashSet;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.security.enterprise.credential.Credential;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.security.enterprise.identitystore.CredentialValidationResult;
@@ -15,20 +18,22 @@ import javax.security.enterprise.identitystore.IdentityStore;
 
 @ApplicationScoped
 public class CustomIdentityStore implements IdentityStore {
- 
+    
+    @Inject
+    private UserRepository users;
+    
     @Override
     public CredentialValidationResult validate(Credential credential) {
 
         UsernamePasswordCredential login = (UsernamePasswordCredential) credential;
-
-        if (login.getCaller().equals("admin@mail.com") 
-                       && login.getPasswordAsString().equals("ADMIN1234")) {
-            return new CredentialValidationResult("admin", new HashSet<>(Arrays.asList("ADMIN")));
-        } else if (login.getCaller().equals("user@mail.com") 
-                       && login.getPasswordAsString().equals("USER1234")) {
-            return new CredentialValidationResult("user", new HashSet<>(Arrays.asList("USER")));
-        } else {
+        User caller = users.getUser(login.getCaller());
+        if (caller == null || !caller.getIsActive()) {
             return CredentialValidationResult.NOT_VALIDATED_RESULT;
         }
+        else if (caller.getPassword().equals(login.getPasswordAsString())){
+
+             return new CredentialValidationResult(caller.getName(), new HashSet<>(Arrays.asList(caller.getType())));
+        } 
+        return CredentialValidationResult.NOT_VALIDATED_RESULT;         
     }
 }
