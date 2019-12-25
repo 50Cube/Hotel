@@ -39,6 +39,7 @@
     </welcome-file-list>
     <login-config>
         <auth-method>FORM</auth-method>
+        <realm-name>file</realm-name>
         <form-login-config>
             <form-login-page>/faces/login.html</form-login-page>
             <form-error-page>/faces/loginFailed.xhtml</form-error-page>
