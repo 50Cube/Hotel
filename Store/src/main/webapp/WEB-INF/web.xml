@@ -19,7 +19,7 @@
         </session-timeout>
     </session-config>
     
-    <security-constraint>
+<!--    <security-constraint>
       <web-resource-collection>
          <web-resource-name>All</web-resource-name>
          <url-pattern>/*</url-pattern>
@@ -29,7 +29,7 @@
           <transport-guarantee>  CONFIDENTIAL  </transport-guarantee>
       </user-data-constraint>
 
-   </security-constraint>
+   </security-constraint>-->
 
     <security-constraint>
       <web-resource-collection>
@@ -38,14 +38,24 @@
       </web-resource-collection>
       <auth-constraint>
         <role-name>Admin</role-name>
+        <role-name>Client</role-name>
+        <role-name>Manager</role-name>
       </auth-constraint>
-      <user-data-constraint>
+<!--      <user-data-constraint>
           <transport-guarantee>  CONFIDENTIAL  </transport-guarantee>
-      </user-data-constraint>
+      </user-data-constraint>-->
 
    </security-constraint>
     <security-role>
         <role-name>Admin</role-name>
+    </security-role>
+    
+    <security-role>
+        <role-name>Client</role-name>
+    </security-role>
+    
+    <security-role>
+        <role-name>Manager</role-name>
     </security-role>
     <welcome-file-list>
         <welcome-file>faces/Main/mainPage.xhtml</welcome-file>

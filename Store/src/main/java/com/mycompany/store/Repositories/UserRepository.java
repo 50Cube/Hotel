@@ -81,8 +81,8 @@ public class UserRepository {
     @PostConstruct
     private void initDataUser()
     {
-        Admin admin = new Admin("admin", "1", "Norbert", "Gierczak", true);
-        Admin admin2 = new Admin("4", "4", "Norbert", "Gierczak", true);
+        Admin admin = new Admin("admin", "1", "Norbercki", "Gierczak", true);
+        Admin admin2 = new Admin("4", "4", "Norbi", "Gierczak", true);
 
         Manager manager = new Manager("manager", "2", "Marcin", "Krasucki", true);
         Client client1 = new Client("client1", "3", "Gabriel", "Nowak", true);

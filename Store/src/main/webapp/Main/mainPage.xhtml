@@ -6,23 +6,31 @@
         <title>Main page</title>
     </h:head>
     <h:body>
-        Hotel
-<!--    <h:form>
-        <h:commandButton value="login as admin" action="adminPage.xhtml"/>
-        <h:commandButton value="login as manager" action="managerPage.xhtml"/>
-        <h:commandButton value="login as client" action="clientPage.xhtml"/>
-    </h:form>-->
         
-        <ul>
-            <li><h:link value="List users" outcome="listUsers.xhtml" /></li>
-            <li><h:link value="List rooms and saunas" outcome="listRentables.xhtml" /></li>
-            <li><h:link value="List rents" outcome="listRents.xhtml" /></li>
-        </ul>
-        <ul>
-            <li><h:link value="Add user" outcome="addUser.xhtml" /></li>
-            <li><h:link value="Add room" outcome="addRoom.xhtml" /></li>
-            <li><h:link value="Add sauna" outcome="addSauna.xhtml" /></li>
-        </ul>
+        <h:outputText rendered="#{request.isUserInRole('Manager')}" value ="Hello Manager #{request.userPrincipal.name}"></h:outputText>
+        <h:outputText rendered="#{request.isUserInRole('Client')}" value="Hello Client #{request.userPrincipal.name}"></h:outputText>
+        <h:outputText rendered="#{request.isUserInRole('Admin')}" value="Hello Admin #{request.userPrincipal.name}"></h:outputText>
+        
+        <h:panelGroup rendered="#{request.isUserInRole('Manager')}">
+            <ul>
+                <li><h:link value="List rooms and saunas" outcome="listRentables.xhtml" /></li>
+                <li ><h:link value="List rents" outcome="listRents.xhtml" /></li>
+                <li><h:link value="Add room" outcome="addRoom.xhtml"/></li>
+                <li> <h:link value="Add sauna" outcome="addSauna.xhtml" /></li>
+            </ul>
+        </h:panelGroup>
+        
+        <h:panelGroup rendered="#{request.isUserInRole('Client')}">
+            <ul>
+                <li><h:link value="List users" outcome="listUsers.xhtml" /></li>
+            </ul>
+        </h:panelGroup>
+             <h:panelGroup rendered="#{request.isUserInRole('Admin')}">
+            <ul>
+                <li><h:link value="Add user" outcome="addUser.xhtml" /></li>
+                <li><h:link value="List users" outcome="listUsers.xhtml" /></li>
+            </ul>
+        </h:panelGroup>
     </h:body>
 </html>
 
