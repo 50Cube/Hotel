@@ -6,7 +6,7 @@
         <title>Login page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-    <body>
+    <h:body>
     Create new account
         <h:form>
             <br />
@@ -14,8 +14,10 @@
             Password <h:inputSecret value="#{addUserController.password}" /> <br />
             Name <h:inputText value="#{addUserController.name}"/> <br />
             Surname <h:inputText value="#{addUserController.surname}"/> <br />
+             <div class="g-recaptcha" data-sitekey="6LcdPsoUAAAAAKjYRDEU2Kf_kPFxfiPCMzcwc2-c"></div>
             <h:commandButton value="Register" action="#{addUserController.register()}" />
         </h:form>
     <h:link value="Go back" outcome="login.xhtml"></h:link> 
-    </body>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    </h:body>
 </html>

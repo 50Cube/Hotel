@@ -35,7 +35,7 @@ public class LoginController {
     private FacesContext facesContext;
 
     public void submit() throws IOException {
-
+        
         switch (continueAuthentication()) {
             case SEND_CONTINUE:
                 facesContext.responseComplete();

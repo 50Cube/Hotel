@@ -4,6 +4,8 @@ import com.mycompany.store.Services.UserService;
 import java.io.Serializable;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -77,11 +79,24 @@ public class addUserController implements Serializable{
     }
     public String register() throws Exception
     {
-        this.setIsActive(false);
-        this.setUserType("Client");      
-        addUserConfirm();
-       
-        return "home";
+        String gRecaptchaResponse = FacesContext.getCurrentInstance().
+		getExternalContext().getRequestParameterMap().get("g-recaptcha-response");
+               boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+        if(!verify){
+            FacesContext context = FacesContext.getCurrentInstance();
+                  context.addMessage( null, new FacesMessage( "Stop being a robot") );
+                   return null;
+        }
+        else{
+                if(!conversation.isTransient()){
+                    conversation.end();
+                }
+            conversation.begin();
+            this.setIsActive(false);
+            this.setUserType("Client");      
+            addUserConfirm();
+            return "home";
+        } 
     }
     public String addUser() {
         if(!conversation.isTransient())
