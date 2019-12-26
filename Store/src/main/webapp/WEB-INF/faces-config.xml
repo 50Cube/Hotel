@@ -43,16 +43,15 @@
     </navigation-rule>
     
     <navigation-rule>
-        <from-view-id>/Main/addUser.xhtml</from-view-id>
+        <from-view-id>/Admin/addUser.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>addUser</from-outcome>
-            <to-view-id>Main/addUserConfirm.xhtml</to-view-id>
+            <to-view-id>Admin/addUserConfirm.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
-        <from-view-id>addRent.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>addRent</from-outcome>
             <to-view-id>Main/addRentConfirm.xhtml</to-view-id>
@@ -72,6 +71,33 @@
         <navigation-case>
             <from-outcome>listRentables</from-outcome>
             <to-view-id>Main/listRentables.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Main/mainPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addUser.xhtml</from-outcome>
+            <to-view-id>Admin/addUser.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Main/mainPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listUsers.xhtml</from-outcome>
+            <to-view-id>Admin/listUsers.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/Admin/listRentsForClient.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Main/listUsers.xhtml</from-outcome>
+            <to-view-id>Admin/listUsers.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
