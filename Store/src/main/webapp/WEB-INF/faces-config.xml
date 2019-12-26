@@ -25,19 +25,19 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd">
 
     <navigation-rule>
-        <from-view-id>/Main/addRoom.xhtml</from-view-id>
+        <from-view-id>/Manager/addRoom.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>addRoom</from-outcome>
-            <to-view-id>Main/addRoomConfirm.xhtml</to-view-id>
+            <to-view-id>Manager/addRoomConfirm.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
-        <from-view-id>addSauna.xhtml</from-view-id>
+        <from-view-id>/Manager/addSauna.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>addSauna</from-outcome>
-            <to-view-id>Main/addSaunaConfirm.xhtml</to-view-id>
+            <to-view-id>Manager/addSaunaConfirm.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
@@ -54,7 +54,7 @@
     <navigation-rule>
         <navigation-case>
             <from-outcome>addRent</from-outcome>
-            <to-view-id>Main/addRentConfirm.xhtml</to-view-id>
+            <to-view-id>Manager/addRentConfirm.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
@@ -70,7 +70,7 @@
     <navigation-rule>
         <navigation-case>
             <from-outcome>listRentables</from-outcome>
-            <to-view-id>Main/listRentables.xhtml</to-view-id>
+            <to-view-id>Manager/listRentables.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
@@ -92,8 +92,50 @@
             <redirect />
         </navigation-case>
     </navigation-rule>
-
+    
     <navigation-rule>
+        <from-view-id>/Main/mainPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listRentables.xhtml</from-outcome>
+            <to-view-id>Manager/listRentables.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Main/mainPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listRents.xhtml</from-outcome>
+            <to-view-id>Manager/listRents.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Main/mainPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addSauna.xhtml</from-outcome>
+            <to-view-id>Manager/addSauna.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Main/mainPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addRoom.xhtml</from-outcome>
+            <to-view-id>Manager/addRoom.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Manager/listRentsForRentable.xhtml'</from-view-id>
+        <navigation-case>
+            <from-outcome>Manager/listRentables.xhtml</from-outcome>
+            <to-view-id>/Manager/listRentables.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>    
         <from-view-id>/Admin/listRentsForClient.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>Main/listUsers.xhtml</from-outcome>
