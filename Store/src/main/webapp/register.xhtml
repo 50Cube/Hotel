@@ -10,9 +10,12 @@
     Create new account
         <h:form>
             <br />
-            Login <h:inputText value="" required="true" /> <br />
-            Password <h:inputText value="" /> <br />
-            <h:commandButton value="Create account" action="login.html" immediate="true" />
+            Login <h:inputText value="#{addUserController.login}" required="true" /> <br />
+            Password <h:inputSecret value="#{addUserController.password}" /> <br />
+            Name <h:inputText value="#{addUserController.name}"/> <br />
+            Surname <h:inputText value="#{addUserController.surname}"/> <br />
+            <h:commandButton value="Register" action="#{addUserController.register()}" />
         </h:form>
+    <h:link value="Go back" outcome="login.xhtml"></h:link> 
     </body>
 </html>

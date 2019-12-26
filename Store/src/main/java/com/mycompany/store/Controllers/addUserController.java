@@ -72,10 +72,17 @@ public class addUserController implements Serializable{
         return isActive;
     }
 
-    public void setIsActive(boolean isActive) {
+    public void setIsActive(boolean isActive){
         this.isActive = isActive;
     }
-    
+    public String register() throws Exception
+    {
+        this.setIsActive(false);
+        this.setUserType("Client");      
+        addUserConfirm();
+       
+        return "home";
+    }
     public String addUser() {
         if(!conversation.isTransient())
             conversation.end();
