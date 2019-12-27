@@ -34,7 +34,7 @@ public class LoginController {
     @Inject
     private FacesContext facesContext;
 
-    public void submit() throws IOException {
+    public void login() throws IOException {
         
         switch (continueAuthentication()) {
             case SEND_CONTINUE:
@@ -52,6 +52,11 @@ public class LoginController {
                 break;
             case NOT_DONE:
         }
+    }
+    
+    public String logout() {
+        this.externalContext.invalidateSession();
+        return "/login.xhtml?faces-redirect=true";
     }
 
     private AuthenticationStatus continueAuthentication() {

@@ -11,7 +11,7 @@
         <h:form>
             Login <h:inputText id="name" value="#{loginController.name}"/>
             Password <h:inputSecret id="password" value="#{loginController.password}"/>
-            <h:commandButton id="submit" value="Login" action="#{loginController.submit}" />
+            <h:commandButton id="submit" value="Login" action="#{loginController.login}" />
         </h:form>
         <h:form>
             <h:commandButton value="Register" action="register.xhtml" />

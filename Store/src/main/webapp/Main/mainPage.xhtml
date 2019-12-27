@@ -10,7 +10,9 @@
         <h:outputText rendered="#{request.isUserInRole('Manager')}" value ="Hello Manager #{request.userPrincipal.name}"></h:outputText>
         <h:outputText rendered="#{request.isUserInRole('Client')}" value="Hello Client #{request.userPrincipal.name}"></h:outputText>
         <h:outputText rendered="#{request.isUserInRole('Admin')}" value="Hello Admin #{request.userPrincipal.name}"></h:outputText>
-        
+        <h:form>
+            <h:commandButton value="Logout" action="#{loginController.logout()}"/> 
+        </h:form>
         <h:panelGroup rendered="#{request.isUserInRole('Manager')}">
             <ul>
                 <li><h:link value="List rooms and saunas" outcome="listRentables.xhtml" /></li>
