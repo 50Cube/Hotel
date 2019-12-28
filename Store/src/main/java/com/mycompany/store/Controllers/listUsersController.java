@@ -37,6 +37,11 @@ public class listUsersController implements Serializable{
         return users;
     }
     
+    public User getUser(String name)
+    {
+        return this.userService.getUser(name);
+    }
+    
     public String saveData(User user) {
         dh.setUser(user);
         return "updateUser.xhtml";

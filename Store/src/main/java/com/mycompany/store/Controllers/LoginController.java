@@ -47,7 +47,7 @@ public class LoginController {
                 break;
             case SUCCESS:
                 facesContext.addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Login succeed", null));
+                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Login succeeded", null));
                 externalContext.redirect(externalContext.getRequestContextPath() + "/faces/Main/mainPage.xhtml");
                 break;
             case NOT_DONE:

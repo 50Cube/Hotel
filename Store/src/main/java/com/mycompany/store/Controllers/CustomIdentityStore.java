@@ -32,7 +32,7 @@ public class CustomIdentityStore implements IdentityStore {
         }
         else if (caller.getPassword().equals(login.getPasswordAsString())){
 
-             return new CredentialValidationResult(caller.getName(), new HashSet<>(Arrays.asList(caller.getType())));
+             return new CredentialValidationResult(caller.getLogin(), new HashSet<>(Arrays.asList(caller.getType())));
         } 
         return CredentialValidationResult.NOT_VALIDATED_RESULT;         
     }
