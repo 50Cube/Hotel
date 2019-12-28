@@ -169,12 +169,4 @@
             <redirect />
         </navigation-case>
     </navigation-rule>
-        <navigation-rule>    
-        <navigation-case>
-            <from-outcome>login-error</from-outcome>
-            <to-view-id>loginFailed.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>
-
 </faces-config>

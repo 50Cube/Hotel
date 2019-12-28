@@ -19,7 +19,7 @@
         </session-timeout>
     </session-config>
     
-<!--    <security-constraint>
+    <security-constraint>
       <web-resource-collection>
          <web-resource-name>All</web-resource-name>
          <url-pattern>/*</url-pattern>
@@ -29,7 +29,7 @@
           <transport-guarantee>  CONFIDENTIAL  </transport-guarantee>
       </user-data-constraint>
 
-   </security-constraint>-->
+   </security-constraint>
 
     <security-constraint>
       <web-resource-collection>
@@ -41,9 +41,9 @@
         <role-name>Client</role-name>
         <role-name>Manager</role-name>
       </auth-constraint>
-<!--      <user-data-constraint>
+      <user-data-constraint>
           <transport-guarantee>  CONFIDENTIAL  </transport-guarantee>
-      </user-data-constraint>-->
+      </user-data-constraint>
 
     </security-constraint>
    
@@ -55,9 +55,9 @@
       <auth-constraint>
         <role-name>Admin</role-name>
       </auth-constraint>
-<!--      <user-data-constraint>
+      <user-data-constraint>
           <transport-guarantee>  CONFIDENTIAL  </transport-guarantee>
-      </user-data-constraint>-->
+      </user-data-constraint>
 
     </security-constraint>
     
@@ -69,9 +69,23 @@
       <auth-constraint>
         <role-name>Manager</role-name>
       </auth-constraint>
-<!--      <user-data-constraint>
+      <user-data-constraint>
           <transport-guarantee>  CONFIDENTIAL  </transport-guarantee>
-      </user-data-constraint>-->
+      </user-data-constraint>
+
+    </security-constraint>
+    
+    <security-constraint>
+      <web-resource-collection>
+         <web-resource-name>ClientPages</web-resource-name>
+         <url-pattern>/Client/*</url-pattern>
+      </web-resource-collection>
+      <auth-constraint>
+        <role-name>Client</role-name>
+      </auth-constraint>
+      <user-data-constraint>
+          <transport-guarantee>  CONFIDENTIAL  </transport-guarantee>
+      </user-data-constraint>
 
     </security-constraint>
     <security-role>

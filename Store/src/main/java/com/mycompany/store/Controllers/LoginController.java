@@ -43,7 +43,7 @@ public class LoginController {
             case SEND_FAILURE:
                 facesContext.addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed", null));
-                externalContext.redirect(externalContext.getRequestContextPath() + "/loginFailed.xhtml?faces-redirect=true");
+                externalContext.redirect(externalContext.getRequestContextPath() + "/loginFailed.xhtml");
                 break;
             case SUCCESS:
                 facesContext.addMessage(null,
