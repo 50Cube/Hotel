@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotEmpty;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 @Named
 @RequestScoped
@@ -33,21 +34,23 @@ public class LoginController {
 
     @Inject
     private FacesContext facesContext;
-
+    
+    private final Logger log =
+          Logger.getLogger(this.getClass().getName());
+    
     public void login() throws IOException {
-        
+        HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();
+        String ip = req.getRemoteAddr();
         switch (continueAuthentication()) {
             case SEND_CONTINUE:
                 facesContext.responseComplete();
                 break;
             case SEND_FAILURE:
-                facesContext.addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed", null));
+                log.warning("Login failed for login " + name +" ip: " + ip);
                 externalContext.redirect(externalContext.getRequestContextPath() + "/loginFailed.xhtml");
                 break;
             case SUCCESS:
-                facesContext.addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Login succeeded", null));
+                log.info("Login succeeded for login " + name +" ip: " + ip);
                 externalContext.redirect(externalContext.getRequestContextPath() + "/Main/mainPage.xhtml?faces-redirect=true");
                 break;
             case NOT_DONE:

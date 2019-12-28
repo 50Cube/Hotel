@@ -13,7 +13,8 @@ import javax.inject.Inject;
 @Named(value = "listUsersController")
 @ViewScoped
 public class listUsersController implements Serializable{
-
+    
+        
     @Inject
     private UserService userService;
     
