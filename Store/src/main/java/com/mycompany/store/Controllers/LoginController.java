@@ -43,12 +43,12 @@ public class LoginController {
             case SEND_FAILURE:
                 facesContext.addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed", null));
-                externalContext.redirect(externalContext.getRequestContextPath() + "/loginFailed.xhtml");
+                externalContext.redirect(externalContext.getRequestContextPath() + "/loginFailed.xhtml?faces-redirect=true");
                 break;
             case SUCCESS:
                 facesContext.addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_INFO, "Login succeeded", null));
-                externalContext.redirect(externalContext.getRequestContextPath() + "/faces/Main/mainPage.xhtml");
+                externalContext.redirect(externalContext.getRequestContextPath() + "/Main/mainPage.xhtml?faces-redirect=true");
                 break;
             case NOT_DONE:
         }
