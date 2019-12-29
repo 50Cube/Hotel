@@ -19,6 +19,7 @@ public class addUserController implements Serializable{
     private String password;
     private String name;
     private String surname;
+    private String activeString = "false";
     private boolean isActive;
     
     @Inject
@@ -69,13 +70,23 @@ public class addUserController implements Serializable{
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
-    public boolean isIsActive() {
-        return isActive;
+    
+    public String getActiveString() {
+        return activeString;
+    }
+    
+    public void setActiveString(String active) {
+        this.activeString = active;
     }
 
-    public void setIsActive(boolean isActive){
-        this.isActive = isActive;
+    public boolean getIsActive() {
+        return this.isActive;
+    }
+
+    public void setIsActive(){
+        if(this.activeString.equals("true"))
+            this.isActive = true;
+        else this.isActive = false;
     }
     public String register() throws Exception
     {
@@ -92,7 +103,7 @@ public class addUserController implements Serializable{
                     conversation.end();
                 }
             conversation.begin();
-            this.setIsActive(false);
+            this.setIsActive();
             this.setUserType("Client");      
             addUserConfirm();
             return "home";
@@ -106,6 +117,7 @@ public class addUserController implements Serializable{
     }
     
     public String addUserConfirm() throws Exception {
+        this.setIsActive();
         if (userType.equals("Client"))
             userService.addClient(login, password, name, surname, isActive);
         else if (userType.equals("Manager"))
