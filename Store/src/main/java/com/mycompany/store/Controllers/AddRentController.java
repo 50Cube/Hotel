@@ -73,16 +73,6 @@ public class AddRentController implements Serializable {
         return "home";
     }
     
-//    private boolean checkIfRented(Calendar start, Calendar stop) {
-//        for(Rent rent : rentService.getRents().values())
-//            if( ( start.before(rent.getRentStart()) && stop.after(rent.getRentStop()) ) ||
-//                ( start.after(rent.getRentStart()) && stop.before(rent.getRentStop()) ) ||
-//                ( start.before(rent.getRentStart()) && stop.after(rent.getRentStart()) ) ||
-//                ( start.before(rent.getRentStop()) && stop.after(rent.getRentStop()) ) )
-//                return false;
-//        return true;
-//    }
-    
     public Date getStart() {
         return this.start;
     }

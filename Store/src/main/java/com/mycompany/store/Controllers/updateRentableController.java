@@ -1,7 +1,5 @@
 package com.mycompany.store.Controllers;
 
-import com.mycompany.store.Model.Room;
-import com.mycompany.store.Model.Sauna;
 import com.mycompany.store.Services.RentableService;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -20,8 +18,52 @@ public class updateRentableController implements Serializable {
     @Inject
     private RentableService rentableService;
     
-    private Room room;
-    private Sauna sauna;
+    private String roomNumber;
+    private String saunaNumber;
+    private String area;
+    private String beds;
+    
+    private String price;
+    
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(String number) {
+        this.roomNumber = number;
+    }
+    
+     public String getSaunaNumber() {
+        return saunaNumber;
+    }
+
+    public void setSaunaNumber(String number) {
+        this.saunaNumber = number;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getBeds() {
+        return beds;
+    }
+
+    public void setBeds(String beds) {
+        this.beds = beds;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
     
     public updateRentableController() {
     }
@@ -29,25 +71,20 @@ public class updateRentableController implements Serializable {
     @PostConstruct
     private void init()
     {
-        room = new Room(dh.getRoom().getNumber(), dh.getRoom().getArea(), dh.getRoom().getBeds());
-        sauna = new Sauna(dh.getSauna().getNumber(), dh.getSauna().getPricePerHour());
-    }
-    
-    public Room getRoom() {
-        return room;
-    }
-    
-    public Sauna getSauna() {
-        return sauna;
+        roomNumber = Integer.toString(dh.getRoom().getNumber());
+        saunaNumber = Integer.toString(dh.getSauna().getNumber());
+        area = Double.toString(dh.getRoom().getArea());
+        beds = Integer.toString(dh.getRoom().getBeds());
+        price = Double.toString(dh.getSauna().getPricePerHour());
     }
     
     public String updateRoom() {
-        rentableService.updateRoom(room.getNumber(), room.getArea(), room.getBeds());
+        rentableService.updateRoom(Integer.parseInt(roomNumber), Double.parseDouble(area), Integer.parseInt(beds));
         return "listRentables";
     }
     
     public String updateSauna() {
-        rentableService.updateSauna(sauna.getNumber(), sauna.getPricePerHour());
+        rentableService.updateSauna(Integer.parseInt(saunaNumber), Double.parseDouble(price));
         return "listRentables";
     }
 }

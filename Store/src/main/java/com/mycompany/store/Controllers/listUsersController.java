@@ -13,7 +13,8 @@ import javax.inject.Inject;
 @Named(value = "listUsersController")
 @ViewScoped
 public class listUsersController implements Serializable{
-
+    
+        
     @Inject
     private UserService userService;
     
@@ -35,6 +36,11 @@ public class listUsersController implements Serializable{
     public Map<String, User> getUsers()
     {
         return users;
+    }
+    
+    public User getUser(String name)
+    {
+        return this.userService.getUser(name);
     }
     
     public String saveData(User user) {

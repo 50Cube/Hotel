@@ -80,7 +80,7 @@ public class listRentsController implements Serializable {
         rentsForClient = rentService.getRentsForClient(user);
         return rentsForClient;
     }
-    
+
     public User getUser() {
         this.user = dh.getUser();
         return this.user;

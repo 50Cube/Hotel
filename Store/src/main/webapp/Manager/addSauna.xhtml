@@ -10,14 +10,14 @@
         Add sauna
         <h:form>
             Number 
-            <h:inputText value="#{addRentableController.sauna.number}" required="true" /> <br />
+            <h:inputText value="#{addRentableController.number}" required="true" /> <br />
             Price 
-            <h:inputText value="#{addRentableController.sauna.pricePerHour}" required="true">
+            <h:inputText value="#{addRentableController.price}" required="true">
                 <f:validateDoubleRange minimum="0"/>
             </h:inputText> <br />
             
             <h:commandButton value="Add" action="#{addRentableController.addSauna()}" />
-            <h:commandButton value="Cancel" action="mainPage.xhtml" immediate="true" />
+            <h:commandButton value="Cancel" action="home" immediate="true" />
         </h:form>
     </h:body>
 </html>
