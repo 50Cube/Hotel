@@ -1,6 +1,5 @@
 package com.mycompany.store.Services;
 
-import com.mycompany.store.Model.Rent;
 import com.mycompany.store.Model.Rentable;
 import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.Sauna;
