@@ -1,6 +1,8 @@
 package com.mycompany.store.Model;
 
-public abstract class Rentable {
+import java.io.Serializable;
+
+public abstract class Rentable implements Serializable {
     private int number;
 
     public Rentable () {}

@@ -1,6 +1,8 @@
 package com.mycompany.store.Model;
 
-public class Sauna extends Rentable {
+import java.io.Serializable;
+
+public class Sauna extends Rentable implements Serializable {
     private double pricePerHour;
     
     public Sauna() {}

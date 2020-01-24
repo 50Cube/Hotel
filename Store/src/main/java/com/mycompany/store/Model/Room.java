@@ -1,6 +1,8 @@
 package com.mycompany.store.Model;
 
-public class Room extends Rentable {
+import java.io.Serializable;
+
+public class Room extends Rentable implements Serializable {
     private double area;
     private int beds;
 
