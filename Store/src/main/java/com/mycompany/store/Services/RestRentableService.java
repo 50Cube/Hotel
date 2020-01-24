@@ -21,7 +21,7 @@ import javax.ws.rs.core.MediaType;
 
 @Named(value = "restRentableService")
 @RequestScoped
-@Path("model.rentable")
+@Path("model")
 public class RestRentableService {
     
     @Inject
