@@ -5,7 +5,9 @@ import java.io.Serializable;
 public class Sauna extends Rentable implements Serializable {
     private double pricePerHour;
     
-    public Sauna() {}
+    public Sauna() {
+        super();
+    }
     
     public Sauna(int number, double price) {
         super(number);

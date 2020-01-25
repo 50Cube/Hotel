@@ -169,4 +169,13 @@
             <redirect />
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Main/mainPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>RestListRentables.xhtml</from-outcome>
+            <to-view-id>/Manager/RestListRentables.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

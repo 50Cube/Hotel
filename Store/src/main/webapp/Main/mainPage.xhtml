@@ -15,7 +15,7 @@
             <ul>
                 <li><h:link value="Display user info" outcome="userInfo.xhtml" /></li>
                 <h:panelGroup rendered="#{request.isUserInRole('Manager')}">
-                    <li><h:link value="List rooms and saunas" outcome="listRentables.xhtml" /></li>
+                    <li><h:link value="List rooms and saunas" outcome="RestListRentables.xhtml" /></li>
                     <li ><h:link value="List rents" outcome="listRents.xhtml" /></li>
                     <li><h:link value="Add room" outcome="addRoom.xhtml"/></li>
                     <li> <h:link value="Add sauna" outcome="addSauna.xhtml" /></li>

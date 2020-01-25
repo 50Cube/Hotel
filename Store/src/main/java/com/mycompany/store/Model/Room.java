@@ -6,7 +6,9 @@ public class Room extends Rentable implements Serializable {
     private double area;
     private int beds;
 
-    public Room () {}
+    public Room () {
+        super();
+    }
     
     public Room(int number, double area, int beds) {
         super(number);
