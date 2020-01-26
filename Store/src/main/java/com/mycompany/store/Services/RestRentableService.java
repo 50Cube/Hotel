@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.validation.constraints.Min;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -22,6 +23,8 @@ import javax.ws.rs.core.MediaType;
 @Named(value = "restRentableService")
 @RequestScoped
 @Path("model")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class RestRentableService {
     
     @Inject
@@ -35,35 +38,31 @@ public class RestRentableService {
     
     @GET
     @Path("/rentables")
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Map<Integer, Rentable> getRentables() {
         return rentableRepository.getRentables();
     }
     
     @GET
     @Path("/rooms")
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Map<Integer, Room> getRooms() {
         return rentableRepository.getRooms();
     }
     
     @GET
     @Path("/saunas")
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Map<Integer, Sauna> getSaunas() {
         return rentableRepository.getSaunas();
     }
     
     @GET
     @Path("/rentable/{number}")
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Rentable getRentable(@PathParam("number") int number) {
+    public Rentable getRentable(@PathParam("number") @Min(0) int number) {
         return rentableRepository.getRentable(number);
     }
     
     @DELETE
     @Path("/rentable/{number}")
-    public void deleteRentable(@PathParam("number") int number)
+    public void deleteRentable(@PathParam("number") @Min(0) int number)
     {
         if(rentableRepository.getRentables().containsKey(number)) {
             if(checkIfIsRented(number))
@@ -79,7 +78,6 @@ public class RestRentableService {
     
     @POST
     @Path("/room")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addRoom(Room room) {
         if(rentableRepository.getRentables().containsKey(room.getNumber()))
             throw new IllegalArgumentException("Room or sauna with this number already exists.");
@@ -88,7 +86,6 @@ public class RestRentableService {
     
     @POST
     @Path("/sauna")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void addSauna(Sauna sauna) {
         if(rentableRepository.getRentables().containsKey(sauna.getNumber()))
             throw new IllegalArgumentException("Room or sauna with this number already exists.");
@@ -97,22 +94,26 @@ public class RestRentableService {
     
     @PUT
     @Path("/room/{number}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void updateRoom(@PathParam("number") int number, Room room) {
+    public void updateRoom(@PathParam("number") @Min(0) int number, Room room) {
         if(rentableRepository.getRentables().containsKey(number)) {
-            if(rentableRepository.getRentable(number) instanceof Room)
-                rentableRepository.updateRentable(number, room);
+            if(number == room.getNumber()) {
+                if(rentableRepository.getRentable(number) instanceof Room)
+                    rentableRepository.updateRentable(number, room);
+                }
+            else throw new IllegalArgumentException("You cannot change room`s number");
         }
         else throw new IllegalArgumentException("Room does not exists");
     }
     
     @PUT
     @Path("/sauna/{number}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void updateSauna(@PathParam("number") int number, Sauna sauna) {
+    public void updateSauna(@PathParam("number") @Min(0) int number, Sauna sauna) {
         if(rentableRepository.getRentables().containsKey(number)) {
-            if(rentableRepository.getRentable(number) instanceof Sauna)
-                rentableRepository.updateRentable(number, sauna);
+            if(number == sauna.getNumber()) {
+                if(rentableRepository.getRentable(number) instanceof Sauna)
+                    rentableRepository.updateRentable(number, sauna);
+            }
+            else throw new IllegalArgumentException("You cannot change sauna`s number");
         }
         else throw new IllegalArgumentException("Room does not exists");
     }
