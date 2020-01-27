@@ -83,14 +83,14 @@ public class RestUpdateRentableController {
     }
     
     public String updateRoom() {
-        webTarget.path("room/{number}").resolveTemplate("number", dh.getRoom().getNumber()).request(MediaType.APPLICATION_JSON)
-                .put(Entity.json(new Room(dh.getRoom().getNumber(), dh.getRoom().getArea(), dh.getRoom().getBeds())), Room.class);
+        webTarget.path("room/{number}").resolveTemplate("number", Integer.parseInt(this.roomNumber)).request(MediaType.APPLICATION_JSON)
+                .put(Entity.json(new Room(Integer.parseInt(this.roomNumber), Double.parseDouble(this.area), Integer.parseInt(this.beds))), Room.class);
         return "RestListRentables";
     }
     
     public String updateSauna() {
-        webTarget.path("sauna/{number}").resolveTemplate("number", dh.getSauna().getNumber()).request(MediaType.APPLICATION_JSON)
-                .put(Entity.json(new Sauna(dh.getSauna().getNumber(), dh.getSauna().getPricePerHour())), Sauna.class);
+        webTarget.path("sauna/{number}").resolveTemplate("number", Integer.parseInt(this.saunaNumber)).request(MediaType.APPLICATION_JSON)
+                .put(Entity.json(new Sauna(Integer.parseInt(this.saunaNumber), Double.parseDouble(this.price))), Sauna.class);
         return "RestListRentables";
     }
 }

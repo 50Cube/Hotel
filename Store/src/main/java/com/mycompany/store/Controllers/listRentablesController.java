@@ -59,17 +59,17 @@ public class listRentablesController implements Serializable{
         loadRentables();
     }
     
-//    public String saveRoom(Room room) {
-//        dh.setRoom(room);
-//        dh.setSauna(new Sauna(0,0));
-//        return "updateRoom.xhtml";
-//    }
-//    
-//    public String saveSauna(Sauna sauna) {
-//        dh.setSauna(sauna);
-//        dh.setRoom(new Room(0,0,0));
-//        return "updateSauna.xhtml";
-//    }
+    public String saveRoom(Room room) {
+        dh.setRoom(room);
+        dh.setSauna(new Sauna(0,0));
+        return "updateRoom.xhtml";
+    }
+    
+    public String saveSauna(Sauna sauna) {
+        dh.setSauna(sauna);
+        dh.setRoom(new Room(0,0,0));
+        return "updateSauna.xhtml";
+    }
     
     public void getFilteredRentables() {
         rentables = rentableService.getFilteredRentables(this.filter);
