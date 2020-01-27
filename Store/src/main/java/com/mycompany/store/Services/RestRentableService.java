@@ -19,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Named(value = "restRentableService")
 @RequestScoped
@@ -38,26 +39,42 @@ public class RestRentableService {
     
     @GET
     @Path("/rentables")
-    public Map<Integer, Rentable> getRentables() {
-        return rentableRepository.getRentables();
+    public Response getRentables() {
+        Map<Integer, Rentable> rentables = rentableRepository.getRentables();
+        if(rentables != null){
+            return Response.ok(rentables).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
     
     @GET
     @Path("/rooms")
-    public Map<Integer, Room> getRooms() {
-        return rentableRepository.getRooms();
+    public Response getRooms() {
+        Map<Integer, Room> rooms = rentableRepository.getRooms();
+        if(rooms != null){
+            return Response.ok(rooms).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
     
     @GET
     @Path("/saunas")
-    public Map<Integer, Sauna> getSaunas() {
-        return rentableRepository.getSaunas();
+    public Response getSaunas() {
+        Map<Integer, Sauna> saunas = rentableRepository.getSaunas();
+        if(saunas != null){
+            return Response.ok(saunas).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
     
     @GET
     @Path("/rentable/{number}")
-    public Rentable getRentable(@PathParam("number") @Min(0) int number) {
-        return rentableRepository.getRentable(number);
+    public Response getRentable(@PathParam("number") @Min(0) int number) {
+        Rentable rentable = rentableRepository.getRentable(number);
+        if(rentable != null){
+            return Response.ok(rentable).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
     
     @DELETE
