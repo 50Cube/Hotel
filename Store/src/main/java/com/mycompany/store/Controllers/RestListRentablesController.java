@@ -38,7 +38,6 @@ public class RestListRentablesController implements Serializable {
     {
         client = ClientBuilder.newClient();
         webTarget = client.target("https://localhost:8181/Store/resources/model");
-        rentables = webTarget.path("rentables").request(MediaType.APPLICATION_JSON).get(new GenericType<Map<Integer, Rentable>>() {});
         rooms = webTarget.path("rooms").request(MediaType.APPLICATION_JSON).get(new GenericType<Map<Integer, Room>>() {});
         saunas = webTarget.path("saunas").request(MediaType.APPLICATION_JSON).get(new GenericType<Map<Integer, Sauna>>() {});
         client.close();

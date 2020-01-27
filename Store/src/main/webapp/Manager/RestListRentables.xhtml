@@ -8,7 +8,7 @@
     <h:body>
          <h:form>
             List of rooms 
-            <h:dataTable value="#{RestListRentablesController.rooms}" var="room" border="1">
+            <h:dataTable value="#{restListRentablesController.rooms}" var="room" border="1">
                 <h:column><h:outputText value="#{room.value}" /></h:column>
                 <h:column><h:commandButton value="Remove" action="#{listRentablesController.deleteRentable(room.value.number)}"/></h:column>
                 <h:column><h:commandButton value="Update" action="#{listRentablesController.saveRoom(room.value)}"/></h:column>
@@ -17,7 +17,7 @@
             </h:dataTable>
             <br />
             List of saunas <br />
-            <h:dataTable value="#{RestListRentablesController.saunas}" var="sauna" border="1">
+            <h:dataTable value="#{restListRentablesController.saunas}" var="sauna" border="1">
                 <h:column><h:outputText value="#{sauna.value}" /></h:column>
                 <h:column><h:commandButton value="Remove" action="#{listRentablesController.deleteRentable(sauna.value.number)}"/></h:column>
                 <h:column><h:commandButton value="Update" action="#{listRentablesController.saveSauna(sauna.value)}"/></h:column>
