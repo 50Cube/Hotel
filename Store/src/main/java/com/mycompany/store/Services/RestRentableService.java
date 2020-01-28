@@ -39,10 +39,10 @@ public class RestRentableService {
     
     @GET
     @Path("/rentables")
-    public Response  getRentables() {
-        Map<Integer, Rentable> m = rentableRepository.getRentables();
-        if(m != null){
-            return Response.ok(m).build();
+    public Response getRentables() {
+        Map<Integer, Rentable> rentables = rentableRepository.getRentables();
+        if(rentables != null){
+            return Response.ok(rentables).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
@@ -50,9 +50,9 @@ public class RestRentableService {
     @GET
     @Path("/rooms")
     public Response getRooms() {
-        Map<Integer, Room> m = rentableRepository.getRooms();
-        if(m != null){
-            return Response.ok(m).build();
+        Map<Integer, Room> rooms = rentableRepository.getRooms();
+        if(rooms != null){
+            return Response.ok(rooms).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
@@ -60,9 +60,9 @@ public class RestRentableService {
     @GET
     @Path("/saunas")
     public Response getSaunas() {
-        Map<Integer, Sauna> m = rentableRepository.getSaunas();
-        if(m != null){
-            return Response.ok(m).build();
+        Map<Integer, Sauna> saunas = rentableRepository.getSaunas();
+        if(saunas != null){
+            return Response.ok(saunas).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }

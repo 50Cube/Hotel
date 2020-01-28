@@ -100,4 +100,19 @@ public class RestAddRentableController implements Serializable {
         conversation.end();
         return "home";
     }
+    
+    public String addSauna() {
+        if(!conversation.isTransient())
+            conversation.end();
+        conversation.begin();
+        sauna.setNumber(Integer.parseInt(number));
+        sauna.setPricePerHour(Double.parseDouble(price));
+        return "addSauna";
+    }
+    
+    public String addSaunaConfirm() {
+        webTarget.path("sauna").request(MediaType.APPLICATION_JSON).post(Entity.json(this.sauna), Sauna.class);
+        conversation.end();
+        return "home";
+    }
 }

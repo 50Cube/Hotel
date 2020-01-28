@@ -6,9 +6,11 @@ import com.mycompany.store.Model.Sauna;
 import java.io.Serializable;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -27,8 +29,11 @@ public class RestListRentablesController implements Serializable {
     private Map<Integer, Sauna> saunas;
     private String filter;
     
-    private Client client;
-    private WebTarget webTarget; 
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    
+    private Client client = ClientBuilder.newClient();
+    //private WebTarget webTarget = client.target(request.getRequestURI().substring(request.getContextPath().length()));
+    private WebTarget webTarget = client.target("https://localhost:8181/Store/resources/model");
     
     public RestListRentablesController() {
     }
@@ -36,11 +41,8 @@ public class RestListRentablesController implements Serializable {
     @PostConstruct
     public void loadRentables()
     {
-        client = ClientBuilder.newClient();
-        webTarget = client.target("https://localhost:8181/Store/resources/model");
         rooms = webTarget.path("rooms").request(MediaType.APPLICATION_JSON).get(new GenericType<Map<Integer, Room>>() {});
         saunas = webTarget.path("saunas").request(MediaType.APPLICATION_JSON).get(new GenericType<Map<Integer, Sauna>>() {});
-        client.close();
     }
     
     public Map<Integer, Rentable> getRentables()
@@ -56,5 +58,23 @@ public class RestListRentablesController implements Serializable {
     public Map<Integer, Sauna> getSaunas()
     {
         return saunas;
+    }
+    
+    public void deleteRentable(int number)
+    {
+        webTarget.path("rentable/{number}").resolveTemplate("number", number).request().delete();
+        loadRentables();
+    }
+    
+    public String saveRoom(Room room) {
+        dh.setRoom(room);
+        dh.setSauna(new Sauna(0,0));
+        return "RestUpdateRoom.xhtml";
+    }
+    
+    public String saveSauna(Sauna sauna) {
+        dh.setSauna(sauna);
+        dh.setRoom(new Room(0,0,0));
+        return "RestUpdateSauna.xhtml";
     }
 }
