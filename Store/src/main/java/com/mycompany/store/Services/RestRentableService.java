@@ -19,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Named(value = "restRentableService")
 @RequestScoped
@@ -38,38 +39,57 @@ public class RestRentableService {
     
     @GET
     @Path("/rentables")
-    public Map<Integer, Rentable> getRentables() {
-        return rentableRepository.getRentables();
+    public Response  getRentables() {
+        Map<Integer, Rentable> m = rentableRepository.getRentables();
+        if(m != null){
+            return Response.ok(m).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
     
     @GET
     @Path("/rooms")
-    public Map<Integer, Room> getRooms() {
-        return rentableRepository.getRooms();
+    public Response getRooms() {
+        Map<Integer, Room> m = rentableRepository.getRooms();
+        if(m != null){
+            return Response.ok(m).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
     
     @GET
     @Path("/saunas")
-    public Map<Integer, Sauna> getSaunas() {
-        return rentableRepository.getSaunas();
+    public Response getSaunas() {
+        Map<Integer, Sauna> m = rentableRepository.getSaunas();
+        if(m != null){
+            return Response.ok(m).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
     
     @GET
     @Path("/rentable/{number}")
-    public Rentable getRentable(@PathParam("number") @Min(0) int number) {
-        return rentableRepository.getRentable(number);
+    public Response getRentable(@PathParam("number") @Min(0) int number) {
+        Rentable r = rentableRepository.getRentable(number);
+        if(r != null){
+            return Response.ok(r).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).entity("Rentable with number:"+ number +" doesn't exist").build();
     }
     
     @DELETE
     @Path("/rentable/{number}")
-    public void deleteRentable(@PathParam("number") @Min(0) int number)
+    public Response deleteRentable(@PathParam("number") @Min(0) int number)
     {
-        if(rentableRepository.getRentables().containsKey(number)) {
-            if(checkIfIsRented(number))
+        Rentable r = rentableRepository.getRentable(number);
+        if(r != null) {
+            if(checkIfIsRented(number)){
                 rentableRepository.deleteRentable(rentableRepository.getRentable(number));
-            else throw new IllegalArgumentException("Cannot remove room or sauna which is rented");
+                return Response.ok("Room " + number + " deleted").build();
+            }
+            else return Response.status(Response.Status.FORBIDDEN).entity("Can't delete rented rentable").build(); 
         }
-        else throw new IllegalArgumentException("Room or sauna with that number does not exist");
+        return Response.status(Response.Status.NOT_FOUND).entity("Rentable with number:"+ number +" doesn't exist").build();
     }
     
     private boolean checkIfIsRented(int number) {
