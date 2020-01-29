@@ -6,13 +6,16 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Named(value = "restAddRentableController")
 @ConversationScoped
@@ -21,8 +24,10 @@ public class RestAddRentableController implements Serializable {
     @Inject
     private Conversation conversation;
     
-    private Client client;
-    private WebTarget webTarget; 
+    private HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    private Client client = ClientBuilder.newClient();
+    private WebTarget webTarget = client.target(request.getRequestURL()
+           .substring(0, (request.getRequestURL().length() - request.getServletPath().length())).concat("/resources/model"));
     
     private Room room;
     private Sauna sauna;
@@ -73,8 +78,6 @@ public class RestAddRentableController implements Serializable {
     {
         room = new Room();
         sauna = new Sauna();
-        client = ClientBuilder.newClient();
-        webTarget = client.target("https://localhost:8181/Store/resources/model");
     }
     
     public Room getRoom() {
@@ -96,7 +99,7 @@ public class RestAddRentableController implements Serializable {
     }
     
     public String addRoomConfirm() {
-        webTarget.path("room").request(MediaType.APPLICATION_JSON).post(Entity.json(this.room), Room.class);
+        webTarget.path("room").request(MediaType.APPLICATION_JSON).post(Entity.json(this.room), Response.class);
         conversation.end();
         return "home";
     }
@@ -111,7 +114,7 @@ public class RestAddRentableController implements Serializable {
     }
     
     public String addSaunaConfirm() {
-        webTarget.path("sauna").request(MediaType.APPLICATION_JSON).post(Entity.json(this.sauna), Sauna.class);
+        webTarget.path("sauna").request(MediaType.APPLICATION_JSON).post(Entity.json(this.sauna), Response.class);
         conversation.end();
         return "home";
     }

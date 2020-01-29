@@ -11,6 +11,7 @@ import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -29,11 +30,10 @@ public class RestListRentablesController implements Serializable {
     private Map<Integer, Sauna> saunas;
     private String filter;
     
-    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    
+    private HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     private Client client = ClientBuilder.newClient();
-    //private WebTarget webTarget = client.target(request.getRequestURI().substring(request.getContextPath().length()));
-    private WebTarget webTarget = client.target("https://localhost:8181/Store/resources/model");
+    private WebTarget webTarget = client.target(request.getRequestURL()
+           .substring(0, (request.getRequestURL().length() - request.getServletPath().length())).concat("/resources/model"));
     
     public RestListRentablesController() {
     }

@@ -5,12 +5,15 @@ import com.mycompany.store.Model.Sauna;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Named(value = "restUpdateRentableController")
 @RequestScoped
@@ -19,8 +22,10 @@ public class RestUpdateRentableController {
     @Inject
     DataHolder dh;
     
+    private HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     private Client client = ClientBuilder.newClient();
-    private WebTarget webTarget = client.target("https://localhost:8181/Store/resources/model");
+    private WebTarget webTarget = client.target(request.getRequestURL()
+           .substring(0, (request.getRequestURL().length() - request.getServletPath().length())).concat("/resources/model"));
     
     private String roomNumber;
     private String saunaNumber;
@@ -84,13 +89,13 @@ public class RestUpdateRentableController {
     
     public String updateRoom() {
         webTarget.path("room/{number}").resolveTemplate("number", Integer.parseInt(this.roomNumber)).request(MediaType.APPLICATION_JSON)
-                .put(Entity.json(new Room(Integer.parseInt(this.roomNumber), Double.parseDouble(this.area), Integer.parseInt(this.beds))), Room.class);
+                .put(Entity.json(new Room(Integer.parseInt(this.roomNumber), Double.parseDouble(this.area), Integer.parseInt(this.beds))), Response.class);
         return "RestListRentables";
     }
     
     public String updateSauna() {
         webTarget.path("sauna/{number}").resolveTemplate("number", Integer.parseInt(this.saunaNumber)).request(MediaType.APPLICATION_JSON)
-                .put(Entity.json(new Sauna(Integer.parseInt(this.saunaNumber), Double.parseDouble(this.price))), Sauna.class);
+                .put(Entity.json(new Sauna(Integer.parseInt(this.saunaNumber), Double.parseDouble(this.price))), Response.class);
         return "RestListRentables";
     }
 }
