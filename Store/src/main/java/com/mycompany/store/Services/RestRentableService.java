@@ -5,6 +5,7 @@ import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.Sauna;
 import com.mycompany.store.Repositories.RentRepository;
 import com.mycompany.store.Repositories.RentableRepository;
+import com.mycompany.store.Services.CustomExceptions.RentableRentedException;
 import java.util.Map;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -99,7 +100,7 @@ public class RestRentableService {
     
     @DELETE
     @Path("/rentable/{number}")
-    public Response deleteRentable(@PathParam("number") @Valid int number)
+    public Response deleteRentable(@PathParam("number") @Valid int number) throws RentableRentedException
     {
         Rentable r = rentableRepository.getRentable(number);
         if(r != null) {
@@ -107,7 +108,8 @@ public class RestRentableService {
                 rentableRepository.deleteRentable(rentableRepository.getRentable(number));
                 return Response.ok("Room " + number + " deleted").build();
             }
-            else return Response.status(Response.Status.FORBIDDEN).entity("Can't delete rented rentable").build(); 
+            throw new RentableRentedException("Can't delete rented rentable");
+ //           else return Response.status(Response.Status.FORBIDDEN).entity("Can't delete rented rentable").build(); 
         }
         return Response.status(Response.Status.NOT_FOUND).entity("Rentable with number:"+ number +" doesn't exist").build();
     }
