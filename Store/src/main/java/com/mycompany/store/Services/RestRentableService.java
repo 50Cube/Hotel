@@ -138,27 +138,32 @@ public class RestRentableService {
     
     @PUT
     @Path("/room/{number}")
-    public void updateRoom(@PathParam("number") @Valid int number, @Valid Room room) {
+    public Response updateRoom(@PathParam("number") @Valid int number, @Valid Room room) {
         if(rentableRepository.getRentables().containsKey(number)) {
             if(number == room.getNumber()) {
-                if(rentableRepository.getRentable(number) instanceof Room)
-                    rentableRepository.updateRentable(number, room);
+                if(rentableRepository.getRentable(number) instanceof Room){
+                  rentableRepository.updateRentable(number, room);
+                  return Response.ok("Room " + room.getNumber()  + " updated").build();
                 }
-            else throw new IllegalArgumentException("You cannot change room`s number");
+            }
+            else return Response.status(Response.Status.FORBIDDEN).entity("Room number can't be changed").build(); 
         }
-        else throw new IllegalArgumentException("Room does not exists");
+        return Response.status(Response.Status.NOT_FOUND).entity("Room doesn't exist").build(); 
     }
+       
     
     @PUT
     @Path("/sauna/{number}")
-    public void updateSauna(@PathParam("number") @Valid int number, @Valid Sauna sauna) {
+    public Response updateSauna(@PathParam("number") @Valid int number, @Valid Sauna sauna) {
         if(rentableRepository.getRentables().containsKey(number)) {
             if(number == sauna.getNumber()) {
-                if(rentableRepository.getRentable(number) instanceof Sauna)
+                if(rentableRepository.getRentable(number) instanceof Sauna){
                     rentableRepository.updateRentable(number, sauna);
+                    return Response.ok("Room " + sauna.getNumber()  + " updated").build();
+                }
             }
-            else throw new IllegalArgumentException("You cannot change sauna`s number");
+            else return Response.status(Response.Status.FORBIDDEN).entity("Sauna number can't be changed").build();
         }
-        else throw new IllegalArgumentException("Room does not exists");
+        return Response.status(Response.Status.NOT_FOUND).entity("Sauna doesn't exist").build(); 
     }
 }
