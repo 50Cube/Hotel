@@ -84,7 +84,7 @@ public class RestRentableService {
     {
         Rentable r = rentableRepository.getRentable(number);
         if(r != null) {
-            if(checkIfIsRented(number)){
+            if(checkIfIsNotRented(number)){
                 rentableRepository.deleteRentable(rentableRepository.getRentable(number));
                 return Response.ok("Room " + number + " deleted").build();
             }
@@ -93,24 +93,28 @@ public class RestRentableService {
         return Response.status(Response.Status.NOT_FOUND).entity("Rentable with number:"+ number +" doesn't exist").build();
     }
     
-    private boolean checkIfIsRented(int number) {
+    private boolean checkIfIsNotRented(int number) {
         return rentRepository.getCurrentRents().values().stream().noneMatch((rent) -> (rent.getRentable().getNumber() == number));
     }
     
     @POST
     @Path("/room")
-    public void addRoom(@Valid Room room) {
-        if(rentableRepository.getRentables().containsKey(room.getNumber()))
-            throw new IllegalArgumentException("Room or sauna with this number already exists.");
+    public Response addRoom(@Valid Room room) {
+        if(rentableRepository.getRentables().containsKey(room.getNumber())){
+            return Response.status(Response.Status.FORBIDDEN).entity("Room or sauna with number:" + room.getNumber() + " already exists").build(); 
+        }
         else rentableRepository.addRentable(room);
+        return Response.ok("Room " + room.getNumber()  + " created").build();
     }
     
     @POST
     @Path("/sauna")
-    public void addSauna( @Valid Sauna sauna) {
-        if(rentableRepository.getRentables().containsKey(sauna.getNumber()))
-            throw new IllegalArgumentException("Room or sauna with this number already exists.");
+    public Response addSauna( @Valid Sauna sauna) {
+        if(rentableRepository.getRentables().containsKey(sauna.getNumber())){
+             return Response.status(Response.Status.FORBIDDEN).entity("Room or sauna with number:" + sauna.getNumber() + " already exists").build(); 
+        }
         else rentableRepository.addRentable(sauna);
+        return Response.ok("Sauna " + sauna.getNumber()  + " created").build();
     }
     
     @PUT
