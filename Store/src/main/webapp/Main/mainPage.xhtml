@@ -17,12 +17,12 @@
                 <h:panelGroup rendered="#{request.isUserInRole('Manager')}">
                     <li><h:link value="List rooms and saunas" outcome="RestListRentables.xhtml" /></li>
                     <li ><h:link value="List rents" outcome="listRents.xhtml" /></li>
-                    <li><h:link value="Add room" outcome="addRoom.xhtml"/></li>
-                    <li> <h:link value="Add sauna" outcome="addSauna.xhtml" /></li>
+                    <li><h:link value="Add room" outcome="RestAddRoom.xhtml"/></li>
+                    <li> <h:link value="Add sauna" outcome="RestAddSauna.xhtml" /></li>
                 </h:panelGroup> 
                  <h:panelGroup rendered="#{request.isUserInRole('Client')}">
                     <li><h:link value="My rents" outcome="#{listRentsController.getRentsForClientPrepare(listUsersController.getUsers()[request.userPrincipal.name])}" /></li>
-                    <li><h:link value="List rooms and saunas" outcome="rentables.xhtml" /></li>
+                    <li><h:link value="List rooms and saunas" outcome="RestRentables.xhtml" /></li>
                 </h:panelGroup>
                 <h:panelGroup rendered="#{request.isUserInRole('Admin')}">
                     <li><h:link value="Add user" outcome="addUser.xhtml" /></li>

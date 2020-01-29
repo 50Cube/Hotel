@@ -5,8 +5,8 @@ import com.mycompany.store.Model.Sauna;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -15,7 +15,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 @Named(value = "restAddRentableController")
-@ViewScoped
+@ConversationScoped
 public class RestAddRentableController implements Serializable {
 
     @Inject
@@ -92,7 +92,7 @@ public class RestAddRentableController implements Serializable {
         room.setNumber(Integer.parseInt(number));
         room.setArea(Double.parseDouble(area));
         room.setBeds(Integer.parseInt(beds));
-        return "addRoom";
+        return "RestAddRoom";
     }
     
     public String addRoomConfirm() {
@@ -107,7 +107,7 @@ public class RestAddRentableController implements Serializable {
         conversation.begin();
         sauna.setNumber(Integer.parseInt(number));
         sauna.setPricePerHour(Double.parseDouble(price));
-        return "addSauna";
+        return "RestAddSauna";
     }
     
     public String addSaunaConfirm() {

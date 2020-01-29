@@ -170,6 +170,8 @@
         </navigation-case>
     </navigation-rule>
     
+    <!-- REST -->
+    
     <navigation-rule>
         <from-view-id>/Main/mainPage.xhtml</from-view-id>
         <navigation-case>
@@ -180,10 +182,48 @@
     </navigation-rule>
     
     <navigation-rule>
+        <from-view-id>/Main/mainPage.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>RestListRentables</from-outcome>
-            <to-view-id>/Manager/RestListRentables.xhtml</to-view-id>
+            <from-outcome>RestAddRoom.xhtml</from-outcome>
+            <to-view-id>/Manager/RestAddRoom.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Main/mainPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>RestAddSauna.xhtml</from-outcome>
+            <to-view-id>/Manager/RestAddSauna.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Manager/RestAddRoom.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>RestAddRoom</from-outcome>
+            <to-view-id>/Manager/RestAddRoomConfirm.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Manager/RestAddSauna.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>RestAddSauna</from-outcome>
+            <to-view-id>/Manager/RestAddSaunaConfirm.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Main/mainPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>RestRentables.xhtml</from-outcome>
+            <to-view-id>/Client/RestRentables.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    
 </faces-config>
