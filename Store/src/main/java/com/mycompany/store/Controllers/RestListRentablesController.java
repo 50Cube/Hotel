@@ -77,4 +77,19 @@ public class RestListRentablesController implements Serializable {
         dh.setRoom(new Room(0,0,0));
         return "RestUpdateSauna.xhtml";
     }
+    
+    public void getFilteredRentables() {
+        rooms = webTarget.path("rooms/{filter}").resolveTemplate("filter", this.filter).request(MediaType.APPLICATION_JSON)
+                  .get(new GenericType<Map<Integer, Room>>() {});
+        saunas = webTarget.path("saunas/{filter}").resolveTemplate("filter", this.filter).request(MediaType.APPLICATION_JSON)
+                .get(new GenericType<Map<Integer, Sauna>>() {});
+    }
+    
+    public String getFilter() {
+        return this.filter;
+    }
+    
+    public void setFilter(String filter) {
+        this.filter = filter;
+    }
 }
