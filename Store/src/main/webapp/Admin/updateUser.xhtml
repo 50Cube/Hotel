@@ -15,7 +15,7 @@
             Surname <h:inputText value="#{updateUserController.user.surname}"/> <br />
             
             <br />
-            <h:commandButton value="Update" action="#{updateUserController.updateUser()}"/>
+            <h:commandButton value="Update" action="#{updateUserController.updateUser()}" onclick="return window.confirm('Are you sure you want to update this user?')"/>
             <h:commandButton value="Cancel" action="home" immediate="true" />
         </h:form>
     </h:body>

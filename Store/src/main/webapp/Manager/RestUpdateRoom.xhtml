@@ -20,7 +20,7 @@
                 <f:validateDoubleRange minimum="0"/>
             </h:inputText><br />
             <br />
-            <h:commandButton value="Update" action="#{restUpdateRentableController.updateRoom()}"/>
+            <h:commandButton value="Update" action="#{restUpdateRentableController.updateRoom()}" onclick="return window.confirm('Are you sure you want to update this room?')"/>
             <h:commandButton value="Cancel" action="home" immediate="true" />
         </h:form>
     </h:body>

@@ -3,15 +3,16 @@ package com.mycompany.store.Controllers;
 import com.mycompany.store.Model.Rentable;
 import com.mycompany.store.Model.Room;
 import com.mycompany.store.Model.Sauna;
+import com.mycompany.store.Services.RestRentableService;
 import java.io.Serializable;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -24,6 +25,8 @@ public class RestListRentablesController implements Serializable {
     
     @Inject
     private DataHolder dh;
+    @Inject
+    private RestRentableService rentableService;
     
     private Map<Integer, Rentable> rentables;
     private Map<Integer, Room> rooms;
@@ -62,6 +65,8 @@ public class RestListRentablesController implements Serializable {
     
     public void deleteRentable(int number)
     {
+        if(!this.rentableService.checkIfIsNotRented(number))
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cannot delete rented room or sauna"));
         webTarget.path("rentable/{number}").resolveTemplate("number", number).request().delete();
         loadRentables();
     }

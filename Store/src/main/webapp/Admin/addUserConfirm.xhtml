@@ -15,7 +15,7 @@
             Surname: <h:outputText value="#{addUserController.surname}" /><br />
             Is active: <h:outputText value="#{addUserController.activeString}" /><br />
             
-            <h:commandButton value="Confirm" action="#{addUserController.addUserConfirm()}" />
+            <h:commandButton value="Confirm" action="#{addUserController.addUserConfirm()}" onclick="return window.confirm('Are you sure you want to add this user?')"/>
             <h:commandButton value="Cancel" action="home" immediate="true" />
         </h:form>
     </h:body>

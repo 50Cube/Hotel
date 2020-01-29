@@ -23,7 +23,7 @@
                 <f:convertDateTime pattern="dd-MM-yyyy HH:mm" timeZone="#{addRentController.timeZone}"/>
             </h:inputText>
             <br /><br />
-            <h:commandButton value="Add" action="#{addRentController.addRentConfirm()}"/>
+            <h:commandButton value="Add" action="#{addRentController.addRentConfirm()}" onclick="return window.confirm('Are you sure you want to rent this #{addRentController.rent.rentableType}?')"/>
             <h:commandButton value="Cancel" action="RestListRentables.xhtml" immediate="true" />
         </h:form>
     </h:body>

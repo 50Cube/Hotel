@@ -108,14 +108,17 @@ public class RestRentableService {
                 rentableRepository.deleteRentable(rentableRepository.getRentable(number));
                 return Response.ok("Room " + number + " deleted").build();
             }
-            throw new RentableRentedException("Can't delete rented rentable");
- //           else return Response.status(Response.Status.FORBIDDEN).entity("Can't delete rented rentable").build(); 
+            else return Response.status(Response.Status.FORBIDDEN).entity("Can't delete rented rentable").build();
         }
         return Response.status(Response.Status.NOT_FOUND).entity("Rentable with number:"+ number +" doesn't exist").build();
     }
     
-    private boolean checkIfIsNotRented(int number) {
+    public boolean checkIfIsNotRented(int number) {
         return rentRepository.getCurrentRents().values().stream().noneMatch((rent) -> (rent.getRentable().getNumber() == number));
+    }
+    
+    public boolean checkIfExists(int number) {
+        return rentableRepository.getRentables().containsKey(number);
     }
     
     @POST
