@@ -10,7 +10,6 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -59,10 +58,30 @@ public class RestRentableService {
     }
     
     @GET
+    @Path("rooms/{filter}")
+    public Response getFilteredRooms(@PathParam("filter") String filter) {
+        Map<Integer, Room> rooms = rentableRepository.getFilteredRooms(filter);
+        if(rooms != null) {
+            return Response.ok(rooms).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
+    
+    @GET
     @Path("/saunas")
     public Response getSaunas() {
         Map<Integer, Sauna> saunas = rentableRepository.getSaunas();
         if(saunas != null){
+            return Response.ok(saunas).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
+    
+    @GET
+    @Path("/saunas/{filter}")
+    public Response getFilteredSaunas(@PathParam("filter") String filter) {
+        Map<Integer, Sauna> saunas = rentableRepository.getFilteredSaunas(filter);
+        if(saunas != null) {
             return Response.ok(saunas).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();

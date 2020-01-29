@@ -7,6 +7,9 @@
     </h:head>
     <h:body>
          <h:form>
+            Search rooms or saunas: 
+            <h:inputText value="#{restListRentablesController.filter}"/>
+            <h:commandButton value="Search" action="#{restListRentablesController.getFilteredRentables()}"/> <br /><br />
             List of rooms 
             <h:dataTable value="#{restListRentablesController.rooms}" var="room" border="1">
                 <h:column><h:outputText value="#{room.value}" /></h:column>
