@@ -1,8 +1,12 @@
 package com.mycompany.store.Model;
 
 import java.io.Serializable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 public class Sauna extends Rentable implements Serializable {
+    @NotNull
+    @Positive
     private double pricePerHour;
     
     public Sauna() {

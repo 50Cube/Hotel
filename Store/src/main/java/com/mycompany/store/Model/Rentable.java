@@ -1,8 +1,12 @@
 package com.mycompany.store.Model;
 
 import java.io.Serializable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 public abstract class Rentable implements Serializable {
+    @NotNull
+    @Positive
     private int number;
 
     public Rentable () {}

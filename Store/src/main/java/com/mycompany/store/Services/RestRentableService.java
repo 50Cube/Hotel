@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -69,7 +70,7 @@ public class RestRentableService {
     
     @GET
     @Path("/rentable/{number}")
-    public Response getRentable(@PathParam("number") @Min(0) int number) {
+    public Response getRentable(@PathParam("number") int number) {
         Rentable r = rentableRepository.getRentable(number);
         if(r != null){
             return Response.ok(r).build();
@@ -79,7 +80,7 @@ public class RestRentableService {
     
     @DELETE
     @Path("/rentable/{number}")
-    public Response deleteRentable(@PathParam("number") @Min(0) int number)
+    public Response deleteRentable(@PathParam("number") @Valid int number)
     {
         Rentable r = rentableRepository.getRentable(number);
         if(r != null) {
@@ -98,7 +99,7 @@ public class RestRentableService {
     
     @POST
     @Path("/room")
-    public void addRoom(Room room) {
+    public void addRoom(@Valid Room room) {
         if(rentableRepository.getRentables().containsKey(room.getNumber()))
             throw new IllegalArgumentException("Room or sauna with this number already exists.");
         else rentableRepository.addRentable(room);
@@ -106,7 +107,7 @@ public class RestRentableService {
     
     @POST
     @Path("/sauna")
-    public void addSauna(Sauna sauna) {
+    public void addSauna( @Valid Sauna sauna) {
         if(rentableRepository.getRentables().containsKey(sauna.getNumber()))
             throw new IllegalArgumentException("Room or sauna with this number already exists.");
         else rentableRepository.addRentable(sauna);
@@ -114,7 +115,7 @@ public class RestRentableService {
     
     @PUT
     @Path("/room/{number}")
-    public void updateRoom(@PathParam("number") @Min(0) int number, Room room) {
+    public void updateRoom(@PathParam("number") @Valid int number, @Valid Room room) {
         if(rentableRepository.getRentables().containsKey(number)) {
             if(number == room.getNumber()) {
                 if(rentableRepository.getRentable(number) instanceof Room)
@@ -127,7 +128,7 @@ public class RestRentableService {
     
     @PUT
     @Path("/sauna/{number}")
-    public void updateSauna(@PathParam("number") @Min(0) int number, Sauna sauna) {
+    public void updateSauna(@PathParam("number") @Valid int number, @Valid Sauna sauna) {
         if(rentableRepository.getRentables().containsKey(number)) {
             if(number == sauna.getNumber()) {
                 if(rentableRepository.getRentable(number) instanceof Sauna)

@@ -1,9 +1,16 @@
 package com.mycompany.store.Model;
 
 import java.io.Serializable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 public class Room extends Rentable implements Serializable {
+    @NotNull
+    @Positive
     private double area;
+    
+    @NotNull
+    @Positive
     private int beds;
 
     public Room () {
