@@ -60,7 +60,7 @@ public class RestRentableService {
     
     @GET
     @Path("rooms/{filter}")
-    public Response getFilteredRooms(@PathParam("filter") String filter) {
+    public Response getFilteredRooms(@PathParam("filter") @Valid String filter) {
         Map<Integer, Room> rooms = rentableRepository.getFilteredRooms(filter);
         if(rooms != null) {
             return Response.ok(rooms).build();
@@ -80,7 +80,7 @@ public class RestRentableService {
     
     @GET
     @Path("/saunas/{filter}")
-    public Response getFilteredSaunas(@PathParam("filter") String filter) {
+    public Response getFilteredSaunas(@PathParam("filter") @Valid String filter) {
         Map<Integer, Sauna> saunas = rentableRepository.getFilteredSaunas(filter);
         if(saunas != null) {
             return Response.ok(saunas).build();
@@ -90,7 +90,7 @@ public class RestRentableService {
     
     @GET
     @Path("/rentable/{number}")
-    public Response getRentable(@PathParam("number") int number) {
+    public Response getRentable(@PathParam("number") @Valid int number) {
         Rentable r = rentableRepository.getRentable(number);
         if(r != null){
             return Response.ok(r).build();

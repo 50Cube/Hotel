@@ -8,13 +8,6 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class ProcessingExceptionMapper implements ExceptionMapper<ProcessingException> {
 
-    public static class ErrorMessage {
-        public final String error;
-        public ErrorMessage(String error) {
-            this.error = error;
-        }
-    }
-
     @Override
     public Response toResponse(ProcessingException exception) {
         return Response
